@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System;
 using Unity.Burst.Intrinsics;
 using UnityEngine;
@@ -10,11 +11,14 @@ public class PlayerMovementDetect : MonoBehaviour
     [SerializeField] private Manager _manager;
     [SerializeField] private string _playerName = "RWS_Player";
     [SerializeField] private string _managerName = "RWS_Manager";
-    [SerializeField] private bool _isBlocked;
+    [SerializeField] private bool _isBlocking;
+    [SerializeField] private bool _isPushable;
+    [SerializeField] private PushableObject _pushableObject;
 
     private float _playerX;
     private float _playerY;
-    private string[] _tagArr;
+    private string[] _blockTagArr;
+    private string[] _pushableTagArr;
 
     private void Awake()
     {
@@ -25,34 +29,69 @@ public class PlayerMovementDetect : MonoBehaviour
 
     private void Start()
     {
-        _tagArr = _manager._managerTagArr;
+        _blockTagArr = _manager.GetBlockTagArr();
+        _pushableTagArr = _manager.GetPushableTagArr();
     }
 
     public void OnClick()
     {
-        if (_isBlocked == false)
+        if (_isBlocking == false)
         {
             Vector3 newPosition = _player.transform.position;
             newPosition += transform.localPosition;
             _player.transform.position = newPosition;
         }
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        foreach (string elem in _tagArr)
+        else if (_isPushable == true)
         {
-            if (collision.gameObject.CompareTag(elem))
-            {
-                _isBlocked = true;
-                _rend.color = Color.red;
-            }
+            _pushableObject?.MoveIt(gameObject);
         }
     }
 
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        _pushableObject = collision.gameObject.GetComponent<PushableObject>();
+        foreach (string tag in _blockTagArr)
+        {
+            if (collision.gameObject.CompareTag(tag))
+            {
+                foreach (string ptag in _pushableTagArr)
+                {
+                    if (collision.gameObject.CompareTag(ptag))
+                    {
+                        _rend.color = Color.yellow;
+                        _isPushable = true;
+                    }
+                    else
+                    {
+                        _rend.color = Color.red;
+                        _isPushable = false;
+                    }
+                    _isBlocking = true;
+                }
+            }
+            else
+            {
+                foreach (string ptag in _pushableTagArr)
+                {
+                    if (collision.gameObject.CompareTag(ptag))
+                    {
+                        _rend.color = Color.yellow;
+                        _isPushable = true;
+                    }
+                    else
+                    {
+                        _isPushable = false;
+                    }
+                    _isBlocking = true;
+                }
+            }
+        }
+    }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        _isBlocked = false;
+        _isBlocking = false;
+        _isPushable = false;
         _rend.color = Color.green;
     }
 }

@@ -5,7 +5,8 @@ TagManager:
   serializedVersion: 3
   tags:
   - Block
-  - Block2
+  - Push
+  - Wall
   layers:
   - Default
   - TransparentFX
@@ -13,7 +14,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - Wall
   - 
   - 
   - 
