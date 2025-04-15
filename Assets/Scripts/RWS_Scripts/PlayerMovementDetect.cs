@@ -12,11 +12,9 @@ public class PlayerMovementDetect : MonoBehaviour
     [SerializeField] private string _playerName = "RWS_Player";
     [SerializeField] private string _managerName = "RWS_Manager";
     [SerializeField] private bool _isBlocking;
-    [SerializeField] private bool _isPushable;
+    [SerializeField] private bool _isPushable; 
     [SerializeField] private PushableObject _pushableObject;
 
-    private float _playerX;
-    private float _playerY;
     private string[] _blockTagArr;
     private string[] _pushableTagArr;
 
@@ -51,9 +49,9 @@ public class PlayerMovementDetect : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         _pushableObject = collision.gameObject.GetComponent<PushableObject>();
-        foreach (string tag in _blockTagArr)
+        foreach (string btag in _blockTagArr)
         {
-            if (collision.gameObject.CompareTag(tag))
+            if (collision.gameObject.CompareTag(btag))
             {
                 foreach (string ptag in _pushableTagArr)
                 {
