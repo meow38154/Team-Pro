@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 2631048647342385893}
   - component: {fileID: 7497061513968608787}
   - component: {fileID: 8143271299312525469}
-  m_Layer: 0
-  m_Name: RWS_Goal
-  m_TagString: Goal
+  m_Layer: 11
+  m_Name: RWS_HabGoldGoal
+  m_TagString: HabGoldGoal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 2631048647342385893}
   - component: {fileID: 7497061513968608787}
   - component: {fileID: 8143271299312525469}
-  m_Layer: 0
-  m_Name: RWS_Goal
-  m_TagString: Goal
+  m_Layer: 8
+  m_Name: RWS_NabGoal
+  m_TagString: NabGoal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -79,7 +79,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.645283, g: 0.15462439, b: 0.6323726, a: 1}
+  m_Color: {r: 1, g: 0.5786306, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
