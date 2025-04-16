@@ -8,7 +8,7 @@ public class PlayerMovementDetect : MonoBehaviour
 {
     [SerializeField] private SpriteRenderer _rend;
     [SerializeField] private GameObject _player;
-    [SerializeField] private Manager _manager;
+    [SerializeField] private Manager2 _manager;
     [SerializeField] private string _playerName = "RWS_Player";
     [SerializeField] private string _managerName = "RWS_Manager";
     [SerializeField] private bool _isBlocking;
@@ -21,7 +21,7 @@ public class PlayerMovementDetect : MonoBehaviour
     private void Awake()
     {
         _player = GameObject.Find(_playerName);
-        _manager = GameObject.Find(_managerName).GetComponent<Manager>();
+        _manager = GameObject.Find(_managerName).GetComponent<Manager2>();
         _rend = GetComponent<SpriteRenderer>();
     }
 

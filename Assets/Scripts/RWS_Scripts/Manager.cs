@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Manager : MonoBehaviour
+public class Manager2 : MonoBehaviour
 {
     [SerializeField] private string[] _blockTagArr;
     [SerializeField] private string[] _pushableTagArr;
