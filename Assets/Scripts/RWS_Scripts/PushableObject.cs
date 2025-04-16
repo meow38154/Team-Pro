@@ -59,7 +59,6 @@ public class PushableObject : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if(!collision.gameObject.CompareTag("Goal"))
         _isDestroy = false;
     }
 }
