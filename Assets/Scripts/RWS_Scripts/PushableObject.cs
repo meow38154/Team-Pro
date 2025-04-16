@@ -6,6 +6,7 @@ using static UnityEngine.Analytics.IAnalytic;
 
 public class PushableObject : MonoBehaviour
 {
+    [SerializeField] private PushSO _so;
     [SerializeField] private LayerMask _whatIsWall;
     [SerializeField] private bool _isDestroy;
 
@@ -17,6 +18,7 @@ public class PushableObject : MonoBehaviour
     {
         _rb = GetComponent<Rigidbody2D>();
         _boxColl = GetComponent<BoxCollider2D>();
+        _whatIsWall = _so._whatIsWall;
     }
 
 
@@ -47,7 +49,7 @@ public class PushableObject : MonoBehaviour
 
     private void OnTriggerStay2D (Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Goal"))
+        if (collision.gameObject.CompareTag(_so._goalTag))
         {
             _isDestroy = true;
         }
