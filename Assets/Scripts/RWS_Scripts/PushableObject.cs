@@ -1,10 +1,13 @@
 using DG.Tweening;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using static UnityEngine.Analytics.IAnalytic;
 
 public class PushableObject : MonoBehaviour
 {
     [SerializeField] private LayerMask _whatIsWall;
+    [SerializeField] private bool _isDestroy;
 
     private Rigidbody2D _rb;
     private BoxCollider2D _boxColl;
@@ -27,16 +30,36 @@ public class PushableObject : MonoBehaviour
         if (hitData)
         {
             Debug.Log("Push");
-            if (hitData.collider.gameObject.layer == LayerMask.NameToLayer("Goal"))
-            {
-                transform.DOMove(hitData.transform.position, 1).SetEase(Ease.OutQuart).OnComplete(() => Destroy(gameObject));
-                Debug.Log("Push1");
-            }
-            else
-            {
-                transform.DOMove(hitData.transform.position - (Vector3)_detecterPos, 1).SetEase(Ease.OutQuart);
-                Debug.Log("Push2");
-            }
+            StartCoroutine(MoveAndDisable(hitData));
         }
+    }
+
+    IEnumerator MoveAndDisable(RaycastHit2D hit)
+    {
+        Tween tween;
+        tween = transform.DOMove(hit.transform.position - (Vector3)_detecterPos, 1).SetEase(Ease.OutQuart);
+        yield return tween.WaitForCompletion();
+        if (_isDestroy)
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    private void OnTriggerStay2D (Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Goal"))
+        {
+            _isDestroy = true;
+        }
+        else
+        {
+            _isDestroy = false;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if(!collision.gameObject.CompareTag("Goal"))
+        _isDestroy = false;
     }
 }
