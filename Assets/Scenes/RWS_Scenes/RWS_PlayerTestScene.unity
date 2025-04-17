@@ -1504,7 +1504,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 380217809376691128, guid: 0bbe19f4be1efba45a186507b12b77c6, type: 3}
       propertyPath: m_TagString
-      value: GoldGoal
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 6198851229117193821, guid: 0bbe19f4be1efba45a186507b12b77c6, type: 3}
       propertyPath: m_LocalPosition.x
