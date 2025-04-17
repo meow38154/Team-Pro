@@ -283,7 +283,7 @@ GameObject:
   - component: {fileID: 455696342}
   - component: {fileID: 455696346}
   - component: {fileID: 455696345}
-  - component: {fileID: 455696344}
+  - component: {fileID: 455696347}
   - component: {fileID: 455696343}
   m_Layer: 0
   m_Name: TileDetector_Left
@@ -324,7 +324,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 455696344}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: PlayerMovementDetect, Assembly-CSharp
           m_MethodName: OnClick
           m_Mode: 1
@@ -336,26 +336,6 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
---- !u!114 &455696344
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 455696341}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1793dbcdc2ed6454d8c6613d8605d081, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _rend: {fileID: 0}
-  _player: {fileID: 0}
-  _manager: {fileID: 0}
-  _playerName: Player
-  _managerName: Manager
-  _isBlocking: 0
-  _isPushable: 0
-  _pushableObject: {fileID: 0}
 --- !u!61 &455696345
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -457,6 +437,26 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &455696347
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 455696341}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e5b3378b6191be4885840656db2e874, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _rend: {fileID: 0}
+  _player: {fileID: 0}
+  _manager: {fileID: 0}
+  _playerName: Player
+  _managerName: Manager
+  _isBlocking: 0
+  _isPushable: 0
+  _pushableObject: {fileID: 0}
 --- !u!1 &586692261
 GameObject:
   m_ObjectHideFlags: 0
@@ -768,7 +768,7 @@ GameObject:
   - component: {fileID: 1623082640}
   - component: {fileID: 1623082644}
   - component: {fileID: 1623082643}
-  - component: {fileID: 1623082642}
+  - component: {fileID: 1623082645}
   - component: {fileID: 1623082641}
   m_Layer: 0
   m_Name: TileDetector_Right
@@ -809,7 +809,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1623082642}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: PlayerMovementDetect, Assembly-CSharp
           m_MethodName: OnClick
           m_Mode: 1
@@ -821,26 +821,6 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
---- !u!114 &1623082642
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1623082639}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1793dbcdc2ed6454d8c6613d8605d081, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _rend: {fileID: 0}
-  _player: {fileID: 0}
-  _manager: {fileID: 0}
-  _playerName: Player
-  _managerName: Manager
-  _isBlocking: 0
-  _isPushable: 0
-  _pushableObject: {fileID: 0}
 --- !u!61 &1623082643
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -942,6 +922,26 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1623082645
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1623082639}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e5b3378b6191be4885840656db2e874, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _rend: {fileID: 0}
+  _player: {fileID: 0}
+  _manager: {fileID: 0}
+  _playerName: Player
+  _managerName: Manager
+  _isBlocking: 0
+  _isPushable: 0
+  _pushableObject: {fileID: 0}
 --- !u!1 &1873291219
 GameObject:
   m_ObjectHideFlags: 0
@@ -953,7 +953,7 @@ GameObject:
   - component: {fileID: 1873291220}
   - component: {fileID: 1873291224}
   - component: {fileID: 1873291223}
-  - component: {fileID: 1873291222}
+  - component: {fileID: 1873291225}
   - component: {fileID: 1873291221}
   m_Layer: 0
   m_Name: TileDetector_Up
@@ -994,7 +994,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1873291222}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: PlayerMovementDetect, Assembly-CSharp
           m_MethodName: OnClick
           m_Mode: 1
@@ -1006,26 +1006,6 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
---- !u!114 &1873291222
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1873291219}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1793dbcdc2ed6454d8c6613d8605d081, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _rend: {fileID: 0}
-  _player: {fileID: 0}
-  _manager: {fileID: 0}
-  _playerName: Player
-  _managerName: Manager
-  _isBlocking: 0
-  _isPushable: 0
-  _pushableObject: {fileID: 0}
 --- !u!61 &1873291223
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1127,6 +1107,26 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1873291225
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1873291219}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e5b3378b6191be4885840656db2e874, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _rend: {fileID: 0}
+  _player: {fileID: 0}
+  _manager: {fileID: 0}
+  _playerName: Player
+  _managerName: Manager
+  _isBlocking: 0
+  _isPushable: 0
+  _pushableObject: {fileID: 0}
 --- !u!1 &1983769169
 GameObject:
   m_ObjectHideFlags: 0
@@ -1138,7 +1138,7 @@ GameObject:
   - component: {fileID: 1983769170}
   - component: {fileID: 1983769174}
   - component: {fileID: 1983769173}
-  - component: {fileID: 1983769172}
+  - component: {fileID: 1983769175}
   - component: {fileID: 1983769171}
   m_Layer: 0
   m_Name: TileDetector_Down
@@ -1179,7 +1179,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1983769172}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: PlayerMovementDetect, Assembly-CSharp
           m_MethodName: OnClick
           m_Mode: 1
@@ -1191,26 +1191,6 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
---- !u!114 &1983769172
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1983769169}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1793dbcdc2ed6454d8c6613d8605d081, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _rend: {fileID: 0}
-  _player: {fileID: 0}
-  _manager: {fileID: 0}
-  _playerName: Player
-  _managerName: Manager
-  _isBlocking: 0
-  _isPushable: 0
-  _pushableObject: {fileID: 0}
 --- !u!61 &1983769173
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1312,6 +1292,26 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1983769175
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1983769169}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e5b3378b6191be4885840656db2e874, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _rend: {fileID: 0}
+  _player: {fileID: 0}
+  _manager: {fileID: 0}
+  _playerName: Player
+  _managerName: Manager
+  _isBlocking: 0
+  _isPushable: 0
+  _pushableObject: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
