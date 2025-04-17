@@ -8,6 +8,9 @@ TagManager:
   - Push
   - Wall
   - Goal
+  - Nab_Goal
+  - Iron_Goal
+  - Gold_Goal
   layers:
   - Default
   - TransparentFX
@@ -18,12 +21,12 @@ TagManager:
   - Wall
   - Block
   - Goal
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Nab
+  - Iron
+  - Gold
+  - Nab_Goal
+  - Iron_Goal
+  - Gold_Goal
   - 
   - 
   - 

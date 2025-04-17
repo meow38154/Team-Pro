@@ -8,6 +8,7 @@ public class PushableObject : MonoBehaviour
 {
     [SerializeField] private LayerMask _whatIsWall;
     [SerializeField] private bool _isDestroy;
+    [SerializeField] string _blockType;
 
     private Rigidbody2D _rb;
     private BoxCollider2D _boxColl;
@@ -45,15 +46,42 @@ public class PushableObject : MonoBehaviour
         }
     }
 
-    private void OnTriggerStay2D (Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Goal"))
+        if (_blockType == "Nab")
         {
-            _isDestroy = true;
+            if (collision.gameObject.CompareTag("Nab_Goal"))
+            {
+                _isDestroy = true;
+            }
+            else
+            {
+                _isDestroy = false;
+            }
         }
-        else
+
+        if (_blockType == "Iron")
         {
-            _isDestroy = false;
+            if (collision.gameObject.CompareTag("Iron_Goal"))
+            {
+                _isDestroy = true;
+            }
+            else
+            {
+                _isDestroy = false;
+            }
+        }
+
+        if (_blockType == "Gold")
+        {
+            if (collision.gameObject.CompareTag("Gold_Goal"))
+            {
+                _isDestroy = true;
+            }
+            else
+            {
+                _isDestroy = false;
+            }
         }
     }
 
