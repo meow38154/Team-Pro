@@ -238,6 +238,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Nab_block
       objectReference: {fileID: 0}
+    - target: {fileID: 7565916459293737604, guid: d779e732df5c18a44b1df07175c118fd, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 7949664472669642741, guid: d779e732df5c18a44b1df07175c118fd, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1
@@ -1247,7 +1251,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7565916459293737604, guid: d779e732df5c18a44b1df07175c118fd, type: 3}
       propertyPath: m_TagString
-      value: Iron_Goal
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 7949664472669642741, guid: d779e732df5c18a44b1df07175c118fd, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1572,7 +1576,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 380217809376691128, guid: edbd8ad14ccc6d54f88c56e3320e6bfe, type: 3}
       propertyPath: m_TagString
-      value: Iron_Goal
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 2631048647342385893, guid: edbd8ad14ccc6d54f88c56e3320e6bfe, type: 3}
       propertyPath: m_Color.b
