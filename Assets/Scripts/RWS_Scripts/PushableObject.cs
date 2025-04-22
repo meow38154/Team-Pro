@@ -8,7 +8,7 @@ public class PushableObject : MonoBehaviour
 {
     [SerializeField] private LayerMask _whatIsWall;
     [SerializeField] private bool _isDestroy;
-    [SerializeField] PushSO _so;
+    [SerializeField] PushSO _so;                                          
 
     private Rigidbody2D _rb;
     private BoxCollider2D _boxColl;
@@ -18,6 +18,7 @@ public class PushableObject : MonoBehaviour
     {
         _rb = GetComponent<Rigidbody2D>();
         _boxColl = GetComponent<BoxCollider2D>();
+         
     }
 
 
