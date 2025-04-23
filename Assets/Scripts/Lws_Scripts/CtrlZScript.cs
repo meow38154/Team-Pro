@@ -9,7 +9,7 @@ public class CtrlZScript : MonoBehaviour
     public List<Vector3> moveList = new List<Vector3>();
     int listindex = 0;
     Vector3 pos;
-
+    Vector3 turnPos;
     private void Start()
     {
         pos = transform.position;
@@ -18,19 +18,15 @@ public class CtrlZScript : MonoBehaviour
 
     private void Update()
     {
-
-        if (pos != transform.position)
-        {
-            SavePosZ(pos);
-            pos = transform.position;
-        }
+        turnPos = GetComponent<PushableObject>()._turnPos;
     }
 
 
-    public void SavePosZ(Vector3 nowVec3)
+    public void SavePosZ()
     {
-        moveList.Add(nowVec3);
+        moveList.Add(turnPos);
         listindex++;
+        pos = turnPos;
     }
 
     public void CtrlZ()

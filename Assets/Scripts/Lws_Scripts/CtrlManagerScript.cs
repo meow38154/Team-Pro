@@ -4,7 +4,6 @@ using UnityEngine.InputSystem;
 public class CtrlManagerScript : MonoBehaviour
 {
     [SerializeField] GameObject[] _MoveBlock;
-
     
     void Update()
     {
@@ -13,8 +12,14 @@ public class CtrlManagerScript : MonoBehaviour
             for (int i = 0;i < _MoveBlock.Length; i++)
             {
                 _MoveBlock[i].GetComponent<CtrlZScript>().CtrlZ();
-                Debug.Log(i);
             }
+        }
+    }
+    public void AllSave()
+    {
+        for (int i = 0; i < _MoveBlock.Length; i++)
+        {
+            _MoveBlock[i].GetComponent<CtrlZScript>().SavePosZ();
         }
     }
 }
