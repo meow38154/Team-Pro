@@ -26,11 +26,11 @@ TagManager:
   - Nab
   - Iron
   - Gold
-  - Nab_Goal
-  - Iron_Goal
-  - Gold_Goal
-  - 
-  - 
+  - HabGold
+  - NabGoal
+  - IronGoal
+  - GoldGoal
+  - HabGoldGoal
   - 
   - 
   - 
