@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2631048647342385893}
   - component: {fileID: 7497061513968608787}
   - component: {fileID: 8143271299312525469}
-  m_Layer: 9
+  m_Layer: 14
   m_Name: RWS_IronGoal
   m_TagString: Untagged
   m_Icon: {fileID: 0}

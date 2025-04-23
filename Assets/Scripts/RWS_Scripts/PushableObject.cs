@@ -29,6 +29,7 @@ public class PushableObject : MonoBehaviour
 
         Debug.DrawRay(transform.position + (Vector3)_detecterPos, _detecterPos * 30, Color.red);
 
+        Debug.Log(hitData);
         if (hitData)
         {
             Debug.Log("Push");

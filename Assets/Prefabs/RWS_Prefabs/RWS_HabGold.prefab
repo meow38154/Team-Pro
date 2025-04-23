@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2883356028183142}
   - component: {fileID: 8543864579889314957}
   - component: {fileID: 4355225298711812783}
-  m_Layer: 7
+  m_Layer: 12
   m_Name: RWS_HabGold
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -179,4 +179,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 192
   _isDestroy: 0
+<<<<<<< HEAD
   _blockType: 
+=======
+  _so: {fileID: 11400000, guid: 565655c4af0970943b5174ed6536b54a, type: 2}
+>>>>>>> rws
