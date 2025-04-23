@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2883356028183142}
   - component: {fileID: 8543864579889314957}
   - component: {fileID: 4355225298711812783}
-  m_Layer: 7
+  m_Layer: 11
   m_Name: RWS_Gold
   m_TagString: Push
   m_Icon: {fileID: 0}
@@ -175,8 +175,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b8c5fcdd5dcab84783df425b7db876e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _so: {fileID: 11400000, guid: 05a08ee9ec3a0184fb5929a7a16d953a, type: 2}
   _whatIsWall:
     serializedVersion: 2
     m_Bits: 192
   _isDestroy: 0
+  _so: {fileID: 11400000, guid: 05a08ee9ec3a0184fb5929a7a16d953a, type: 2}
