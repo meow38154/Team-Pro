@@ -15,4 +15,4 @@ MonoBehaviour:
   _goalTag: GoldGoal
   _whatIsWall:
     serializedVersion: 2
-    m_Bits: 3008
+    m_Bits: 97984
