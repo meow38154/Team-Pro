@@ -18,7 +18,7 @@ public class PushableObject : MonoBehaviour
     {
         _rb = GetComponent<Rigidbody2D>();
         _boxColl = GetComponent<BoxCollider2D>();
-         
+        _whatIsWall = _so._whatIsWall;
     }
 
 
@@ -29,7 +29,7 @@ public class PushableObject : MonoBehaviour
 
         Debug.DrawRay(transform.position + (Vector3)_detecterPos, _detecterPos * 30, Color.red);
 
-        Debug.Log(hitData);
+        Debug.Log(hitData.collider.gameObject);
         if (hitData)
         {
             Debug.Log("Push");
