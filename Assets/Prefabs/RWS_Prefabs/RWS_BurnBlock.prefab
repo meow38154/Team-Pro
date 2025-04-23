@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 7061258102981093614}
   - component: {fileID: 8525753562431154982}
   - component: {fileID: 528620573288095616}
-  - component: {fileID: 7298281685993257166}
   m_Layer: 0
   m_Name: RWS_BurnBlock
   m_TagString: Untagged
@@ -163,15 +162,3 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &7298281685993257166
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8634882224726443465}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d1b944d23561c994eaae6fd3a1fe537c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
