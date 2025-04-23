@@ -45,19 +45,7 @@ public class Main_PlayerMovementDetect : MonoBehaviour
         }
     }
 
-    private void OnMouseDown()
-    {
-        if (_isBlocking == false)
-        {
-            Vector3 newPosition = _player.transform.position;
-            newPosition += transform.localPosition;
-            _player.transform.position = newPosition;
-        }
-        else if (_isPushable == true)
-        {
-            _pushableObject?.MoveIt(gameObject);
-        }
-    }
+
 
 
     private void OnTriggerEnter2D(Collider2D collision)
