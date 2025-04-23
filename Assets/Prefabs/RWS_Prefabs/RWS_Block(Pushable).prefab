@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4355225298711812783}
   m_Layer: 7
   m_Name: RWS_Block(Pushable)
-  m_TagString: Push
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -178,3 +178,5 @@ MonoBehaviour:
   _whatIsWall:
     serializedVersion: 2
     m_Bits: 192
+  _isDestroy: 0
+  _blockType: 

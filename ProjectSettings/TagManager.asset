@@ -12,6 +12,7 @@ TagManager:
   - IronGoal
   - GoldGoal
   - HabGoldGoal
+  - Iron_Goal
   layers:
   - Default
   - TransparentFX
