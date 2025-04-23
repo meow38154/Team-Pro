@@ -44,7 +44,7 @@ public class PushableObject : MonoBehaviour
         yield return tween.WaitForCompletion();
         if (_isDestroy)
         {
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
     }
 
