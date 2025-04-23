@@ -1222,6 +1222,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GoldGoal-1
       objectReference: {fileID: 0}
+    - target: {fileID: 380217809376691128, guid: a2f27dd281efec148b9f5f7fec482fe0, type: 3}
+      propertyPath: m_Layer
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 6198851229117193821, guid: a2f27dd281efec148b9f5f7fec482fe0, type: 3}
       propertyPath: m_LocalPosition.x
       value: 3
@@ -1999,16 +2003,8 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7565916459293737604, guid: f677fbe4bca04b24ebd2104994a4ee43, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1288268799}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f677fbe4bca04b24ebd2104994a4ee43, type: 3}
---- !u!1 &1014857390 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7565916459293737604, guid: f677fbe4bca04b24ebd2104994a4ee43, type: 3}
-  m_PrefabInstance: {fileID: 1014857389}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1017774253
 GameObject:
   m_ObjectHideFlags: 0
@@ -2317,19 +2313,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7949664472669642741, guid: f677fbe4bca04b24ebd2104994a4ee43, type: 3}
   m_PrefabInstance: {fileID: 1014857389}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1288268799
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1014857390}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d9c7b2edbf96c0840bb4ad3d45d4d9b7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveList: []
 --- !u!4 &1288508583 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4534487848307732204, guid: ce7d03ae776ec5f4bb549f1979b33623, type: 3}
