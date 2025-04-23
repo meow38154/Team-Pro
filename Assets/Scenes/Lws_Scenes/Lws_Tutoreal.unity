@@ -3450,6 +3450,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1453620193220935305, guid: 225334d952dc50f41a4989e8465f48cd, type: 3}
+      propertyPath: _save
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1453620193220935305, guid: 225334d952dc50f41a4989e8465f48cd, type: 3}
       propertyPath: _MoveBlock.Array.size
       value: 2
       objectReference: {fileID: 0}
