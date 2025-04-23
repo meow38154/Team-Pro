@@ -15,4 +15,4 @@ MonoBehaviour:
   _goalTag: HabGoldGoal
   _whatIsWall:
     serializedVersion: 2
-    m_Bits: 1984
+    m_Bits: 65216

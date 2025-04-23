@@ -15,4 +15,4 @@ MonoBehaviour:
   _goalTag: NabGoal
   _whatIsWall:
     serializedVersion: 2
-    m_Bits: 3776
+    m_Bits: 122560

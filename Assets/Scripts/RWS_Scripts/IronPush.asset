@@ -15,4 +15,4 @@ MonoBehaviour:
   _goalTag: IronGoal
   _whatIsWall:
     serializedVersion: 2
-    m_Bits: 3520
+    m_Bits: 114368
