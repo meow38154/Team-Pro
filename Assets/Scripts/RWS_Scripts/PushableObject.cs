@@ -50,7 +50,7 @@ public class PushableObject : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag(_so._goalTag))
+        if (collision.gameObject.CompareTag(_so._goalTag) || collision.gameObject.CompareTag("BurnBlock"))
         {
             _isDestroy = true;
         }
