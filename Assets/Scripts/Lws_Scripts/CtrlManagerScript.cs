@@ -11,7 +11,14 @@ public class CtrlManagerScript : MonoBehaviour
         {
             for (int i = 0;i < _MoveBlock.Length; i++)
             {
-                _MoveBlock[i].GetComponent<CtrlZScript>().CtrlZ();
+                if (i == 0)
+                {
+                    _MoveBlock[i].GetComponent<PlayerCtrlZScript>().CtrlZ();
+                }
+                else
+                {
+                    _MoveBlock[i].GetComponent<CtrlZScript>().CtrlZ();
+                }
             }
         }
     }
@@ -19,7 +26,15 @@ public class CtrlManagerScript : MonoBehaviour
     {
         for (int i = 0; i < _MoveBlock.Length; i++)
         {
-            _MoveBlock[i].GetComponent<CtrlZScript>().SavePosZ();
+            if (i == 0)
+            {
+                _MoveBlock[i].gameObject.GetComponent<PlayerCtrlZScript>().SavePosZ();
+            }
+            else
+            {
+                _MoveBlock[i].gameObject.GetComponent<CtrlZScript>().SavePosZ();
+                
+            }
         }
     }
 }

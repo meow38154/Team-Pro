@@ -14,12 +14,13 @@ public class Main_PlayerMovementDetect : MonoBehaviour
     [SerializeField] private bool _isBlocking;
     [SerializeField] private bool _isPushable;
     [SerializeField] private PushableObject _pushableObject;
-
+    private CtrlManagerScript _playerCtrlZManager;
     private string[] _blockTagArr;
     private string[] _pushableTagArr;
 
     private void Awake()
     {
+        _playerCtrlZManager = GameObject.Find("Lws_CtrlZManager").GetComponent<CtrlManagerScript>();
         _player = GameObject.Find(_playerName);
         _manager = GameObject.Find(_managerName).GetComponent<Main_Manager>();
         _rend = GetComponent<SpriteRenderer>();
@@ -38,11 +39,13 @@ public class Main_PlayerMovementDetect : MonoBehaviour
             Vector3 newPosition = _player.transform.position;
             newPosition += transform.localPosition;
             _player.transform.position = newPosition;
+            _playerCtrlZManager.AllSave();
         }
         else if (_isPushable == true)
         {
             _pushableObject?.MoveIt(gameObject);
         }
+        
     }
 
     private void OnMouseDown()

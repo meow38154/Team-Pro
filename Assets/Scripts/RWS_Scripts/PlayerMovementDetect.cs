@@ -21,7 +21,7 @@ public class PlayerMovementDetect : MonoBehaviour
 
     private void Awake()
     {
-        _playerCtrlZManager = GameObject.Find("Lws_CtrlZManager").GetComponent<CtrlManagerScript>();
+        //_playerCtrlZManager = GameObject.Find("Lws_CtrlZManager").GetComponent<CtrlManagerScript>();
         _player = GameObject.Find(_playerName);
         _manager = GameObject.Find(_managerName).GetComponent<Manager2>();
         _rend = GetComponent<SpriteRenderer>();
@@ -40,14 +40,15 @@ public class PlayerMovementDetect : MonoBehaviour
             Vector3 newPosition = _player.transform.position;
             newPosition += transform.localPosition;
             _player.transform.position = newPosition;
+            
 
         }
         else if (_isPushable == true)
         {
             _pushableObject?.MoveIt(gameObject);
-
+            
         }
-        _playerCtrlZManager.AllSave();
+        
     }
 
 
