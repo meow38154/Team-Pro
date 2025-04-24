@@ -21,7 +21,7 @@ public class PlayerMovementDetect : MonoBehaviour
 
     private void Awake()
     {
-        //_playerCtrlZManager = GameObject.Find("Lws_CtrlZManager").GetComponent<CtrlManagerScript>();
+        
         _player = GameObject.Find(_playerName);
         _manager = GameObject.Find(_managerName).GetComponent<Manager2>();
         _rend = GetComponent<SpriteRenderer>();
@@ -31,6 +31,7 @@ public class PlayerMovementDetect : MonoBehaviour
     {
         _blockTagArr = _manager.GetBlockTagArr();
         _pushableTagArr = _manager.GetPushableTagArr();
+        _playerCtrlZManager = GameObject.Find("CtrlZManager").GetComponent<CtrlManagerScript>();
     }
 
     public void OnClick()
@@ -48,7 +49,7 @@ public class PlayerMovementDetect : MonoBehaviour
             _pushableObject?.MoveIt(gameObject);
             
         }
-        
+        _playerCtrlZManager.AllSave();
     }
 
 

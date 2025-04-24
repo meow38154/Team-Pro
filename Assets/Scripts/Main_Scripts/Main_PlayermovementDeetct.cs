@@ -20,7 +20,7 @@ public class Main_PlayerMovementDetect : MonoBehaviour
 
     private void Awake()
     {
-        _playerCtrlZManager = GameObject.Find("Lws_CtrlZManager").GetComponent<CtrlManagerScript>();
+        
         _player = GameObject.Find(_playerName);
         _manager = GameObject.Find(_managerName).GetComponent<Main_Manager>();
         _rend = GetComponent<SpriteRenderer>();
@@ -30,6 +30,7 @@ public class Main_PlayerMovementDetect : MonoBehaviour
     {
         _blockTagArr = _manager.GetBlockTagArr();
         _pushableTagArr = _manager.GetPushableTagArr();
+        _playerCtrlZManager = GameObject.Find("Lws_CtrlZManager").GetComponent<CtrlManagerScript>();
     }
 
     public void OnClick()
@@ -39,13 +40,13 @@ public class Main_PlayerMovementDetect : MonoBehaviour
             Vector3 newPosition = _player.transform.position;
             newPosition += transform.localPosition;
             _player.transform.position = newPosition;
-            _playerCtrlZManager.AllSave();
+            
         }
         else if (_isPushable == true)
         {
             _pushableObject?.MoveIt(gameObject);
         }
-        
+        _playerCtrlZManager.AllSave();
     }
 
 

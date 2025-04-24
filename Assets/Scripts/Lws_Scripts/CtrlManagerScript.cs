@@ -9,6 +9,7 @@ public class CtrlManagerScript : MonoBehaviour
     {
         if (Keyboard.current.zKey.wasPressedThisFrame)
         {
+            Debug.Log("All ZZZZZZZZZZZZZZZZZ!!!!!!!!!!!!!!!");
             for (int i = 0;i < _MoveBlock.Length; i++)
             {
                 if (i == 0)
@@ -21,18 +22,23 @@ public class CtrlManagerScript : MonoBehaviour
                 }
             }
         }
+
+        if (Keyboard.current.tKey.wasPressedThisFrame){
+            AllSave();
+        }
     }
     public void AllSave()
     {
+        Debug.Log("All Save!!!!!!!!!!!!!!!");
         for (int i = 0; i < _MoveBlock.Length; i++)
         {
             if (i == 0)
             {
-                _MoveBlock[i].gameObject.GetComponent<PlayerCtrlZScript>().SavePosZ();
+                _MoveBlock[i].GetComponent<PlayerCtrlZScript>().SavePosZ();
             }
             else
             {
-                _MoveBlock[i].gameObject.GetComponent<CtrlZScript>().SavePosZ();
+                _MoveBlock[i].GetComponent<CtrlZScript>().SavePosZ();
                 
             }
         }
