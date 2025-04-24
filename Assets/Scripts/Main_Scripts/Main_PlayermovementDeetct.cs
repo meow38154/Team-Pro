@@ -46,7 +46,7 @@ public class Main_PlayerMovementDetect : MonoBehaviour
         {
             _pushableObject?.MoveIt(gameObject);
         }
-        _playerCtrlZManager.AllSave();
+        
     }
 
 
