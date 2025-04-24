@@ -8,7 +8,7 @@ public class PushableObject : MonoBehaviour
 {
     [SerializeField] private LayerMask _whatIsWall;
     [SerializeField] private bool _isDestroy;
-    [SerializeField] PushSO _so;                                          
+    [SerializeField] PushSO _so;                                     
 
     private Rigidbody2D _rb;
     private BoxCollider2D _boxColl;
@@ -50,7 +50,7 @@ public class PushableObject : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag(_so._goalTag) || collision.gameObject.CompareTag("BurnBlock"))
+        if (collision.gameObject.CompareTag(_so._goalTag))
         {
             _isDestroy = true;
         }
