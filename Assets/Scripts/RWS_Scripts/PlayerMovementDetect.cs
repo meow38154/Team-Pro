@@ -14,6 +14,7 @@ public class PlayerMovementDetect : MonoBehaviour
     [SerializeField] private bool _isBlocking;
     [SerializeField] private bool _isPushable; 
     [SerializeField] private PushableObject _pushableObject;
+    [SerializeField] DownAnimation _downAnimation;
 
     private string[] _blockTagArr;
     private string[] _pushableTagArr;
@@ -38,6 +39,7 @@ public class PlayerMovementDetect : MonoBehaviour
             Vector3 newPosition = _player.transform.position;
             newPosition += transform.localPosition;
             _player.transform.position = newPosition;
+            _downAnimation.DownAnimationPlay();
         }
         else if (_isPushable == true)
         {
