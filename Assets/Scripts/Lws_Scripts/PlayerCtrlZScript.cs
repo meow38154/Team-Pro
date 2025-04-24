@@ -4,7 +4,7 @@ using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class CtrlZScript : MonoBehaviour
+public class PlayerCtrlZScript : MonoBehaviour
 {
     public List<Vector3> moveList = new List<Vector3>();
     int listindex = 0;
@@ -16,18 +16,12 @@ public class CtrlZScript : MonoBehaviour
     }
 
 
-    private void Update()
-    {
-        turnPos = GetComponent<PushableObject>()._turnPos;
-    }
-
 
     public void SavePosZ()
     {
         moveList.Add(pos);
         listindex++;
-        pos = turnPos;
-        Debug.Log("BlockSave!!!!!!!!");
+        pos = transform.position;
     }
 
     public void CtrlZ()
@@ -39,5 +33,6 @@ public class CtrlZScript : MonoBehaviour
             listindex--;
             pos = transform.position;
         }
+            
     }
 }

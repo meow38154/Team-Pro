@@ -2,6 +2,7 @@ using DG.Tweening;
 using System;
 using Unity.Burst.Intrinsics;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public class PlayerMovementDetect : MonoBehaviour
@@ -14,12 +15,13 @@ public class PlayerMovementDetect : MonoBehaviour
     [SerializeField] private bool _isBlocking;
     [SerializeField] private bool _isPushable; 
     [SerializeField] private PushableObject _pushableObject;
-
+    private CtrlManagerScript _playerCtrlZManager;
     private string[] _blockTagArr;
     private string[] _pushableTagArr;
 
     private void Awake()
     {
+        //_playerCtrlZManager = GameObject.Find("Lws_CtrlZManager").GetComponent<CtrlManagerScript>();
         _player = GameObject.Find(_playerName);
         _manager = GameObject.Find(_managerName).GetComponent<Manager2>();
         _rend = GetComponent<SpriteRenderer>();
@@ -38,11 +40,15 @@ public class PlayerMovementDetect : MonoBehaviour
             Vector3 newPosition = _player.transform.position;
             newPosition += transform.localPosition;
             _player.transform.position = newPosition;
+            
+
         }
         else if (_isPushable == true)
         {
             _pushableObject?.MoveIt(gameObject);
+            
         }
+        
     }
 
 
