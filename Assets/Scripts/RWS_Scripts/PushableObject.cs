@@ -8,12 +8,12 @@ public class PushableObject : MonoBehaviour
 {
     [SerializeField] private LayerMask _whatIsWall;
     [SerializeField] private bool _isDestroy;
-    [SerializeField] PushSO _so;                                     
+    [SerializeField] PushSO _so;
 
     private Rigidbody2D _rb;
     private BoxCollider2D _boxColl;
     private Vector2 _detecterPos;
-    public Vector3 _turnPos { get; set; }
+
     private void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
@@ -40,8 +40,7 @@ public class PushableObject : MonoBehaviour
     IEnumerator MoveAndDisable(RaycastHit2D hit)
     {
         Tween tween;
-        _turnPos = hit.transform.position - (Vector3)_detecterPos;
-        tween = transform.DOMove(_turnPos, 1).SetEase(Ease.OutQuart);
+        tween = transform.DOMove(hit.transform.position - (Vector3)_detecterPos, 1).SetEase(Ease.OutQuart);
         yield return tween.WaitForCompletion();
         if (_isDestroy)
         {
@@ -51,7 +50,7 @@ public class PushableObject : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag(_so._goalTag))
+        if (collision.gameObject.CompareTag(_so._goalTag) || collision.gameObject.CompareTag("BurnBlock"))
         {
             _isDestroy = true;
         }
