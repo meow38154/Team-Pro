@@ -13,6 +13,7 @@ public class PushableObject : MonoBehaviour
     private Rigidbody2D _rb;
     private BoxCollider2D _boxColl;
     private Vector2 _detecterPos;
+    public Vector3 _turePos { get; set; }
 
     private void Awake()
     {
@@ -40,7 +41,8 @@ public class PushableObject : MonoBehaviour
     IEnumerator MoveAndDisable(RaycastHit2D hit)
     {
         Tween tween;
-        tween = transform.DOMove(hit.transform.position - (Vector3)_detecterPos, 1).SetEase(Ease.OutQuart);
+        _turePos = hit.transform.position - (Vector3)_detecterPos;
+        tween = transform.DOMove(_turePos, 1).SetEase(Ease.OutQuart);
         yield return tween.WaitForCompletion();
         if (_isDestroy)
         {

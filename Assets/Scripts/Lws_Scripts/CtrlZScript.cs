@@ -22,7 +22,7 @@ public class CtrlZScript : MonoBehaviour
 
     private void Update()
     {
-        turnPos = GetComponent<PushableObject>()._turnPos;
+        turnPos = GetComponent<PushableObject>()._turePos;
     }
 
 
