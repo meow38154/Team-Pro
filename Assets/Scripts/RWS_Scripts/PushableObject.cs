@@ -45,13 +45,13 @@ public class PushableObject : MonoBehaviour
         yield return tween.WaitForCompletion();
         if (_isDestroy)
         {
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
     }
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag(_so._goalTag))
+        if (collision.gameObject.CompareTag(_so._goalTag) || collision.gameObject.CompareTag("BurnBlock"))
         {
             _isDestroy = true;
         }
