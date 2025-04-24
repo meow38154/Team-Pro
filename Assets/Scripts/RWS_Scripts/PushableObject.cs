@@ -8,7 +8,7 @@ public class PushableObject : MonoBehaviour
 {
     [SerializeField] private LayerMask _whatIsWall;
     [SerializeField] private bool _isDestroy;
-    [SerializeField] PushSO _so;                                          
+    [SerializeField] PushSO _so;
 
     private Rigidbody2D _rb;
     private BoxCollider2D _boxColl;
