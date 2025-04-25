@@ -44,6 +44,7 @@ public class PushableObject : MonoBehaviour
         _turePos = hit.transform.position - (Vector3)_detecterPos;
         tween = transform.DOMove(_turePos, 1).SetEase(Ease.OutQuart);
         yield return tween.WaitForCompletion();
+        yield return null;
         if (_isDestroy)
         {
             gameObject.SetActive(false);
