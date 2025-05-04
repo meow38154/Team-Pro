@@ -9,6 +9,7 @@ public class Blocks : MonoBehaviour
     [SerializeField] bool _wallBlock;
     [SerializeField] LayerMask _cloggedType;
     [SerializeField] LayerMask _GoalinType;
+    
 
 
     public bool _wall { get; set; }
@@ -18,7 +19,7 @@ public class Blocks : MonoBehaviour
     float _x, _y, _rayDistance = 100f;
     SpriteRenderer _spren;
     GameObject _playerGameObject;
-    Vector2 _vec2Abs, _rotion, _vec2Clamp, _positionYea, _distance, YoungJumSix;
+    Vector2 _vec2Abs, _rotion, _vec2Clamp, _positionYea, _distance, YoungJumSix, _savePosition;
     bool _interationPossible, _break;
     Blocks _goalSensor, _wallSensor;
     PlayerMovement _playerVector;
@@ -28,13 +29,29 @@ public class Blocks : MonoBehaviour
 
     private void Awake()
     {
+        _savePosition = transform.position;
         _playerGameObject = GameObject.Find("Player");
         _playerVector = GameObject.Find("Player").GetComponent<PlayerMovement>();
         _spren = GetComponent<SpriteRenderer>();
     }
 
+    void ReStart()
+    {
+        transform.position = _savePosition;
+    }
+
+
+
+
+
     private void Update()
     {
+        if (Keyboard.current.rKey.wasPressedThisFrame && Keyboard.current.fKey.isPressed)
+        {
+            ReStart();
+        }
+
+
 
         {
             if (_wallBlock == true)

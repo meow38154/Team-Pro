@@ -18,7 +18,7 @@ public class PlayerMovement : MonoBehaviour
     public bool UpKeySensor { get; set; }
     public bool DownKeySensor { get; set; }
 
-    Blocks[] _blocks = new Blocks[4];
+    [SerializeField] Blocks[] _blocks = new Blocks[4];
 
     private void Awake()
     {
