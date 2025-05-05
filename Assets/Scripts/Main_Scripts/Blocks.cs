@@ -107,28 +107,31 @@ public class Blocks : MonoBehaviour
             }
 
             {
-                _distance = _playerGameObject.transform.position - transform.position;
-
-                YoungJumSix = _distance;
-
-                YoungJumSix.x = Mathf.Clamp(YoungJumSix.x, -0.6f, 0.6f);
-                YoungJumSix.y = Mathf.Clamp(YoungJumSix.y, -0.6f, 0.6f);
-
-                Vector2 origin = (Vector2)transform.position;
-
-                RaycastHit2D hit = Physics2D.Raycast(origin - YoungJumSix, -_distance, _rayDistance, _cloggedType);
-                Debug.DrawRay(origin - YoungJumSix, -_distance * _rayDistance, Color.red);
-                if (hit)
+                if (_interationPossible == true)
                 {
-                    if (hit.collider.TryGetComponent(out Blocks _block))
+                    _distance = _playerGameObject.transform.position - transform.position;
+
+                    YoungJumSix = _distance;
+
+                    YoungJumSix.x = Mathf.Clamp(YoungJumSix.x, -0.6f, 0.6f);
+                    YoungJumSix.y = Mathf.Clamp(YoungJumSix.y, -0.6f, 0.6f);
+
+                    Vector2 origin = (Vector2)transform.position;
+
+                    RaycastHit2D hit = Physics2D.Raycast(origin - YoungJumSix, -_distance, _rayDistance, _cloggedType);
+                    Debug.DrawRay(origin - YoungJumSix, -_distance * _rayDistance, Color.red);
+                    if (hit)
                     {
-                        _movein = true;
-                        _positionYea = hit.collider.gameObject.transform.position;
+                        if (hit.collider.TryGetComponent(out Blocks _block))
+                        {
+                            _movein = true;
+                            _positionYea = hit.collider.gameObject.transform.position;
+                        }
                     }
-                }
-                else
-                {
-                    _movein = false;
+                    else
+                    {
+                        _movein = false;
+                    }
                 }
             }
         }
