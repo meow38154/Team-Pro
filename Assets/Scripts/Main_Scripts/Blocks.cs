@@ -38,6 +38,9 @@ public class Blocks : MonoBehaviour
     void ReStart()
     {
         transform.position = _savePosition;
+        gameObject.GetComponent<SpriteRenderer>().enabled = true;
+        gameObject.GetComponent<Blocks>()._pushing = true;
+        gameObject.GetComponent<Blocks>()._wallBlock = true;
     }
 
 
@@ -46,6 +49,10 @@ public class Blocks : MonoBehaviour
 
     private void Update()
     {
+        Goalin();
+
+
+        //임시 리셋 코드
         if (Keyboard.current.rKey.wasPressedThisFrame && Keyboard.current.fKey.isPressed)
         {
             ReStart();
@@ -111,27 +118,27 @@ public class Blocks : MonoBehaviour
                 {
                     _distance = _playerGameObject.transform.position - transform.position;
 
-                    YoungJumSix = _distance;
+                YoungJumSix = _distance;
 
-                    YoungJumSix.x = Mathf.Clamp(YoungJumSix.x, -0.6f, 0.6f);
-                    YoungJumSix.y = Mathf.Clamp(YoungJumSix.y, -0.6f, 0.6f);
+                YoungJumSix.x = Mathf.Clamp(YoungJumSix.x, -0.6f, 0.6f);
+                YoungJumSix.y = Mathf.Clamp(YoungJumSix.y, -0.6f, 0.6f);
 
-                    Vector2 origin = (Vector2)transform.position;
+                Vector2 origin = (Vector2)transform.position;
 
-                    RaycastHit2D hit = Physics2D.Raycast(origin - YoungJumSix, -_distance, _rayDistance, _cloggedType);
-                    Debug.DrawRay(origin - YoungJumSix, -_distance * _rayDistance, Color.red);
-                    if (hit)
+                RaycastHit2D hit = Physics2D.Raycast(origin - YoungJumSix, -_distance, _rayDistance, _cloggedType);
+                Debug.DrawRay(origin - YoungJumSix, -_distance * _rayDistance, Color.red);
+                if (hit)
+                {
+                    if (hit.collider.TryGetComponent(out Blocks _block))
                     {
-                        if (hit.collider.TryGetComponent(out Blocks _block))
-                        {
-                            _movein = true;
-                            _positionYea = hit.collider.gameObject.transform.position;
-                        }
+                        _movein = true;
+                        _positionYea = hit.collider.gameObject.transform.position;
                     }
-                    else
-                    {
-                        _movein = false;
-                    }
+                }
+                else
+                {
+                    _movein = false;
+                }
                 }
             }
         }
@@ -164,18 +171,22 @@ public class Blocks : MonoBehaviour
             }
         }
     }
-
-    private void OnTriggerEnter2D(Collider2D collider)
+    void Goalin()
     {
-        if (Physics2D.OverlapBox(transform.position, Vector2.one, 0f, _GoalinType))
+
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.up, 0.1f, _GoalinType);
+        if (hit.collider != null)
         {
-            StartCoroutine(ArrivalTrriger(collider.gameObject));
+            StartCoroutine(ArrivalTrriger());
         }
     }
 
-    IEnumerator ArrivalTrriger(GameObject _go)
+    IEnumerator ArrivalTrriger()
     {
         yield return new WaitForSeconds(0.5f);
-        _go.gameObject.SetActive(false);
+        gameObject.GetComponent<SpriteRenderer>().enabled = false;
+        gameObject.GetComponent<Blocks>()._pushing = false;
+        gameObject.GetComponent<Blocks>()._wallBlock = false;
+        transform.position += new Vector3(0, 200, 0);
     }
 }
