@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1167165397670020577}
   - component: {fileID: -5182042693107829509}
   m_Layer: 11
-  m_Name: Nab_block
+  m_Name: Iron_block
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -79,7 +79,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.24528301, g: 0.24528301, b: 0.24528301, a: 1}
+  m_Color: {r: 0.7783019, g: 0.7783019, b: 0.7783019, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -105,10 +105,10 @@ MonoBehaviour:
   _wallBlock: 1
   _cloggedType:
     serializedVersion: 2
-    m_Bits: 56896
+    m_Bits: 48704
   _GoalinType:
     serializedVersion: 2
-    m_Bits: 8192
+    m_Bits: 16384
 --- !u!61 &-5182042693107829509
 BoxCollider2D:
   m_ObjectHideFlags: 0
