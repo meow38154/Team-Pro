@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using static UnityEditor.PlayerSettings;
 
-public class MoveBolckCtrlZ : MonoBehaviour
+public class CtrlZMoveBolck : MonoBehaviour
 {
     //움직일수있는 블럭에 넣기만 하면 끝
     public List<Vector3> moveList = new List<Vector3>();

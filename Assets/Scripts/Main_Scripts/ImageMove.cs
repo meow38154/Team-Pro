@@ -38,7 +38,7 @@ public class ImageMove : MonoBehaviour
         }
     }
 
-    //아니다만 4번 말함 굿
+    
     public void Disable()
     {
         GetComponent<SpriteRenderer>().enabled = false;

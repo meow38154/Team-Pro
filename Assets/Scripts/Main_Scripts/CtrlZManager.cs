@@ -6,13 +6,13 @@ using UnityEngine.InputSystem;
 public class CtrlZManager : MonoBehaviour
 {
     //매니저 하나 만들고 넣어주기만 하면 끝
-    static public List<MoveBolckCtrlZ> moveBlockList = new List<MoveBolckCtrlZ>();
+    static public List<CtrlZMoveBolck> moveBlockList = new List<CtrlZMoveBolck>();
     [SerializeField] float ZCoolTime = 0.2f;
     bool CoolTimeOk = true;
 
     private void Awake()
     {
-        moveBlockList = new List<MoveBolckCtrlZ>();
+        moveBlockList = new List<CtrlZMoveBolck>();
     }
 
     private void Update()
