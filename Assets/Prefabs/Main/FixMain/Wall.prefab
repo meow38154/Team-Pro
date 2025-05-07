@@ -110,6 +110,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   _blockNumber: 0
+  _signal: 0
 --- !u!61 &6277896809108673562
 BoxCollider2D:
   m_ObjectHideFlags: 0
