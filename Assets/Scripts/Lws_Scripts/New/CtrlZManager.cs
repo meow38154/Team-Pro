@@ -1,0 +1,44 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.InputSystem;
+
+public class CtrlZManager : MonoBehaviour
+{
+    //매니저 하나 만들고 넣어주기만 하면 끝
+    static public List<MoveBolckCtrlZ> moveBlockList = new List<MoveBolckCtrlZ>();
+    [SerializeField] float ZCoolTime = 0.2f;
+    bool CoolTimeOk = true;
+    private void Update()
+    {
+        if (Keyboard.current.zKey.isPressed && CoolTimeOk)
+        {
+            StartCoroutine(MoveCoolTime());
+            AllCtrlZ();
+        }
+    }
+    static public void AllSave()
+    {
+        int a = moveBlockList.Count;
+        for (int i = 0; i < a;i++)
+        {
+            moveBlockList[i].Save();
+        }
+    }
+
+    public void AllCtrlZ()
+    {
+        int a = moveBlockList.Count;
+        for (int i = 0; i < a; i++)
+        {
+            moveBlockList[i].CtrlZ();
+        }
+    }
+
+    IEnumerator MoveCoolTime()
+    {
+        CoolTimeOk = false;
+        yield return new WaitForSeconds(ZCoolTime);
+        CoolTimeOk = true;
+    }
+}

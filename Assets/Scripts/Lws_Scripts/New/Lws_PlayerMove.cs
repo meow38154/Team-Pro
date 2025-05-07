@@ -38,16 +38,8 @@ public class Lws_PlayerMove : MonoBehaviour
         if (move.collider != null)
         {
             Blocks blockSensor = move.collider.GetComponent<Blocks>();
-
             _blocks[3] = move.collider.GetComponent<Blocks>();
-            if (blockSensor != null && blockSensor._wall == true)
-            {
-                _upMoveWhather = false;
-            }
-            else
-            {
-                _upMoveWhather = true;
-            }
+            _upMoveWhather = !(blockSensor != null && blockSensor._wall == true);
         }
         else
         {
@@ -62,14 +54,7 @@ public class Lws_PlayerMove : MonoBehaviour
         {
             Blocks blockSensor = move.collider.GetComponent<Blocks>();
             _blocks[2] = move.collider.GetComponent<Blocks>();
-            if (blockSensor != null && blockSensor._wall == true)
-            {
-                _downMoveWhather = false;
-            }
-            else
-            {
-                _downMoveWhather = true;
-            }
+            _downMoveWhather = !(blockSensor != null && blockSensor._wall == true);
         }
         else
         {
@@ -84,14 +69,7 @@ public class Lws_PlayerMove : MonoBehaviour
         {
             Blocks blockSensor = move.collider.GetComponent<Blocks>();
             _blocks[0] = move.collider.GetComponent<Blocks>();
-            if (blockSensor != null && blockSensor._wall == true)
-            {
-                _leftMoveWhather = false;
-            }
-            else
-            {
-                _leftMoveWhather = true;
-            }
+            _leftMoveWhather = !(blockSensor != null && blockSensor._wall == true);
         }
         else
         {
@@ -109,70 +87,34 @@ public class Lws_PlayerMove : MonoBehaviour
             _blocks[1] = move.collider.GetComponent<Blocks>();
 
             _rightMoveWhather = !(blockSensor != null && blockSensor._wall == true);
-
-            //if (blockSensor != null && blockSensor._wall == true)
-            //{
-            //    _rightMoveWhather = false;
-            //}
-            //else
-            //{
-            //    _rightMoveWhather = true;
-            //}
         }
         else
         {
             _rightMoveWhather = true;
         }
     }
-
     void Update()
     {
-        
         Upmove();
         Downmove();
         Leftmove();
         Rightmove();
-
+        
+        for(int i = 0;i < 4; i++)
         {
-            for(int i = 0;i < 4; i++)
+            if (_blocks[i] != null)
             {
-                if (_blocks[i] != null)
-                {
-                    _blocks[i].KeyMove();
-                }
+                _blocks[i].KeyMove();
             }
-            //if (_blocks[0] != null)
-            //{
-            //    _blocks[0].KeyMove();
-            //}
-            //if (_blocks[1] != null)
-            //{
-            //    _blocks[1].KeyMove();
-            //}
-            //if (_blocks[2] != null)
-            //{
-            //    _blocks[2].KeyMove();
-            //}
-            //if (_blocks[3] != null)
-            //{
-            //    _blocks[3].KeyMove();
-            //}
         }
-
-
-        #region KeySensor
 
         LeftKeySensor = (Vec2Move.x < 0);
         RightKeySensor = (Vec2Move.x > 0);
         UpKeySensor = (Vec2Move.y > 0);
         DownKeySensor = (Vec2Move.y < 0);
 
-        #endregion
-
-
         _mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         _mousePos.z = 0;
-
         PlayerMove();
     }
     private void PlayerMove()
