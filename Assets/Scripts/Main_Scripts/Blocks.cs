@@ -26,14 +26,25 @@ public class Blocks : MonoBehaviour
     bool _interationPossible, _break;
     Blocks _goalSensor, _wallSensor;
     PlayerMovement _playerVector;
-    bool _movein;
+    bool _movein, _destory;
     int _saveNumber;
-    [SerializeField] bool _signal;
+    bool _signal;
+    GameObject _childGo, _Parents;
+    ImageMove _imageMove;
 
 
 
     private void Awake()
     {
+        if (_pushing)
+        {
+            _Parents = transform.parent.gameObject;
+
+            _childGo = _Parents.transform.GetChild(1).gameObject;
+
+            _imageMove = _childGo.GetComponent<ImageMove>();
+        }
+
         _saveNumber = _blockNumber;
         _savePosition = transform.position;
         _playerGameObject = GameObject.Find("Player");
@@ -43,11 +54,19 @@ public class Blocks : MonoBehaviour
 
     void ReStart()
     {
-        _blockNumber = _saveNumber;
-        transform.position = _savePosition;
-        gameObject.GetComponent<SpriteRenderer>().enabled = true;
-        gameObject.GetComponent<Blocks>()._pushing = true;
-        gameObject.GetComponent<Blocks>()._wallBlock = true;
+        if (_pushing)
+        {
+            _imageMove.Enable();
+            _blockNumber = _saveNumber;
+            transform.position = _savePosition;
+            gameObject.GetComponent<SpriteRenderer>().enabled = true;
+            gameObject.GetComponent<Blocks>()._pushing = true;
+            gameObject.GetComponent<Blocks>()._wallBlock = true;
+
+            transform.position = new Vector3(transform.position.x, transform.position.y, 0);
+            _destory = false;
+            StopCoroutine(ArrivalTrriger());
+        }
     }
 
 
@@ -173,13 +192,18 @@ public class Blocks : MonoBehaviour
 
     IEnumerator ArrivalTrriger()
     {
-        yield return new WaitForSeconds(0.5f);
+        if (_pushing && _destory == false)
+        {
+            yield return new WaitForSeconds(0.5f);
         gameObject.GetComponent<SpriteRenderer>().enabled = false;
-        gameObject.GetComponent<Blocks>()._pushing = false;
         gameObject.GetComponent<Blocks>()._wallBlock = false;
-        transform.position += new Vector3(0, 200, 0);
+        transform.position = new Vector3(0, 0, 200);
+        _imageMove.Disable();
+
         _goalSignal = true;
         _blockNumber = 67893;
+            _destory = true;
+        }
     }
 
     public void Wall()

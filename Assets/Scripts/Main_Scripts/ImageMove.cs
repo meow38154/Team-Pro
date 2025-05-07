@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class Lws_ImageMove : MonoBehaviour
+public class ImageMove : MonoBehaviour
 {
     [SerializeField] GameObject _traget;
     [SerializeField] float _moveSpeed = 3f;
@@ -36,5 +36,16 @@ public class Lws_ImageMove : MonoBehaviour
         {
             _moveing = false;
         }
+    }
+
+    //아니다만 4번 말함 굿
+    public void Disable()
+    {
+        GetComponent<SpriteRenderer>().enabled = false;
+    }
+
+    public void Enable()
+    {
+        GetComponent<SpriteRenderer>().enabled = true;
     }
 }
