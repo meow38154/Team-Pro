@@ -61,25 +61,28 @@ public class Blocks : MonoBehaviour
 
 
         {
-            if (_wallBlock == true)
-            {
-                _wall = true;
-            }
+            _wall = _wallBlock;
+            //if (_wallBlock == true)
+            //{
+            //    _wall = true;
+            //}
 
-            if (_wallBlock == false)
-            {
-                _wall = false;
-            }
+            //if (_wallBlock == false)
+            //{
+            //    _wall = false;
+            //}
 
-            if (_pushing == true)
-            {
-                _pushingGa = true;
-            }
+            _pushingGa = _pushing;
 
-            if (_pushing == false)
-            {
-                _pushingGa = false;
-            }
+            //if (_pushing == true)
+            //{
+            //    _pushingGa = true;
+            //}
+
+            //if (_pushing == false)
+            //{
+            //    _pushingGa = false;
+            //}
         }
 
         if (_pushing)
@@ -161,19 +164,15 @@ public class Blocks : MonoBehaviour
     {
         if (_pushing == true)
         {
-            if (_interationPossible == true && _movein == true &&
-            ((_playerVector.LeftKeySensor == true && Keyboard.current.spaceKey.wasPressedThisFrame) ||
-            (_playerVector.RightKeySensor == true && Keyboard.current.spaceKey.wasPressedThisFrame) ||
-            (_playerVector.UpKeySensor == true && Keyboard.current.spaceKey.wasPressedThisFrame) ||
-            (_playerVector.DownKeySensor == true && Keyboard.current.spaceKey.wasPressedThisFrame)))
-            {
+            if (_interationPossible == true && _movein == true && Keyboard.current.spaceKey.wasPressedThisFrame && 
+                (_playerVector.LeftKeySensor == true || _playerVector.RightKeySensor == true || 
+                _playerVector.UpKeySensor == true || _playerVector.DownKeySensor == true)){
                 transform.position = _positionYea + _vec2Abs;
             }
         }
     }
     void Goalin()
     {
-
         RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.up, 0.1f, _GoalinType);
         if (hit.collider != null)
         {

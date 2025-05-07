@@ -209,6 +209,8 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    
+
     IEnumerator MoveCoolTime()
     {
         _movePossbie = false;
