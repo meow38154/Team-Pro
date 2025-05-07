@@ -282,7 +282,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8430256c88334a34da04b2b81cc8a9a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ZCoolTime: 0.2
+  ZCoolTime: 0.05
 --- !u!4 &125817523
 Transform:
   m_ObjectHideFlags: 0

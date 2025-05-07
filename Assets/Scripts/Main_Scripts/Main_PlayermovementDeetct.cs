@@ -14,7 +14,6 @@ public class Main_PlayerMovementDetect : MonoBehaviour
     [SerializeField] private bool _isBlocking;
     [SerializeField] private bool _isPushable;
     [SerializeField] private PushableObject _pushableObject;
-    private CtrlManagerScript _playerCtrlZManager;
     private string[] _blockTagArr;
     private string[] _pushableTagArr;
 
@@ -30,7 +29,6 @@ public class Main_PlayerMovementDetect : MonoBehaviour
     {
         _blockTagArr = _manager.GetBlockTagArr();
         _pushableTagArr = _manager.GetPushableTagArr();
-        _playerCtrlZManager = GameObject.Find("Lws_CtrlZManager").GetComponent<CtrlManagerScript>();
     }
 
     public void OnClick()

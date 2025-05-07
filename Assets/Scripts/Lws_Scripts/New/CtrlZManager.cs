@@ -9,6 +9,12 @@ public class CtrlZManager : MonoBehaviour
     static public List<MoveBolckCtrlZ> moveBlockList = new List<MoveBolckCtrlZ>();
     [SerializeField] float ZCoolTime = 0.2f;
     bool CoolTimeOk = true;
+
+    private void Awake()
+    {
+        moveBlockList = new List<MoveBolckCtrlZ>();
+    }
+
     private void Update()
     {
         if (Keyboard.current.zKey.isPressed && CoolTimeOk)
