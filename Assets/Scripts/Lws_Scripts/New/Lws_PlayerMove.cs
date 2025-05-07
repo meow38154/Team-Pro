@@ -35,11 +35,20 @@ public class Lws_PlayerMove : MonoBehaviour
     {
         RaycastHit2D move = Physics2D.Raycast(transform.position + new Vector3(0, 0.6f, 0), Vector2.up, _rich);
         Debug.DrawRay(transform.position + new Vector3(0, 0.6f, 0), Vector2.up * _rich, Color.green);
+
         if (move.collider != null)
         {
             Blocks blockSensor = move.collider.GetComponent<Blocks>();
+
             _blocks[3] = move.collider.GetComponent<Blocks>();
-            _upMoveWhather = !(blockSensor != null && blockSensor._wall == true);
+            if (blockSensor != null && blockSensor._wall == true)
+            {
+                _upMoveWhather = false;
+            }
+            else
+            {
+                _upMoveWhather = true;
+            }
         }
         else
         {
@@ -50,11 +59,19 @@ public class Lws_PlayerMove : MonoBehaviour
     {
         RaycastHit2D move = Physics2D.Raycast(transform.position + new Vector3(0, -0.6f, 0), Vector2.down, _rich);
         Debug.DrawRay(transform.position + new Vector3(0, -0.6f, 0), Vector2.down * _rich, Color.green);
+
         if (move.collider != null)
         {
             Blocks blockSensor = move.collider.GetComponent<Blocks>();
             _blocks[2] = move.collider.GetComponent<Blocks>();
-            _downMoveWhather = !(blockSensor != null && blockSensor._wall == true);
+            if (blockSensor != null && blockSensor._wall == true)
+            {
+                _downMoveWhather = false;
+            }
+            else
+            {
+                _downMoveWhather = true;
+            }
         }
         else
         {
@@ -65,11 +82,19 @@ public class Lws_PlayerMove : MonoBehaviour
     {
         RaycastHit2D move = Physics2D.Raycast(transform.position + new Vector3(-0.6f, 0, 0), Vector2.left, _rich);
         Debug.DrawRay(transform.position + new Vector3(-0.6f, 0, 0), Vector2.left * _rich, Color.green);
+
         if (move.collider != null)
         {
             Blocks blockSensor = move.collider.GetComponent<Blocks>();
             _blocks[0] = move.collider.GetComponent<Blocks>();
-            _leftMoveWhather = !(blockSensor != null && blockSensor._wall == true);
+            if (blockSensor != null && blockSensor._wall == true)
+            {
+                _leftMoveWhather = false;
+            }
+            else
+            {
+                _leftMoveWhather = true;
+            }
         }
         else
         {
@@ -81,25 +106,35 @@ public class Lws_PlayerMove : MonoBehaviour
 
         RaycastHit2D move = Physics2D.Raycast(transform.position + new Vector3(0.6f, 0, 0), Vector2.right, _rich);
         Debug.DrawRay(transform.position + new Vector3(0.6f, 0, 0), Vector2.right * _rich, Color.green);
+
         if (move.collider != null)
         {
             Blocks blockSensor = move.collider.GetComponent<Blocks>();
             _blocks[1] = move.collider.GetComponent<Blocks>();
-
-            _rightMoveWhather = !(blockSensor != null && blockSensor._wall == true);
+            if (blockSensor != null && blockSensor._wall == true)
+            {
+                _rightMoveWhather = false;
+            }
+            else
+            {
+                _rightMoveWhather = true;
+            }
         }
         else
         {
             _rightMoveWhather = true;
         }
     }
+
     void Update()
     {
         Upmove();
         Downmove();
         Leftmove();
         Rightmove();
-        
+
+
+
         for(int i = 0;i < 4; i++)
         {
             if (_blocks[i] != null)
@@ -107,78 +142,74 @@ public class Lws_PlayerMove : MonoBehaviour
                 _blocks[i].KeyMove();
             }
         }
+        
 
+        
         LeftKeySensor = (Vec2Move.x < 0);
         RightKeySensor = (Vec2Move.x > 0);
         UpKeySensor = (Vec2Move.y > 0);
         DownKeySensor = (Vec2Move.y < 0);
-
+        
         _mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         _mousePos.z = 0;
-        PlayerMove();
-    }
-    private void PlayerMove()
-    {
-        if (Mouse.current.leftButton.wasPressedThisFrame)//마우스로 이동
+
+        if ((Mouse.current.leftButton.wasPressedThisFrame &&
+            _mousePos.x >= transform.position.x - 1.5 && _mousePos.x <= transform.position.x - 0.5 &&
+                _mousePos.y >= transform.position.y - 0.5 && _mousePos.y <= transform.position.y + 0.5) ||
+                (Vec2Move.x < 0 && _movePossbie == true) && _leftMoveWhather == true)
         {
-            float myPosX = transform.position.x;
-            float myPosY = transform.position.y;
-            if ((myPosX - 0.5 <= _mousePos.x && _mousePos.x <= myPosX + 0.5) && (myPosY - 0.5 <= _mousePos.y && _mousePos.y <= myPosY + 0.5)) Debug.Log("자신을 클릭함");
-            else if (myPosX - 0.5 <= _mousePos.x && _mousePos.x <= myPosX + 0.5)
+            if (_leftMoveWhather == true)
             {
-                if (myPosY < _mousePos.y && _upMoveWhather)
-                {
-                    StartCoroutine(MoveCoolTime());
-                    transform.position += new Vector3(0, 1, 0);
-                }
-                else if (_downMoveWhather)
-                {
-                    StartCoroutine(MoveCoolTime());
-                    transform.position += new Vector3(0, -1, 0);
-                }
-            }
-            else if (myPosY - 0.5 <= _mousePos.y && _mousePos.y <= myPosY + 0.5)
-            {
-                if (myPosX < _mousePos.x && _rightMoveWhather)
-                {
-                    StartCoroutine(MoveCoolTime());
-                    transform.position += new Vector3(1, 0, 0);
-                }
-                else if (_leftMoveWhather)
-                {
-                    StartCoroutine(MoveCoolTime());
-                    transform.position += new Vector3(-1, 0, 0);
-                }
+                StartCoroutine(MoveCoolTime());
+                transform.position += new Vector3(-1, 0, 0);
             }
         }
-        else if (_movePossbie)//키보드로 이동
+
+        if ((Mouse.current.leftButton.wasPressedThisFrame &&
+            (_mousePos.x <= transform.position.x + 1.5 && _mousePos.x >= transform.position.x + 0.5 &&
+                _mousePos.y >= transform.position.y - 0.5 && _mousePos.y <= transform.position.y + 0.5)) ||
+                (Vec2Move.x > 0 && _movePossbie == true) && _rightMoveWhather == true)
         {
-            if (RightKeySensor && _rightMoveWhather)
+            if (_rightMoveWhather == true)
             {
                 StartCoroutine(MoveCoolTime());
-                transform.position += new Vector3(1, 0, 0); 
+                transform.position += new Vector3(1, 0, 0);
             }
-            else if (LeftKeySensor && _leftMoveWhather) 
-            { 
-                StartCoroutine(MoveCoolTime());
-                transform.position += new Vector3(-1, 0, 0); 
-            }
-            else if (UpKeySensor && _upMoveWhather) 
-            {
-                StartCoroutine(MoveCoolTime());
-                transform.position += new Vector3(0, 1, 0); 
-            }
-            else if (DownKeySensor && _downMoveWhather) 
+        }
+
+        if ((Mouse.current.leftButton.wasPressedThisFrame &&
+            _mousePos.y >= transform.position.y - 1.5 && _mousePos.y <= transform.position.y - 0.5 &&
+                _mousePos.x >= transform.position.x - 0.5 && _mousePos.x <= transform.position.x + 0.5) ||
+                (Vec2Move.y < 0 && _movePossbie == true) && _downMoveWhather == true)
+        {
+            if (_downMoveWhather == true)
             {
                 StartCoroutine(MoveCoolTime());
                 transform.position += new Vector3(0, -1, 0);
             }
         }
+
+        if ((Mouse.current.leftButton.wasPressedThisFrame &&
+            (_mousePos.y <= transform.position.y + 1.5 && _mousePos.y >= transform.position.y + 0.5 &&
+                _mousePos.x >= transform.position.x - 0.5 && _mousePos.x <= transform.position.x + 0.5)) ||
+                (Vec2Move.y > 0 && _movePossbie == true) && _upMoveWhather == true)
+        {
+            if (_upMoveWhather == true)
+            {
+                StartCoroutine(MoveCoolTime());
+                transform.position += new Vector3(0, 1, 0);
+            }
+        }
     }
+
+
+
     IEnumerator MoveCoolTime()
     {
         _movePossbie = false;
+        CtrlZManager.AllSave();
         yield return new WaitForSeconds(_moveCoolTIme);
         _movePossbie = true;
+
     }
 }
