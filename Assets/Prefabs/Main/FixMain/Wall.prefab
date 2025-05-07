@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6277896809108673562}
   m_Layer: 6
   m_Name: Wall
-  m_TagString: Untagged
+  m_TagString: Block
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -109,6 +109,7 @@ MonoBehaviour:
   _GoalinType:
     serializedVersion: 2
     m_Bits: 0
+  _blockNumber: 0
 --- !u!61 &6277896809108673562
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: -5182042693107829509}
   m_Layer: 11
   m_Name: Gold_block
-  m_TagString: Untagged
+  m_TagString: Block
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -105,10 +105,12 @@ MonoBehaviour:
   _wallBlock: 1
   _cloggedType:
     serializedVersion: 2
-    m_Bits: 32320
+    m_Bits: 294464
   _GoalinType:
     serializedVersion: 2
     m_Bits: 32768
+  _blockNumber: 0
+  _signal: 0
 --- !u!61 &-5182042693107829509
 BoxCollider2D:
   m_ObjectHideFlags: 0

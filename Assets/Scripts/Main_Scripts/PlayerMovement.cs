@@ -127,6 +127,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+
         Upmove();
         Downmove();
         Leftmove();

@@ -9,12 +9,15 @@ public class Blocks : MonoBehaviour
     [SerializeField] bool _wallBlock;
     [SerializeField] LayerMask _cloggedType;
     [SerializeField] LayerMask _GoalinType;
+    [SerializeField] int _blockNumber;
     
+    public static bool _goalSignal;
 
 
     public bool _wall { get; set; }
     public bool _pushingGa { get; set; }
     public string Type { get; set; }
+    public int BlockNumber { get; set; }
 
     float _x, _y, _rayDistance = 100f;
     SpriteRenderer _spren;
@@ -24,11 +27,14 @@ public class Blocks : MonoBehaviour
     Blocks _goalSensor, _wallSensor;
     PlayerMovement _playerVector;
     bool _movein;
+    int _saveNumber;
+    [SerializeField] bool _signal;
 
 
 
     private void Awake()
     {
+        _saveNumber = _blockNumber;
         _savePosition = transform.position;
         _playerGameObject = GameObject.Find("Player");
         _playerVector = GameObject.Find("Player").GetComponent<PlayerMovement>();
@@ -37,6 +43,7 @@ public class Blocks : MonoBehaviour
 
     void ReStart()
     {
+        _blockNumber = _saveNumber;
         transform.position = _savePosition;
         gameObject.GetComponent<SpriteRenderer>().enabled = true;
         gameObject.GetComponent<Blocks>()._pushing = true;
@@ -49,8 +56,11 @@ public class Blocks : MonoBehaviour
 
     private void Update()
     {
+        BlockNumber = _blockNumber;
+
         Goalin();
 
+        _signal = _goalSignal;
 
         //임시 리셋 코드
         if (Keyboard.current.rKey.wasPressedThisFrame && Keyboard.current.fKey.isPressed)
@@ -62,27 +72,8 @@ public class Blocks : MonoBehaviour
 
         {
             _wall = _wallBlock;
-            //if (_wallBlock == true)
-            //{
-            //    _wall = true;
-            //}
-
-            //if (_wallBlock == false)
-            //{
-            //    _wall = false;
-            //}
 
             _pushingGa = _pushing;
-
-            //if (_pushing == true)
-            //{
-            //    _pushingGa = true;
-            //}
-
-            //if (_pushing == false)
-            //{
-            //    _pushingGa = false;
-            //}
         }
 
         if (_pushing)
@@ -187,5 +178,17 @@ public class Blocks : MonoBehaviour
         gameObject.GetComponent<Blocks>()._pushing = false;
         gameObject.GetComponent<Blocks>()._wallBlock = false;
         transform.position += new Vector3(0, 200, 0);
+        _goalSignal = true;
+        _blockNumber = 67893;
+    }
+
+    public void Wall()
+    {
+        _wallBlock = false;
+    }
+
+    public void WallTrue()
+    {
+        _wallBlock = true;
     }
 }

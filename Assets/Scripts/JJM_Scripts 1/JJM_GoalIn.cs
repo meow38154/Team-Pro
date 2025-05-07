@@ -1,20 +1,18 @@
 using UnityEngine;
 
-public class GoalIn : MonoBehaviour
+public class JJM_GoalIn : MonoBehaviour
 {
     [SerializeField] int _goalNumber;
     Blocks _blocks;
 
     private void Awake()
     {
-        
         _blocks = GetComponent<Blocks>();
-        _blocks.WallTrue();
     }
 
     private void Update()
     {
-        if (Blocks._goalSignal)
+        if (Blocks._goalSignal == true)
         {
             GamSec();
         }
@@ -28,16 +26,12 @@ public class GoalIn : MonoBehaviour
             if (obj == this.gameObject) continue;
 
             Blocks block = obj.GetComponent<Blocks>();
-            if (block != null)
+            if (block != null && block.BlockNumber == _goalNumber)
             {
-                if (block.BlockNumber == _goalNumber)
-                {
-                    _blocks.WallTrue();
-                    return;
-                }
+                return;
             }
         }
-        _blocks.Wall();
-    }
 
+        _blocks._wall = false;
+    }
 }
