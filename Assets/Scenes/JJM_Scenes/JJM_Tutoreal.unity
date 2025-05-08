@@ -2618,15 +2618,15 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 835163283}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.5, y: 0.5, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 4.019617, y: -2.2027726, z: -0.108306296}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 312511303}
   - {fileID: 1532031816}
   - {fileID: 706993489}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 903034891}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &841375236
 PrefabInstance:
@@ -2973,6 +2973,7 @@ Transform:
   - {fileID: 1807841181}
   - {fileID: 1651139216}
   - {fileID: 1018718864}
+  - {fileID: 835163285}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &905917032
@@ -8754,6 +8755,10 @@ PrefabInstance:
       propertyPath: _blockNumber
       value: 14
       objectReference: {fileID: 0}
+    - target: {fileID: 3191419488623951490, guid: 39d1823d58deee6429eb68f44da72f6a, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -1497610435683302444, guid: d54445ecad7ab7c4f80fcc91730dd00f, type: 3}
     - target: {fileID: 4390298224876002401, guid: 39d1823d58deee6429eb68f44da72f6a, type: 3}
       propertyPath: _blockNumber
       value: 14
@@ -8797,6 +8802,10 @@ PrefabInstance:
     - target: {fileID: 5295809465181078083, guid: 39d1823d58deee6429eb68f44da72f6a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7738870063471981169, guid: 39d1823d58deee6429eb68f44da72f6a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -9169,7 +9178,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1515561409798302222, guid: a283e037e3a50174ea474c4cfcba8808, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1515561409798302222, guid: a283e037e3a50174ea474c4cfcba8808, type: 3}
       propertyPath: m_LocalPosition.z
@@ -9218,5 +9227,4 @@ SceneRoots:
   m_Roots:
   - {fileID: 586692264}
   - {fileID: 1877479373497218376}
-  - {fileID: 835163285}
   - {fileID: 903034891}
