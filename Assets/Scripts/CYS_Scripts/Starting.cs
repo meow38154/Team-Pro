@@ -1,37 +1,19 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
-public class Starting : MonoBehaviour
+namespace CYS_Scripts
 {
-
-    //private void OnEnable()
-    //{
-    //    StartCoroutine(Sleeping());
-    //    //Debug.Log("Ω√¿€");
-    //    SceneManager.LoadScene(0);
-    //}
-
-    
-    private void Update()
+    public class Starting : MonoBehaviour
     {
-       
     
-    }
-
-    private void OnEnable()
-    {
-        StartCoroutine(Sleeping());
-    }
-
-
-
-
-    private IEnumerator Sleeping()
-    {
-        
-        yield return new WaitForSeconds(Random.Range(1, 3)); //<---30√ ????
-        Debug.Log("Ω√¿€");
-    
+        private void OnEnable()
+        {
+            StartCoroutine(Sleeping());
+        }
+        private IEnumerator Sleeping()
+        {
+            yield return new WaitForSeconds(Random.Range(1, 3)); //<---30ÔøΩÔøΩ????
+            Debug.Log("ÔøΩÔøΩÔøΩÔøΩ");
+        }
     }
 }
