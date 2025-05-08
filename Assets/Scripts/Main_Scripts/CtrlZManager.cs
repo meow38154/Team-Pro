@@ -12,7 +12,7 @@ public class CtrlZManager : MonoBehaviour
     public static  List<CtrlZMoveBolck> MoveBlockList = new List<CtrlZMoveBolck>();
     [FormerlySerializedAs("ZCoolTime")] [SerializeField] private float zCoolTime = 0.2f;
     private bool _coolTimeOk = true;
-    public static CtrlZManager Instance;
+  
     
 
     private void Awake()

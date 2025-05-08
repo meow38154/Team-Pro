@@ -135,7 +135,7 @@ public class Blocks : MonoBehaviour
             {
                 if (_interationPossible == true)
                 {
-                    _distance = GameManager.Instance.player.transform.position - transform.position;
+                    _distance = GameManager.Instance.trm.position - transform.position;
 
                 _youngJumSix = _distance;
 
