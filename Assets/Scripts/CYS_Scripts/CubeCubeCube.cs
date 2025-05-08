@@ -1,11 +1,14 @@
 using UnityEngine;
 
-public class CubeCubeCube : MonoBehaviour
+namespace CYS_Scripts
 {
-    float speed = 500;
-    // Update is called once per frame
-    void Update()
+    public class CubeCubeCube : MonoBehaviour
     {
-        transform.Rotate(0, -1 * Time.deltaTime * speed, 0);
+        float speed = 500;
+        // Update is called once per frame
+        void Update()
+        {
+            transform.Rotate(0, -1 * Time.deltaTime * speed, 0);
+        }
     }
 }
