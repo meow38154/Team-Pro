@@ -80,7 +80,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.8867924, g: 0.7622137, b: 0.67764324, a: 0.49411765}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -111,7 +111,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   _blockNumber: 0
-  _signal: 0
 --- !u!61 &6277896809108673562
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -171,3 +170,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _goalNumber: 1
+  _isVertical: 0
+  _vDoorO: {fileID: 8098277650413889250, guid: e6b6e4dddc689c54091874c8795e1317, type: 3}
+  _vDoorC: {fileID: -4480544619295051397, guid: e6b6e4dddc689c54091874c8795e1317, type: 3}
+  _hDoorO: {fileID: 7040256241070200024, guid: e6b6e4dddc689c54091874c8795e1317, type: 3}
+  _hDoorC: {fileID: -2647051452096078832, guid: e6b6e4dddc689c54091874c8795e1317, type: 3}
