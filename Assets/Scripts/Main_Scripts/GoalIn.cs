@@ -16,10 +16,6 @@ public class GoalIn : MonoBehaviour
         _render = GetComponent<SpriteRenderer>();
         _blocks = GetComponent<Blocks>();
         _blocks.WallTrue();
-    }
-
-    private void Start()
-    {
         if (_isVertical)
         {
             _render.sprite = _vDoorC;
@@ -55,14 +51,17 @@ public class GoalIn : MonoBehaviour
                 }
             }
         }
+
         if(_isVertical)
         {
             _render.sprite = _vDoorO;
         }
+
         else
         {
             _render.sprite = _hDoorO;
         }
+
         _blocks.Wall();
     }
 

@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 
 public class CtrlZManager : MonoBehaviour
 {
-    //¸Å´ÏÀú ÇÏ³ª ¸¸µé°í ³Ö¾îÁÖ±â¸¸ ÇÏ¸é ³¡
+    //ï¿½Å´ï¿½ï¿½ï¿½ ï¿½Ï³ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö¾ï¿½ï¿½Ö±â¸¸ ï¿½Ï¸ï¿½ ï¿½ï¿½
     static public List<CtrlZMoveBolck> moveBlockList = new List<CtrlZMoveBolck>();
     [SerializeField] float ZCoolTime = 0.2f;
     bool CoolTimeOk = true;
@@ -24,13 +24,15 @@ public class CtrlZManager : MonoBehaviour
         }
     }
 
-    public static void AllSave()
+
+
+    static public void AllSave()
     {
-    int a = moveBlockList.Count;
-    for (int i = 0; i < a;i++)
-    {
-        moveBlockList[i].Save();
-    }
+        int a = moveBlockList.Count;
+        for (int i = 0; i < a;i++)
+        {
+            moveBlockList[i].Save();
+        }
     }
 
     public void AllCtrlZ()
@@ -41,7 +43,6 @@ public class CtrlZManager : MonoBehaviour
             moveBlockList[i].CtrlZ();
         }
     }
-
 
     IEnumerator MoveCoolTime()
     {

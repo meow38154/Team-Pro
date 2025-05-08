@@ -26,13 +26,13 @@ public class Blocks : MonoBehaviour
     bool _interationPossible, _break;
     Blocks _goalSensor, _wallSensor;
     PlayerMovement _playerVector;
-    bool _movein;
-    public bool _destroy;
+    bool _movein, _destory;
     int _saveNumber;
+    bool _signal;
     GameObject _childGo, _Parents;
     ImageMove _imageMove;
-    Vector3 oldPos;
-    bool DestroyMiss = false;
+
+
 
     private void Awake()
     {
@@ -51,12 +51,14 @@ public class Blocks : MonoBehaviour
         _playerGameObject = GameObject.Find("Player");
         _playerVector = GameObject.Find("Player").GetComponent<PlayerMovement>();
         _spren = GetComponent<SpriteRenderer>();
+
     }
 
     void ReStart()
     {
         if (_pushing)
         {
+            _imageMove.Enable();
             _blockNumber = _saveNumber;
             transform.position = _savePosition;
             gameObject.GetComponent<SpriteRenderer>().enabled = true;
@@ -64,7 +66,7 @@ public class Blocks : MonoBehaviour
             gameObject.GetComponent<Blocks>()._wallBlock = true;
 
             transform.position = new Vector3(transform.position.x, transform.position.y, 0);
-            _destroy = false;
+            _destory = false;
             StopCoroutine(ArrivalTrriger());
         }
     }
@@ -79,8 +81,9 @@ public class Blocks : MonoBehaviour
 
         Goalin();
 
+        _signal = _goalSignal;
 
-        //ÀÓ½Ã ¸®¼Â ÄÚµå
+        //ï¿½Ó½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Úµï¿½
         if (Keyboard.current.rKey.wasPressedThisFrame && Keyboard.current.fKey.isPressed)
         {
             ReStart();
@@ -99,6 +102,7 @@ public class Blocks : MonoBehaviour
             {
 
                 _vec2Abs = _playerGameObject.transform.position - transform.position;
+
 
                 _x = Mathf.Abs(_vec2Abs.x);
                 _y = Mathf.Abs(_vec2Abs.y);
@@ -167,9 +171,7 @@ public class Blocks : MonoBehaviour
 
         if (_interationPossible == true && _movein == true)
         {
-            oldPos = transform.position;
             transform.position = _positionYea + _vec2Abs;
-            
         }
     }
     public void KeyMove()
@@ -180,14 +182,13 @@ public class Blocks : MonoBehaviour
                 (_playerVector.LeftKeySensor == true || _playerVector.RightKeySensor == true || 
                 _playerVector.UpKeySensor == true || _playerVector.DownKeySensor == true)){
                 transform.position = _positionYea + _vec2Abs;
-                oldPos = transform.position;
             }
         }
     }
     void Goalin()
     {
         RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.up, 0.1f, _GoalinType);
-        if (hit.collider != null && !_destroy && _pushing && !DestroyMiss)
+        if (hit.collider != null)
         {
             StartCoroutine(ArrivalTrriger());
         }
@@ -195,30 +196,27 @@ public class Blocks : MonoBehaviour
 
     IEnumerator ArrivalTrriger()
     {
-        Debug.Log("21313");
-        _destroy = true;
-        yield return new WaitForSeconds(0.5f);
-        if(!DestroyMiss)
+        if (_pushing && _destory == false)
         {
-            _wallBlock = false;
-            _pushing = false;
-            transform.position = new Vector3(transform.position.x, transform.position.y, -200);
+            yield return new WaitForSeconds(0.5f);
+        gameObject.GetComponent<SpriteRenderer>().enabled = false;
+        gameObject.GetComponent<Blocks>()._wallBlock = false;
+        transform.position = new Vector3(0, 0, 200);
+        _imageMove.Disable();
+
+        _goalSignal = true;
+        _blockNumber = 67893;
+            _destory = true;
         }
     }
 
-    public void UnDestroy()
+    public void Wall()
     {
-        StartCoroutine(DestroyMissTime());
-        _destroy = false;
-        _wallBlock = true;
-        _pushing = true;
-        
+        _wallBlock = false;
     }
 
-    IEnumerator DestroyMissTime()
+    public void WallTrue()
     {
-        DestroyMiss = true;
-        yield return new WaitForSeconds(0.5f);
-        DestroyMiss = false;
+        _wallBlock = true;
     }
 }
