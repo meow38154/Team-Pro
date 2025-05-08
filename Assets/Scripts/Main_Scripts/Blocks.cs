@@ -36,6 +36,8 @@ public class Blocks : MonoBehaviour
 
     private void Awake()
     {
+        _goalSignal = false;
+
         if (_pushing)
         {
             _Parents = transform.parent.gameObject;
