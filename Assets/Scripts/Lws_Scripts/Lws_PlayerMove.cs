@@ -207,7 +207,7 @@ public class Lws_PlayerMove : MonoBehaviour
     IEnumerator MoveCoolTime()
     {
         _movePossbie = false;
-        CtrlZManager.AllSave();
+        CtrlZManager.Instance.AllSave();
         yield return new WaitForSeconds(_moveCoolTIme);
         _movePossbie = true;
 

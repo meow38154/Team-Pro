@@ -1162,9 +1162,9 @@ ScriptedImporter:
     rect:
       serializedVersion: 2
       x: 68
-      y: 68
+      y: 164
       width: 32
-      height: 32
+      height: 48
     spriteID: 1d13534b299f324478f08c4e514faa0f
     spriteBone: []
     spriteOutline: []
@@ -1187,6 +1187,48 @@ ScriptedImporter:
       width: 32
       height: 48
     spriteID: 75377e1c4ed97ae47b289bf77edefe1c
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 0, y: 0}
+  - name: AdvancedTileSet_4
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 100
+      y: 164
+      width: 32
+      height: 32
+    spriteID: 1be38a7dfa3541a418a73960ba440851
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 0, y: 0}
+  - name: AdvancedTileSet_5
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 132
+      y: 164
+      width: 32
+      height: 32
+    spriteID: 2c8b2a1ff6dbf924db5c8c4deb6ed2e2
     spriteBone: []
     spriteOutline: []
     vertices: []
