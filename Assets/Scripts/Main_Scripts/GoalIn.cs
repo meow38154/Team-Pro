@@ -9,7 +9,6 @@ public class GoalIn : MonoBehaviour
     {
         
         _blocks = GetComponent<Blocks>();
-        _blocks.WallTrue();
     }
 
     private void Update()
@@ -32,12 +31,10 @@ public class GoalIn : MonoBehaviour
             {
                 if (block.BlockNumber == _goalNumber)
                 {
-                    _blocks.WallTrue();
                     return;
                 }
             }
         }
-        _blocks.Wall();
     }
 
 }

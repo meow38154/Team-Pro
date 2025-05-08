@@ -36,16 +36,7 @@ public class ImageMove : MonoBehaviour
         {
             _moveing = false;
         }
-    }
 
-    
-    public void Disable()
-    {
-        GetComponent<SpriteRenderer>().enabled = false;
-    }
-
-    public void Enable()
-    {
-        GetComponent<SpriteRenderer>().enabled = true;
+        
     }
 }

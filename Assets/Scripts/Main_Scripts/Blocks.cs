@@ -26,13 +26,13 @@ public class Blocks : MonoBehaviour
     bool _interationPossible, _break;
     Blocks _goalSensor, _wallSensor;
     PlayerMovement _playerVector;
-    bool _movein, _destory;
+    bool _movein;
+    public bool _destroy;
     int _saveNumber;
-    bool _signal;
     GameObject _childGo, _Parents;
     ImageMove _imageMove;
-
-
+    Vector3 oldPos;
+    bool DestroyMiss = false;
 
     private void Awake()
     {
@@ -56,7 +56,6 @@ public class Blocks : MonoBehaviour
     {
         if (_pushing)
         {
-            _imageMove.Enable();
             _blockNumber = _saveNumber;
             transform.position = _savePosition;
             gameObject.GetComponent<SpriteRenderer>().enabled = true;
@@ -64,7 +63,7 @@ public class Blocks : MonoBehaviour
             gameObject.GetComponent<Blocks>()._wallBlock = true;
 
             transform.position = new Vector3(transform.position.x, transform.position.y, 0);
-            _destory = false;
+            _destroy = false;
             StopCoroutine(ArrivalTrriger());
         }
     }
@@ -79,7 +78,6 @@ public class Blocks : MonoBehaviour
 
         Goalin();
 
-        _signal = _goalSignal;
 
         //임시 리셋 코드
         if (Keyboard.current.rKey.wasPressedThisFrame && Keyboard.current.fKey.isPressed)
@@ -167,7 +165,9 @@ public class Blocks : MonoBehaviour
 
         if (_interationPossible == true && _movein == true)
         {
+            oldPos = transform.position;
             transform.position = _positionYea + _vec2Abs;
+            
         }
     }
     public void KeyMove()
@@ -178,13 +178,14 @@ public class Blocks : MonoBehaviour
                 (_playerVector.LeftKeySensor == true || _playerVector.RightKeySensor == true || 
                 _playerVector.UpKeySensor == true || _playerVector.DownKeySensor == true)){
                 transform.position = _positionYea + _vec2Abs;
+                oldPos = transform.position;
             }
         }
     }
     void Goalin()
     {
         RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.up, 0.1f, _GoalinType);
-        if (hit.collider != null)
+        if (hit.collider != null && !_destroy && _pushing && !DestroyMiss)
         {
             StartCoroutine(ArrivalTrriger());
         }
@@ -192,27 +193,30 @@ public class Blocks : MonoBehaviour
 
     IEnumerator ArrivalTrriger()
     {
-        if (_pushing && _destory == false)
+        Debug.Log("21313");
+        _destroy = true;
+        yield return new WaitForSeconds(0.5f);
+        if(!DestroyMiss)
         {
-            yield return new WaitForSeconds(0.5f);
-        gameObject.GetComponent<SpriteRenderer>().enabled = false;
-        gameObject.GetComponent<Blocks>()._wallBlock = false;
-        transform.position = new Vector3(0, 0, 200);
-        _imageMove.Disable();
-
-        _goalSignal = true;
-        _blockNumber = 67893;
-            _destory = true;
+            _wallBlock = false;
+            _pushing = false;
+            transform.position = new Vector3(transform.position.x, transform.position.y, -200);
         }
     }
 
-    public void Wall()
+    public void UnDestroy()
     {
-        _wallBlock = false;
+        StartCoroutine(DestroyMissTime());
+        _destroy = false;
+        _wallBlock = true;
+        _pushing = true;
+        
     }
 
-    public void WallTrue()
+    IEnumerator DestroyMissTime()
     {
-        _wallBlock = true;
+        DestroyMiss = true;
+        yield return new WaitForSeconds(0.5f);
+        DestroyMiss = false;
     }
 }

@@ -41,6 +41,7 @@ public class CtrlZManager : MonoBehaviour
         }
     }
 
+
     IEnumerator MoveCoolTime()
     {
         CoolTimeOk = false;
