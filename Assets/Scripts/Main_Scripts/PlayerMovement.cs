@@ -214,7 +214,11 @@ public class PlayerMovement : MonoBehaviour
 
     IEnumerator MoveCoolTime()
     {
+<<<<<<< HEAD
+        _movePossible = false;
+=======
         _movePossbie = false;
+>>>>>>> parent of 4ef4e39 (Fixed: code)
         CtrlZManager.AllSave();
         yield return new WaitForSeconds(_moveCoolTIme);
         _movePossbie = true;
