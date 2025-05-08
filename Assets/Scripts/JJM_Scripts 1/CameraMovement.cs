@@ -6,10 +6,6 @@ public class CameraMovement : MonoBehaviour
     Vector2 _vector2;
     [SerializeField] float _speed;
 
-    private void Awake()
-    {
-        //_playergo = GameObject.Find("Player").GetComponent<GameObject>();
-    }
 
     private void Update()
     {
