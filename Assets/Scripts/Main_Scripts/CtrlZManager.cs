@@ -29,7 +29,7 @@ public class CtrlZManager : MonoBehaviour
             AllCtrlZ();
         }
     }
-     public  void AllSave()
+     public static void AllSave()
     {
         int a = MoveBlockList.Count;
         for (int i = 0; i < a;i++)

@@ -7,11 +7,21 @@ namespace Main_Scripts
     {
         public static GameManager Instance;
         
-        public GameObject player;
+        public PlayerMovement player;
 
+        public Transform trm;
+  
         private void Awake()
         {
-            DontDestroyOnLoad(this);
+            if (Instance == null)
+                Instance = this;
+            else
+            {
+                Destroy(gameObject);
+            }
+                DontDestroyOnLoad(this);
         }
+
+        
     }
 }

@@ -215,7 +215,7 @@ public class PlayerMovement : MonoBehaviour
     IEnumerator MoveCoolTime()
     {
         _movePossible = false;
-        CtrlZManager.Instance.AllSave();
+        CtrlZManager.AllSave();
         yield return new WaitForSeconds(_moveCoolTIme);
         _movePossible = true;
 

@@ -53,7 +53,7 @@ public class Blocks : MonoBehaviour
 
         _saveNumber = blockNumber;
         _savePosition = transform.position;
-        _playerVector = GameManager.Instance.player.GetComponent<PlayerMovement>();
+        _playerVector = GameManager.Instance.player;
         Spren = GetComponent<SpriteRenderer>();
     }
 
@@ -104,7 +104,7 @@ public class Blocks : MonoBehaviour
         if (pushing)
         {
             {
-                _vec2Abs = GameManager.Instance.player.transform.position - transform.position;
+                _vec2Abs = GameManager.Instance.trm.position - transform.position;
 
                 _x = Mathf.Abs(_vec2Abs.x);
                 _y = Mathf.Abs(_vec2Abs.y);
