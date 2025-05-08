@@ -10,7 +10,7 @@ public class PlayerMovement : MonoBehaviour
 
     Vector3 _mousePos;
     public Vector2 Vec2Move { get; set; }
-    bool _leftMoveWhather, _rightMoveWhather, _downMoveWhather, _upMoveWhather, _movePossible = true;
+    bool _leftMoveWhather, _rightMoveWhather, _downMoveWhather, _upMoveWhather, _movePossbie = true;
     float _rich = 0.7f;
 
     public bool LeftKeySensor { get; set; }
@@ -164,7 +164,7 @@ public class PlayerMovement : MonoBehaviour
         if ((Mouse.current.leftButton.wasPressedThisFrame &&
             _mousePos.x >= transform.position.x - 1.5 && _mousePos.x <= transform.position.x - 0.5 &&
                 _mousePos.y >= transform.position.y - 0.5 && _mousePos.y <= transform.position.y + 0.5) ||
-                (Vec2Move.x < 0 && _movePossible == true) && _leftMoveWhather == true)
+                (Vec2Move.x < 0 && _movePossbie == true) && _leftMoveWhather == true)
         {
             if (_leftMoveWhather == true)
             {
@@ -176,7 +176,7 @@ public class PlayerMovement : MonoBehaviour
         if ((Mouse.current.leftButton.wasPressedThisFrame &&
             (_mousePos.x <= transform.position.x + 1.5 && _mousePos.x >= transform.position.x + 0.5 &&
                 _mousePos.y >= transform.position.y - 0.5 && _mousePos.y <= transform.position.y + 0.5)) ||
-                (Vec2Move.x > 0 && _movePossible == true) && _rightMoveWhather == true)
+                (Vec2Move.x > 0 && _movePossbie == true) && _rightMoveWhather == true)
         {
             if (_rightMoveWhather == true)
             {
@@ -188,7 +188,7 @@ public class PlayerMovement : MonoBehaviour
         if ((Mouse.current.leftButton.wasPressedThisFrame &&
             _mousePos.y >= transform.position.y - 1.5 && _mousePos.y <= transform.position.y - 0.5 &&
                 _mousePos.x >= transform.position.x - 0.5 && _mousePos.x <= transform.position.x + 0.5) ||
-                (Vec2Move.y < 0 && _movePossible == true) && _downMoveWhather == true)
+                (Vec2Move.y < 0 && _movePossbie == true) && _downMoveWhather == true)
         {
             if (_downMoveWhather == true)
             {
@@ -200,7 +200,7 @@ public class PlayerMovement : MonoBehaviour
         if ((Mouse.current.leftButton.wasPressedThisFrame &&
             (_mousePos.y <= transform.position.y + 1.5 && _mousePos.y >= transform.position.y + 0.5 &&
                 _mousePos.x >= transform.position.x - 0.5 && _mousePos.x <= transform.position.x + 0.5)) ||
-                (Vec2Move.y > 0 && _movePossible == true) && _upMoveWhather == true)
+                (Vec2Move.y > 0 && _movePossbie == true) && _upMoveWhather == true)
         {
             if (_upMoveWhather == true)
             {
@@ -214,10 +214,13 @@ public class PlayerMovement : MonoBehaviour
 
     IEnumerator MoveCoolTime()
     {
-        _movePossible = false;
+        _movePossbie = false;
+
+        _movePossbie = false;
+
         CtrlZManager.AllSave();
         yield return new WaitForSeconds(_moveCoolTIme);
-        _movePossible = true;
+        _movePossbie = true;
 
     }
 }

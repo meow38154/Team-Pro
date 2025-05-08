@@ -8,6 +8,7 @@ public class Main_PlayerMovementDetect : MonoBehaviour
 {
     [SerializeField] private SpriteRenderer _rend;
     [SerializeField] private GameObject _player;
+    [SerializeField] private Main_Manager _manager;
     [SerializeField] private string _playerName = "RWS_Player";
     [SerializeField] private string _managerName = "RWS_Manager";
     [SerializeField] private bool _isBlocking;
@@ -20,13 +21,14 @@ public class Main_PlayerMovementDetect : MonoBehaviour
     {
         
         _player = GameObject.Find(_playerName);
+        _manager = GameObject.Find(_managerName).GetComponent<Main_Manager>();
         _rend = GetComponent<SpriteRenderer>();
     }
 
     private void Start()
     {
-        _blockTagArr = Main_Manager.Instance.GetBlockTagArr();
-        _pushableTagArr =  Main_Manager.Instance.GetPushableTagArr();
+        _blockTagArr = _manager.GetBlockTagArr();
+        _pushableTagArr = _manager.GetPushableTagArr();
     }
 
     public void OnClick()
