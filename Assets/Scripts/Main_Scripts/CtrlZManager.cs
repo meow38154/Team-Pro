@@ -23,11 +23,10 @@ public class CtrlZManager : MonoBehaviour
             AllCtrlZ();
         }
     }
-<<<<<<< HEAD
-     public static void AllSave()
-=======
+
+
+
     static public void AllSave()
->>>>>>> parent of 4ef4e39 (Fixed: code)
     {
         int a = moveBlockList.Count;
         for (int i = 0; i < a;i++)

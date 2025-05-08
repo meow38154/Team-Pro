@@ -47,14 +47,11 @@ public class Blocks : MonoBehaviour
 
         _saveNumber = _blockNumber;
         _savePosition = transform.position;
-<<<<<<< HEAD
-        _playerVector = GameManager.Instance.player;
-        Spren = GetComponent<SpriteRenderer>();
-=======
+
         _playerGameObject = GameObject.Find("Player");
         _playerVector = GameObject.Find("Player").GetComponent<PlayerMovement>();
         _spren = GetComponent<SpriteRenderer>();
->>>>>>> parent of 4ef4e39 (Fixed: code)
+
     }
 
     void ReStart()
@@ -103,11 +100,9 @@ public class Blocks : MonoBehaviour
         if (_pushing)
         {
             {
-<<<<<<< HEAD
-                _vec2Abs = GameManager.Instance.trm.position - transform.position;
-=======
+
                 _vec2Abs = _playerGameObject.transform.position - transform.position;
->>>>>>> parent of 4ef4e39 (Fixed: code)
+
 
                 _x = Mathf.Abs(_vec2Abs.x);
                 _y = Mathf.Abs(_vec2Abs.y);
