@@ -1,40 +1,48 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.Serialization;
 
 public class ImageMove : MonoBehaviour
 {
-    [SerializeField] GameObject _traget;
-    [SerializeField] float _moveSpeed = 3f;
-    Vector3 _tragetPos;
-    Vector3 _myPos;
+    [FormerlySerializedAs("_traget")] [SerializeField] GameObject traget;
+    [FormerlySerializedAs("_moveSpeed")] [SerializeField] private float moveSpeed = 3f;
+    private Vector3 _targetPos;
+    private Vector3 _myPos;
     Vector3 _moveVec;
-    bool _moveing = false;
+    bool _moving = false;
+
+    public ImageMove(Vector3 targetPos, Vector3 moveVec)
+    {
+        this._targetPos = targetPos;
+        _moveVec = moveVec;
+    }
+
     void Start()
     {
-        _tragetPos = _traget.transform.position;
-        transform.position = _tragetPos;
+        _targetPos = traget.transform.position;
+        transform.position = _targetPos;
         _myPos = transform.position;
     }
 
     void Update()
     {
         _myPos = transform.position;
-        _tragetPos = _traget.transform.position;
-        if (_tragetPos != _myPos)
+        _targetPos = traget.transform.position;
+        if (_targetPos != _myPos)
         {
-            if (_moveing)
+            if (_moving)
             {
-                _moveVec = (_tragetPos - _myPos);
-                transform.position += _moveVec * Time.deltaTime * _moveSpeed;
+                _moveVec = (_targetPos - _myPos);
+                transform.position += _moveVec * Time.deltaTime * moveSpeed;
             }
             else
             {
-                _moveing = true;
+                _moving = true;
             }
         }
         else
         {
-            _moveing = false;
+            _moving = false;
         }
     }
 

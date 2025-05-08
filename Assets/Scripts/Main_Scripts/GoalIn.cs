@@ -14,7 +14,7 @@ public class GoalIn : MonoBehaviour
 
     private void Update()
     {
-        if (Blocks._goalSignal)
+        if (Blocks.GoalSignal)
         {
             GamSec();
         }

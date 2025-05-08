@@ -12,7 +12,7 @@ public class JJM_GoalIn : MonoBehaviour
 
     private void Update()
     {
-        if (Blocks._goalSignal == true)
+        if (Blocks.GoalSignal == true)
         {
             GamSec();
         }

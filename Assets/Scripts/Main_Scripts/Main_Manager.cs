@@ -1,16 +1,31 @@
+using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class Main_Manager : MonoBehaviour
 {
-    [SerializeField] private string[] _blockTagArr;
-    [SerializeField] private string[] _pushableTagArr;
+    [FormerlySerializedAs("_blockTagArr")] [SerializeField] private string[] blockTagArr;
+    [FormerlySerializedAs("_pushableTagArr")] [SerializeField] private string[] pushableTagArr;
+
+    public static Main_Manager Instance;
+
+    private void Awake()
+    {
+        if (Instance != null)
+            Instance = this;
+        else
+        {
+            Destroy(gameObject);
+        }
+        DontDestroyOnLoad(this);
+    }
 
     public string[] GetBlockTagArr()
     {
-        return _blockTagArr;
+        return blockTagArr;
     }
     public string[] GetPushableTagArr()
     {
-        return _pushableTagArr;
+        return pushableTagArr;
     }
 }

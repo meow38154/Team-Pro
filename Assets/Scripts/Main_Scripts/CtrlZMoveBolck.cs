@@ -4,28 +4,28 @@ using static UnityEditor.PlayerSettings;
 
 public class CtrlZMoveBolck : MonoBehaviour
 {
-    //¿òÁ÷ÀÏ¼öÀÖ´Â ºí·°¿¡ ³Ö±â¸¸ ÇÏ¸é ³¡
+    //ï¿½ï¿½ï¿½ï¿½ï¿½Ï¼ï¿½ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ö±â¸¸ ï¿½Ï¸ï¿½ ï¿½ï¿½
     public List<Vector3> moveList = new List<Vector3>();
-    int listindex = 0;
+    private int _listindex = 0;
 
     private void Start()
     {
-        CtrlZManager.moveBlockList.Add(this);
+        CtrlZManager.MoveBlockList.Add(this);
     }
 
     public void Save()
     {
         moveList.Add(transform.position);
-        listindex++;
+        _listindex++;
     }
 
     public void CtrlZ()
     {
-        if (listindex > 0)
+        if (_listindex > 0)
         {
             transform.position = moveList[moveList.Count - 1];
             moveList.RemoveAt(moveList.Count - 1);
-            listindex--;
+            _listindex--;
         }
     }
 }
