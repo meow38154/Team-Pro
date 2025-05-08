@@ -1,14 +1,12 @@
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
-using UnityEngine.Serialization;
 
 public class Light : MonoBehaviour
 {
     Light2D _light;
     bool _updown;
-    [FormerlySerializedAs("_min")] [SerializeField] private float min;
-    [FormerlySerializedAs("_max")] [SerializeField] private float max;
-    [FormerlySerializedAs("_power")] [SerializeField] private float power;
+    [SerializeField] float _min, _max;
+    [SerializeField] float _power;
 
     private void Awake()
     {
@@ -17,14 +15,14 @@ public class Light : MonoBehaviour
 
     private void Update()
     {
-        if (_light.falloffIntensity <= min)
+        if (_light.falloffIntensity <= _min)
             _updown = true;
-        if (_light.falloffIntensity > max)
+        if (_light.falloffIntensity > _max)
             _updown = false;
 
         if (_updown)
-            _light.falloffIntensity += power * Time.deltaTime;
+            _light.falloffIntensity += _power * Time.deltaTime;
         if (_updown == false)
-            _light.falloffIntensity -= power * Time.deltaTime;
+            _light.falloffIntensity -= _power * Time.deltaTime;
     }
 }

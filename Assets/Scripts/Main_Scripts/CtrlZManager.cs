@@ -2,55 +2,53 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Serialization;
 
 public class CtrlZManager : MonoBehaviour
 {
-    
-    
-    //ï¿½Å´ï¿½ï¿½ï¿½ ï¿½Ï³ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö¾ï¿½ï¿½Ö±â¸¸ ï¿½Ï¸ï¿½ ï¿½ï¿½
-    public static  List<CtrlZMoveBolck> MoveBlockList = new List<CtrlZMoveBolck>();
-    [FormerlySerializedAs("ZCoolTime")] [SerializeField] private float zCoolTime = 0.2f;
-    private bool _coolTimeOk = true;
-    public static CtrlZManager Instance;
-    
+    //¸Å´ÏÀú ÇÏ³ª ¸¸µé°í ³Ö¾îÁÖ±â¸¸ ÇÏ¸é ³¡
+    static public List<CtrlZMoveBolck> moveBlockList = new List<CtrlZMoveBolck>();
+    [SerializeField] float ZCoolTime = 0.2f;
+    bool CoolTimeOk = true;
 
     private void Awake()
     {
-        MoveBlockList = new List<CtrlZMoveBolck>();
-        DontDestroyOnLoad(this);
+        moveBlockList = new List<CtrlZMoveBolck>();
     }
 
     private void Update()
     {
-        if (Keyboard.current.zKey.isPressed && _coolTimeOk)
+        if (Keyboard.current.zKey.isPressed && CoolTimeOk)
         {
             StartCoroutine(MoveCoolTime());
             AllCtrlZ();
         }
     }
+<<<<<<< HEAD
      public static void AllSave()
+=======
+    static public void AllSave()
+>>>>>>> parent of 4ef4e39 (Fixed: code)
     {
-        int a = MoveBlockList.Count;
+        int a = moveBlockList.Count;
         for (int i = 0; i < a;i++)
         {
-            MoveBlockList[i].Save();
+            moveBlockList[i].Save();
         }
     }
 
     public void AllCtrlZ()
     {
-        int a = MoveBlockList.Count;
+        int a = moveBlockList.Count;
         for (int i = 0; i < a; i++)
         {
-            MoveBlockList[i].CtrlZ();
+            moveBlockList[i].CtrlZ();
         }
     }
 
     IEnumerator MoveCoolTime()
     {
-        _coolTimeOk = false;
-        yield return new WaitForSeconds(zCoolTime);
-        _coolTimeOk = true;
+        CoolTimeOk = false;
+        yield return new WaitForSeconds(ZCoolTime);
+        CoolTimeOk = true;
     }
 }

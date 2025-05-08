@@ -32,7 +32,7 @@ public class GoalIn : MonoBehaviour
 
     private void Update()
     {
-        if (Blocks.GoalSignal)
+        if (Blocks._goalSignal)
         {
             GamSec();
         }
