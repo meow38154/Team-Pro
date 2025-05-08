@@ -13,6 +13,7 @@ TagManager:
   - GoldGoal
   - HabGoldGoal
   - Iron_Goal
+  - BurnBlock
   layers:
   - Default
   - TransparentFX
@@ -31,8 +32,8 @@ TagManager:
   - IronGoal
   - GoldGoal
   - HabGoldGoal
-  - 
-  - 
+  - BurnBlock
+  - Door
   - 
   - 
   - 

@@ -14,12 +14,12 @@ public class Main_PlayerMovementDetect : MonoBehaviour
     [SerializeField] private bool _isBlocking;
     [SerializeField] private bool _isPushable;
     [SerializeField] private PushableObject _pushableObject;
-
     private string[] _blockTagArr;
     private string[] _pushableTagArr;
 
     private void Awake()
     {
+        
         _player = GameObject.Find(_playerName);
         _manager = GameObject.Find(_managerName).GetComponent<Main_Manager>();
         _rend = GetComponent<SpriteRenderer>();
@@ -38,26 +38,16 @@ public class Main_PlayerMovementDetect : MonoBehaviour
             Vector3 newPosition = _player.transform.position;
             newPosition += transform.localPosition;
             _player.transform.position = newPosition;
+            
         }
         else if (_isPushable == true)
         {
             _pushableObject?.MoveIt(gameObject);
         }
+        
     }
 
-    private void OnMouseDown()
-    {
-        if (_isBlocking == false)
-        {
-            Vector3 newPosition = _player.transform.position;
-            newPosition += transform.localPosition;
-            _player.transform.position = newPosition;
-        }
-        else if (_isPushable == true)
-        {
-            _pushableObject?.MoveIt(gameObject);
-        }
-    }
+
 
 
     private void OnTriggerEnter2D(Collider2D collision)
