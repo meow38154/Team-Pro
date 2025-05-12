@@ -60,7 +60,7 @@ public class Blocks : MonoBehaviour
     {
         if (_pushing)
         {
-            _imageMove.Enable();
+            //_imageMove.Enable();
             _blockNumber = _saveNumber;
             transform.position = _savePosition;
             gameObject.GetComponent<SpriteRenderer>().enabled = true;
@@ -204,7 +204,7 @@ public class Blocks : MonoBehaviour
         gameObject.GetComponent<SpriteRenderer>().enabled = false;
         gameObject.GetComponent<Blocks>()._wallBlock = false;
         transform.position = new Vector3(0, 0, 200);
-        _imageMove.Disable();
+       // _imageMove.Disable();
 
         _goalSignal = true;
         _blockNumber = 67893;
