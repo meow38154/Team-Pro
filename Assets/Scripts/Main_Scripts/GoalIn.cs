@@ -1,3 +1,4 @@
+using System.Collections;
 using Main_Scripts;
 using UnityEngine;
 
@@ -90,14 +91,20 @@ public class GoalIn : MonoBehaviour
         _blocks.Wall();
     }
 
-    void ReStart()
+    public void ReStart()
     {
+        StartCoroutine(ResetWaiTime());
+    }
+
+
+    private IEnumerator ResetWaiTime()
+    {
+        yield return new WaitForSeconds(0.1f);
         if (_isVertical)
         {
             Debug.Log("Start");
             _render.sprite = _vDoorC;
         }
-
         else
         {
             Debug.Log("Start else");

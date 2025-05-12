@@ -86,6 +86,9 @@ public class Blocks : MonoBehaviour
 
             transform.position = new Vector3(transform.position.x, transform.position.y, 0);
             _destory = false;
+            
+            
+
             StopCoroutine(ArrivalTrriger());
         }
     }
@@ -221,6 +224,8 @@ public class Blocks : MonoBehaviour
             _goalSignal = true;
             _blockNumber = 67893;
             _destory = true;
+            if (gameObject.TryGetComponent<GoalIn>(out GoalIn _goalIn)) _goalIn.ReStart();
+
         }
     }
 
