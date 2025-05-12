@@ -2,6 +2,8 @@ using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using System.Collections;
+using Main_Scripts;
+using UnityEngine.Events;
 
 public class Blocks : MonoBehaviour
 {
@@ -31,6 +33,7 @@ public class Blocks : MonoBehaviour
     bool _signal;
     GameObject _childGo, _Parents;
 
+    GameManager _gm;
 
 
     private void Awake()
@@ -42,9 +45,6 @@ public class Blocks : MonoBehaviour
             _Parents = transform.parent.gameObject;
 
             _childGo = _Parents.transform.GetChild(1).gameObject;
-
-        }
-
         _saveNumber = _blockNumber;
         _savePosition = transform.position;
 
@@ -52,6 +52,25 @@ public class Blocks : MonoBehaviour
         _playerVector = GameObject.Find("Player").GetComponent<PlayerMovement>();
         _spren = GetComponent<SpriteRenderer>();
 
+        }
+
+
+    }
+
+    private void Start()
+    {
+        if (_pushing)
+        {
+            _gm = GameObject.Find("GameManager")?.GetComponent<GameManager>();
+            if (_gm != null && _gm.ManagerEvent != null)
+            {
+                _gm.ManagerEvent.AddListener(ReStart);
+            }
+            else
+            {
+                Debug.LogError("GameManager or ManagerEvent is not initialized properly.");
+            }
+        }
     }
 
     void ReStart()
@@ -84,10 +103,6 @@ public class Blocks : MonoBehaviour
         _signal = _goalSignal;
 
         //�ӽ� ���� �ڵ�
-        if (Keyboard.current.rKey.wasPressedThisFrame && Keyboard.current.fKey.isPressed)
-        {
-            ReStart();
-        }
 
 
 
