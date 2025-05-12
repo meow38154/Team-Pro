@@ -1,3 +1,4 @@
+using Main_Scripts;
 using UnityEngine;
 
 public class GoalIn : MonoBehaviour
@@ -10,9 +11,20 @@ public class GoalIn : MonoBehaviour
     [SerializeField] Sprite _hDoorC;
     Blocks _blocks;
     private SpriteRenderer _render;
+    GameManager _gm;
 
     private void Awake()
     {
+        _gm = GameObject.Find("GameManager")?.GetComponent<GameManager>();
+        if (_gm != null && _gm.ManagerEvent != null)
+        {
+            _gm.ManagerEvent.AddListener(ReStart);
+        }
+        else
+        {
+            Debug.LogError("GameManager or ManagerEvent is not initialized properly.");
+        }
+
         _render = GetComponent<SpriteRenderer>();
         _blocks = GetComponent<Blocks>();
         _blocks.WallTrue();
@@ -78,4 +90,18 @@ public class GoalIn : MonoBehaviour
         _blocks.Wall();
     }
 
+    void ReStart()
+    {
+        if (_isVertical)
+        {
+            Debug.Log("Start");
+            _render.sprite = _vDoorC;
+        }
+
+        else
+        {
+            Debug.Log("Start else");
+            _render.sprite = _hDoorC;
+        }
+    }
 }
