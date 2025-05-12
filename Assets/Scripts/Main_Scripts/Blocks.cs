@@ -30,7 +30,6 @@ public class Blocks : MonoBehaviour
     int _saveNumber;
     bool _signal;
     GameObject _childGo, _Parents;
-    ImageMove _imageMove;
 
 
 
@@ -44,7 +43,6 @@ public class Blocks : MonoBehaviour
 
             _childGo = _Parents.transform.GetChild(1).gameObject;
 
-            _imageMove = _childGo.GetComponent<ImageMove>();
         }
 
         _saveNumber = _blockNumber;
@@ -60,7 +58,6 @@ public class Blocks : MonoBehaviour
     {
         if (_pushing)
         {
-            //_imageMove.Enable();
             _blockNumber = _saveNumber;
             transform.position = _savePosition;
             gameObject.GetComponent<SpriteRenderer>().enabled = true;
@@ -201,13 +198,12 @@ public class Blocks : MonoBehaviour
         if (_pushing && _destory == false)
         {
             yield return new WaitForSeconds(0.5f);
-        gameObject.GetComponent<SpriteRenderer>().enabled = false;
-        gameObject.GetComponent<Blocks>()._wallBlock = false;
-        transform.position = new Vector3(0, 0, 200);
-       // _imageMove.Disable();
-
-        _goalSignal = true;
-        _blockNumber = 67893;
+            gameObject.GetComponent<SpriteRenderer>().enabled = false;
+            gameObject.GetComponent<Blocks>()._wallBlock = false;
+            gameObject.GetComponent<Blocks>()._pushing = false;
+            transform.position = new Vector3(transform.position.x, transform.position.y, -200);
+            _goalSignal = true;
+            _blockNumber = 67893;
             _destory = true;
         }
     }

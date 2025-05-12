@@ -218,7 +218,7 @@ public class PlayerMovement : MonoBehaviour
 
         _movePossbie = false;
 
-        CtrlZManager.AllSave();
+        
         yield return new WaitForSeconds(_moveCoolTIme);
         _movePossbie = true;
 
