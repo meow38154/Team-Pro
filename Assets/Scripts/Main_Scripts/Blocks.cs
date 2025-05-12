@@ -199,7 +199,7 @@ public class Blocks : MonoBehaviour
         {
             yield return new WaitForSeconds(0.5f);
             gameObject.GetComponent<SpriteRenderer>().enabled = false;
-            gameObject.GetComponent<Blocks>()._wallBlock = false;
+            //gameObject.GetComponent<Blocks>()._wallBlock = false;
             gameObject.GetComponent<Blocks>()._pushing = false;
             transform.position = new Vector3(transform.position.x, transform.position.y, -200);
             _goalSignal = true;
