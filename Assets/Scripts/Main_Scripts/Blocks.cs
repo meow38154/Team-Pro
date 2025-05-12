@@ -200,8 +200,8 @@ public class Blocks : MonoBehaviour
             yield return new WaitForSeconds(0.5f);
             gameObject.GetComponent<SpriteRenderer>().enabled = false;
             gameObject.GetComponent<Blocks>()._wallBlock = false;
-            transform.position = new Vector3(0, 0, 200);
-
+            gameObject.GetComponent<Blocks>()._pushing = false;
+            transform.position = new Vector3(transform.position.x, transform.position.y, -200);
             _goalSignal = true;
             _blockNumber = 67893;
             _destory = true;
