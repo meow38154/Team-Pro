@@ -21,10 +21,10 @@ public class CtrlZMoveBolck : MonoBehaviour
         moveList.Add(transform.position);
         if(MyBlocksScript != null)
         {    
-            if (DestroyTime == -1 && MyBlocksScript._destroy)
-            {
-                DestroyTime = listindex;
-            }
+            //if (DestroyTime == -1 && MyBlocksScript._destroy)
+            //{
+            //    DestroyTime = listindex;
+            //}
         }
         listindex++;
     }
@@ -36,14 +36,14 @@ public class CtrlZMoveBolck : MonoBehaviour
             transform.position = moveList[moveList.Count - 1];
             moveList.RemoveAt(moveList.Count - 1);
             listindex--;
-            if (MyBlocksScript != null)
-            {
-                if (DestroyTime == listindex && MyBlocksScript._destroy)
-                {
-                    DestroyTime = -1;
-                    MyBlocksScript.UnDestroy();
-                }
-            }
+            //if (MyBlocksScript != null)
+            //{
+            //    if (DestroyTime == listindex && MyBlocksScript._destroy)
+            //    {
+            //        DestroyTime = -1;
+            //        MyBlocksScript.UnDestroy();
+            //    }
+            //}
         }
     }
 }
