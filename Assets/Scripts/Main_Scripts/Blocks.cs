@@ -59,7 +59,7 @@ public class Blocks : MonoBehaviour
         if (_pushing)
         {
             _Parents = transform.parent.gameObject;
-
+            _saveBreak = _breakCount;
             _childGo = _Parents.transform.GetChild(1).gameObject;
             _saveNumber = _blockNumber;
             _savePosition = transform.position;
@@ -93,7 +93,7 @@ public class Blocks : MonoBehaviour
         if (_pushing)
         {
             Debug.Log("리셋");
-
+            _breakCount = _saveBreak;
             _blockNumber = _saveNumber;
             transform.position = _savePosition;
             gameObject.GetComponent<SpriteRenderer>().enabled = true;
