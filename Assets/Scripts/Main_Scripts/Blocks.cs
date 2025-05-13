@@ -224,7 +224,6 @@ public class Blocks : MonoBehaviour
             _goalSignal = true;
             _blockNumber = 67893;
             _destory = true;
-            if (gameObject.TryGetComponent<GoalIn>(out GoalIn _goalIn)) _goalIn.ReStart();
 
         }
     }
