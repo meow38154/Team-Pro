@@ -24,6 +24,7 @@ public class Blocks : MonoBehaviour
 
     [Header("건드리지 마세요")]
     [SerializeField] GameObject _numberPrefabs;
+    [SerializeField] GameObject _breakImage;
 
 
     public static bool _goalSignal;
@@ -37,7 +38,7 @@ public class Blocks : MonoBehaviour
     float _x, _y, _rayDistance = 100f;
     SpriteRenderer _spren;
     GameObject _playerGameObject;
-    Vector2 _vec2Abs, _rotion, _vec2Clamp, _positionYea, _distance, YoungJumSix, _savePosition, _textMove;
+    Vector2 _vec2Abs, _rotion, _vec2Clamp, _positionYea, _distance, YoungJumSix, _savePosition, _breakImageMove;
     bool _interationPossible, _break;
     bool _minCoolTime = true;
     Blocks _goalSensor, _wallSensor;
@@ -45,7 +46,7 @@ public class Blocks : MonoBehaviour
     bool _movein, _destory;
     int _saveNumber, _saveBreak;
     bool _signal;
-    GameObject _childGo, _Parents;
+    GameObject _childGo, _Parents, _image;
 
     [SerializeField] TextMeshPro _count;
 
@@ -70,6 +71,7 @@ public class Blocks : MonoBehaviour
             if (_breakBlock)
             {
                 _count = Instantiate(_numberPrefabs, _Parents.transform).GetComponent<TextMeshPro>();
+                _image = Instantiate(_breakImage, _Parents.transform);
             }
         }
     }
@@ -108,7 +110,7 @@ public class Blocks : MonoBehaviour
     }
     void TextMoveMSD()
     {
-        #region 텍스트 부드럽게 따라오게 하기
+        #region 텍스트
         if (_breakBlock)
         {
             _count.rectTransform.position = Vector3.Lerp(_count.rectTransform.position, transform.position, Time.deltaTime * 5);
@@ -125,10 +127,20 @@ public class Blocks : MonoBehaviour
             }
         }
         #endregion
-
     }
+
+    void BIM()
+    {
+        if (_breakBlock)
+        {
+            _breakImageMove = new Vector3(_image.transform.position.x, _image.transform.position.y);
+            _image.transform.position = Vector3.Lerp(_breakImageMove, transform.position, Time.deltaTime * 5);
+        }
+    }
+
     private void Update()
     {
+        BIM();
 
         TextMoveMSD();
 
