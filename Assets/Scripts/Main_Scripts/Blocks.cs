@@ -282,6 +282,13 @@ public class Blocks : MonoBehaviour
 
         }
     }
+
+    void Plz()
+    {
+        
+    }
+
+
     public void Wall()
     {
         _wallBlock = false;
