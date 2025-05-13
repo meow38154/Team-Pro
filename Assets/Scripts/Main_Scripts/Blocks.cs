@@ -7,11 +7,18 @@ using UnityEngine.Events;
 
 public class Blocks : MonoBehaviour
 {
-    [SerializeField] bool _pushing;
+    [Header("기본 설정\n")]
     [SerializeField] bool _wallBlock;
+
+    [Header("미는게 가능 한 블록일때\n")]
+    [SerializeField] bool _pushing;
     [SerializeField] LayerMask _cloggedType;
     [SerializeField] LayerMask _GoalinType;
     [SerializeField] int _blockNumber;
+
+    [Header("미는게 제한이 있는 블록일때\n")]
+    [SerializeField] bool _breakBlock;
+    [SerializeField] int _breakCount;
     
     public static bool _goalSignal;
 

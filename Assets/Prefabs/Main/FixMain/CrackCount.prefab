@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 7815542458379207433}
   - component: {fileID: 6084317002668255772}
   - component: {fileID: 3698467112358535190}
-  - component: {fileID: 146198327068436830}
   m_Layer: 0
   m_Name: CrackCount
   m_TagString: Untagged
@@ -177,17 +176,3 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_renderer: {fileID: 6084317002668255772}
   m_maskType: 0
---- !u!114 &146198327068436830
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 195931979881416922}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b4e177ed8fded1a4cafe6e3dd658362d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _traget: {fileID: 0}
-  _moveSpeed: 3

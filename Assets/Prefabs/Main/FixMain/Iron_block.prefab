@@ -292,15 +292,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92e5c3e48a994124eb5f4c751bde2bbf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _pushing: 1
   _wallBlock: 1
+  _pushing: 1
   _cloggedType:
     serializedVersion: 2
     m_Bits: 310848
   _GoalinType:
     serializedVersion: 2
-    m_Bits: 16384
+    m_Bits: 540672
   _blockNumber: 0
+  _breakBlock: 0
+  _breakCount: 0
 --- !u!61 &1663049305047843755
 BoxCollider2D:
   m_ObjectHideFlags: 0
