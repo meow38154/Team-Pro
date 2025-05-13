@@ -201,6 +201,7 @@ MonoBehaviour:
   _blockNumber: 0
   _breakBlock: 0
   _breakCount: 0
+  _numberPrefabs: {fileID: 195931979881416922, guid: 315d407e9616ea048a602d03700ad9a5, type: 3}
 --- !u!61 &1881457604238736375
 BoxCollider2D:
   m_ObjectHideFlags: 0
