@@ -13,35 +13,13 @@ public class ReStartPlayerVector : MonoBehaviour
     [SerializeField] Vector2 ResetPlayerPosition;
 
     [Header("건드리지 마시오")]
-    [SerializeField] GameManager _gm;
     [SerializeField] GameObject _player;
     [SerializeField] GameObject _p;
 
     private void Awake()
     {
         _p = GameObject.Find("Player");
-        _gm = GameObject.Find("GameManager")?.GetComponent<GameManager>();
-
-        if (_gm != null && _gm.ManagerEvent != null)
-        {
-            _gm.ManagerEvent.AddListener(PlayerReset);
-        }
-        else
-        {
-            Debug.LogError("GameManager or ManagerEvent is not initialized properly.");
-        }
     }
-
-
-
-    void PlayerReset()
-    {
-        if (_p != null)
-        {
-            _player.transform.position = ResetPlayerPosition;
-        }
-    }
-
 
     private void Update()
     {
@@ -50,8 +28,13 @@ public class ReStartPlayerVector : MonoBehaviour
             if (_p.transform.position.x >= ResetSizeOne.x && _p.transform.position.x <= ResetSizeTwo.x &&
                 _p.transform.position.y <= ResetSizeOne.y && _p.transform.position.y >= ResetSizeTwo.y)
             {
-                //Debug.Log("범위 안에 있음");
                 _player = GameObject.Find("Player");
+
+                if (GameManager.reset)
+                {
+                    //Debug.Log("ㅓㅑㄴㅇ햐ㅓㄹ히ㅓ아ㅣㅜㅠㅓ ㅜㅗㅇㄱ러ㅑ해ㅔㅐ우ㅗㅎ라네ㅔㅐ[]하ㅐㅓㅗㅠㅠㄴ다거ㅑㅣ애로ㅜㅏㅘㅑㅔㅐ더카[ㅣ");
+                    _player.transform.position = ResetPlayerPosition;
+                }
             }
 
             else
@@ -59,5 +42,6 @@ public class ReStartPlayerVector : MonoBehaviour
                 _player = null;
             }
         }
+
     }
 }
