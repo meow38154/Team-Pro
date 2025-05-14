@@ -244,19 +244,22 @@ public class Blocks : MonoBehaviour
             }
         }
     }
-    public void KeyMove()
+    public void KeyMove(int numder)
     {
         if (_pushing == true)
         {
-            if (_interationPossible == true && _movein == true && Keyboard.current.spaceKey.wasPressedThisFrame && 
-                (_playerVector.LeftKeySensor == true || _playerVector.RightKeySensor == true || 
-                _playerVector.UpKeySensor == true || _playerVector.DownKeySensor == true)){
-                transform.position = _positionYea + _vec2Abs;
-
-                if (_minCoolTime)
+            if (_interationPossible == true && _movein == true && Keyboard.current.spaceKey.wasPressedThisFrame)
+            {
+                if ((_playerVector.LeftKeySensor == true && numder == 0)|| (_playerVector.RightKeySensor == true && numder == 1) ||
+                (_playerVector.UpKeySensor == true && numder == 3) || (_playerVector.DownKeySensor == true && numder == 2))
                 {
-                    StartCoroutine(CoolDown());
-                    _breakCount--;
+                    transform.position = _positionYea + _vec2Abs;
+
+                    if (_minCoolTime)
+                    {
+                        StartCoroutine(CoolDown());
+                        _breakCount--;
+                    }
                 }
             }
         }

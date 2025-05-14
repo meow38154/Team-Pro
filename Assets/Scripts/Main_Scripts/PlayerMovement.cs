@@ -134,21 +134,12 @@ public class PlayerMovement : MonoBehaviour
         Rightmove();
 
         {
-            if (_blocks[0] != null)
+            for(int i = 0;i < 4; i++)
             {
-                _blocks[0].KeyMove();
-            }
-            if (_blocks[1] != null)
-            {
-                _blocks[1].KeyMove();
-            }
-            if (_blocks[2] != null)
-            {
-                _blocks[2].KeyMove();
-            }
-            if (_blocks[3] != null)
-            {
-                _blocks[3].KeyMove();
+                if (_blocks[i] != null)
+                {
+                    _blocks[i].KeyMove(i);
+                }
             }
         }
 
