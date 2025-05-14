@@ -6,7 +6,7 @@ using Main_Scripts;
 using UnityEngine.Events;
 using TMPro;
 
-public class Blocks : MonoBehaviour
+public class Lws_Blocks : MonoBehaviour
 {
     [Header("기본 설정\n")]
     [SerializeField] bool _wallBlock;
@@ -99,7 +99,7 @@ public class Blocks : MonoBehaviour
             _blockNumber = _saveNumber;
             transform.position = _savePosition;
             gameObject.GetComponent<SpriteRenderer>().enabled = true;
-            gameObject.GetComponent<Blocks>()._wallBlock = true;
+            gameObject.GetComponent<Lws_Blocks>()._wallBlock = true;
 
             transform.position = new Vector3(transform.position.x, transform.position.y, 0);
             _destory = false;
@@ -119,7 +119,7 @@ public class Blocks : MonoBehaviour
             if (_breakCount <= 0)
             {
                 gameObject.GetComponent<SpriteRenderer>().enabled = false;
-                gameObject.GetComponent<Blocks>()._wallBlock = false;
+                gameObject.GetComponent<Lws_Blocks>()._wallBlock = false;
                 transform.position = new Vector3(transform.position.x, 300, -200);
 
                 _goalSignal = true;
@@ -250,13 +250,14 @@ public class Blocks : MonoBehaviour
         {
             if (_interationPossible == true && _movein == true && Keyboard.current.spaceKey.wasPressedThisFrame)
             {
-                if ((_playerVector.LeftKeySensor == true && numder == 0)|| (_playerVector.RightKeySensor == true && numder == 1) ||
-                (_playerVector.UpKeySensor == true && numder == 3) || (_playerVector.DownKeySensor == true && numder == 2))
+
+                if(_playerVector.LeftKeySensor == true || _playerVector.RightKeySensor == true ||
+                _playerVector.UpKeySensor == true || _playerVector.DownKeySensor == true)
                 {
                     transform.position = _positionYea + _vec2Abs;
-                    
                     if (_minCoolTime)
                     {
+                        Debug.Log("lol");
                         StartCoroutine(CoolDown());
                         _breakCount--;
                     }
@@ -288,7 +289,7 @@ public class Blocks : MonoBehaviour
         {
             yield return new WaitForSeconds(0.5f);
             gameObject.GetComponent<SpriteRenderer>().enabled = false;
-            gameObject.GetComponent<Blocks>()._wallBlock = false;
+            gameObject.GetComponent<Lws_Blocks>()._wallBlock = false;
             transform.position = new Vector3(transform.position.x, 300, -200);
 
             _goalSignal = true;
@@ -298,10 +299,6 @@ public class Blocks : MonoBehaviour
         }
     }
 
-    void Plz()
-    {
-        
-    }
 
 
     public void Wall()
