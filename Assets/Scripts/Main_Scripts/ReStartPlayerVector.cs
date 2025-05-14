@@ -1,6 +1,7 @@
 using Main_Scripts;
 using Unity.VisualScripting;
 using UnityEngine;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class ReStartPlayerVector : MonoBehaviour
 {
@@ -14,10 +15,11 @@ public class ReStartPlayerVector : MonoBehaviour
     [Header("건드리지 마시오")]
     [SerializeField] GameManager _gm;
     [SerializeField] GameObject _player;
+    [SerializeField] GameObject _p;
 
     private void Awake()
     {
-                _player = GameObject.Find("Player");
+        _p = GameObject.Find("Player");
         _gm = GameObject.Find("GameManager")?.GetComponent<GameManager>();
 
         if (_gm != null && _gm.ManagerEvent != null)
@@ -34,19 +36,28 @@ public class ReStartPlayerVector : MonoBehaviour
 
     void PlayerReset()
     {
-        if(_player != null)
+        if (_p != null)
         {
-            if (_player.transform.position.x >= ResetSizeOne.x && _player.transform.position.x <= ResetSizeTwo.x &&
-                _player.transform.position.x <= ResetSizeOne.y && _player.transform.position.y >= ResetSizeTwo.x)
+            _player.transform.position = ResetPlayerPosition;
+        }
+    }
+
+
+    private void Update()
+    {
+        if (_p != null)
+        {
+            if (_p.transform.position.x >= ResetSizeOne.x && _p.transform.position.x <= ResetSizeTwo.x &&
+                _p.transform.position.y <= ResetSizeOne.y && _p.transform.position.y >= ResetSizeTwo.y)
             {
-                _player.transform.position = ResetPlayerPosition;
+                //Debug.Log("범위 안에 있음");
+                _player = GameObject.Find("Player");
             }
 
             else
             {
                 _player = null;
             }
-
         }
-    }     
+    }
 }
