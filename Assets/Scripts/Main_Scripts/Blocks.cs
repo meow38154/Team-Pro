@@ -4,6 +4,7 @@ using UnityEngine.InputSystem;
 using System.Collections;
 using Main_Scripts;
 using UnityEngine.Events;
+using TMPro;
 
 public class Blocks : MonoBehaviour
 {
@@ -19,7 +20,13 @@ public class Blocks : MonoBehaviour
     [Header("미는게 제한이 있는 블록일때\n")]
     [SerializeField] bool _breakBlock;
     [SerializeField] int _breakCount;
-    
+
+
+    [Header("건드리지 마세요")]
+    [SerializeField] GameObject _numberPrefabs;
+    [SerializeField] GameObject _breakImage;
+
+
     public static bool _goalSignal;
 
 
@@ -31,14 +38,17 @@ public class Blocks : MonoBehaviour
     float _x, _y, _rayDistance = 100f;
     SpriteRenderer _spren;
     GameObject _playerGameObject;
-    Vector2 _vec2Abs, _rotion, _vec2Clamp, _positionYea, _distance, YoungJumSix, _savePosition;
+    Vector2 _vec2Abs, _rotion, _vec2Clamp, _positionYea, _distance, YoungJumSix, _savePosition, _breakImageMove;
     bool _interationPossible, _break;
+    bool _minCoolTime = true;
     Blocks _goalSensor, _wallSensor;
     PlayerMovement _playerVector;
     bool _movein, _destory;
-    int _saveNumber;
+    int _saveNumber, _saveBreak;
     bool _signal;
-    GameObject _childGo, _Parents;
+    GameObject _childGo, _Parents, _image;
+
+    [SerializeField] TextMeshPro _count;
 
     GameManager _gm;
 
@@ -50,20 +60,21 @@ public class Blocks : MonoBehaviour
         if (_pushing)
         {
             _Parents = transform.parent.gameObject;
-
+            _saveBreak = _breakCount;
             _childGo = _Parents.transform.GetChild(1).gameObject;
-        _saveNumber = _blockNumber;
-        _savePosition = transform.position;
+            _saveNumber = _blockNumber;
+            _savePosition = transform.position;
+            _playerGameObject = GameObject.Find("Player");
+            _playerVector = GameObject.Find("Player").GetComponent<PlayerMovement>();
+            _spren = GetComponent<SpriteRenderer>();
 
-        _playerGameObject = GameObject.Find("Player");
-        _playerVector = GameObject.Find("Player").GetComponent<PlayerMovement>();
-        _spren = GetComponent<SpriteRenderer>();
-
+            if (_breakBlock)
+            {
+                _count = Instantiate(_numberPrefabs, _Parents.transform).GetComponent<TextMeshPro>();
+                _image = Instantiate(_breakImage, _Parents.transform);
+            }
         }
-
-
     }
-
     private void Start()
     {
         if (_pushing)
@@ -79,13 +90,12 @@ public class Blocks : MonoBehaviour
             }
         }
     }
-
     void ReStart()
     {
         if (_pushing)
         {
             Debug.Log("리셋");
-
+            _breakCount = _saveBreak;
             _blockNumber = _saveNumber;
             transform.position = _savePosition;
             gameObject.GetComponent<SpriteRenderer>().enabled = true;
@@ -94,26 +104,56 @@ public class Blocks : MonoBehaviour
             transform.position = new Vector3(transform.position.x, transform.position.y, 0);
             _destory = false;
             
-            
 
             StopCoroutine(ArrivalTrriger());
         }
     }
+    void TextMoveMSD()
+    {
+        #region 텍스트
+        if (_breakBlock)
+        {
+            _count.rectTransform.position = Vector3.Lerp(_count.rectTransform.position, transform.position, Time.deltaTime * 5);
+            _count.text = _breakCount.ToString();
 
+            if (_breakCount <= 0)
+            {
+                gameObject.GetComponent<SpriteRenderer>().enabled = false;
+                gameObject.GetComponent<Blocks>()._wallBlock = false;
+                transform.position = new Vector3(transform.position.x, 300, -200);
 
+                _goalSignal = true;
+                _destory = true;
+            }
+        }
+        #endregion
+    }
 
-
+    void BIM()
+    {
+        if (_breakBlock)
+        {
+            _breakImageMove = new Vector3(_image.transform.position.x, _image.transform.position.y);
+            _image.transform.position = Vector3.Lerp(_breakImageMove, transform.position, Time.deltaTime * 5);
+        }
+    }
 
     private void Update()
     {
+        BIM();
+
+        TextMoveMSD();
+
         BlockNumber = _blockNumber;
 
         Goalin();
 
         _signal = _goalSignal;
 
-        //�ӽ� ���� �ڵ�
+        if (_breakCount <= 0)
+        {
 
+        }
 
 
         {
@@ -197,19 +237,43 @@ public class Blocks : MonoBehaviour
         if (_interationPossible == true && _movein == true)
         {
             transform.position = _positionYea + _vec2Abs;
-        }
-    }
-    public void KeyMove()
-    {
-        if (_pushing == true)
-        {
-            if (_interationPossible == true && _movein == true && Keyboard.current.spaceKey.wasPressedThisFrame && 
-                (_playerVector.LeftKeySensor == true || _playerVector.RightKeySensor == true || 
-                _playerVector.UpKeySensor == true || _playerVector.DownKeySensor == true)){
-                transform.position = _positionYea + _vec2Abs;
+            if (_minCoolTime)
+            {
+                StartCoroutine(CoolDown());
+                _breakCount--;
             }
         }
     }
+    public void KeyMove(int numder)
+    {
+        if (_pushing == true)
+        {
+            if (_interationPossible == true && _movein == true && Keyboard.current.spaceKey.wasPressedThisFrame)
+            {
+                if ((_playerVector.LeftKeySensor == true && numder == 0)|| (_playerVector.RightKeySensor == true && numder == 1) ||
+                (_playerVector.UpKeySensor == true && numder == 3) || (_playerVector.DownKeySensor == true && numder == 2))
+                {
+                    transform.position = _positionYea + _vec2Abs;
+                    
+                    if (_minCoolTime)
+                    {
+                        StartCoroutine(CoolDown());
+                        _breakCount--;
+                    }
+                }
+            }
+        }
+    }
+
+
+    IEnumerator CoolDown()
+    {
+        _minCoolTime = false;
+        yield return new WaitForSeconds(0.05f);
+        _minCoolTime = true;
+    }
+
+
     void Goalin()
     {
         RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.up, 0.1f, _GoalinType);
@@ -218,7 +282,6 @@ public class Blocks : MonoBehaviour
             StartCoroutine(ArrivalTrriger());
         }
     }
-
     IEnumerator ArrivalTrriger()
     {
         if (_pushing && _destory == false)
@@ -235,11 +298,16 @@ public class Blocks : MonoBehaviour
         }
     }
 
+    void Plz()
+    {
+        
+    }
+
+
     public void Wall()
     {
         _wallBlock = false;
     }
-
     public void WallTrue()
     {
         _wallBlock = true;
