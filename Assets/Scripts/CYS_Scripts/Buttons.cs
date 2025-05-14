@@ -12,6 +12,7 @@ namespace CYS_Scripts
         [FormerlySerializedAs("_dontDisturb")] [SerializeField] private GameObject dontDisturb;
         [SerializeField] private GameObject _3dCubeR;
         [SerializeField] private GameObject _3dCuben;
+        [FormerlySerializedAs("_credit")][SerializeField] private GameObject creditForm;
 
         bool _isTimeOver;
     
@@ -20,6 +21,7 @@ namespace CYS_Scripts
             //_settingForm.SetActive(false);
             startingForm.SetActive(false);
             _3dCubeR.SetActive(false);
+            creditForm.SetActive(false);
         }
 
         public void StartingButton()
@@ -32,6 +34,16 @@ namespace CYS_Scripts
 
         }
 
+      public void Credit()
+        {
+            creditForm.SetActive(true);
+        }
+        
+        
+        
+        
+        
+        
         public void Quitting()
         {
             Application.Quit();
