@@ -13,14 +13,10 @@ namespace Main_Scripts
 
         public Transform trm;
 
-        public UnityEvent ManagerEvent { get; set; }
-  
+        public UnityEvent ManagerEvent = new UnityEvent();
+
         private void Awake()
         {
-            if (ManagerEvent == null)
-            {
-                ManagerEvent = new UnityEvent();
-            }
 
 
             if (Instance == null)

@@ -80,10 +80,12 @@ public class Blocks : MonoBehaviour
         if (_pushing)
         {
             _gm = GameObject.Find("GameManager")?.GetComponent<GameManager>();
+
             if (_gm != null && _gm.ManagerEvent != null)
             {
                 _gm.ManagerEvent.AddListener(ReStart);
             }
+
             else
             {
                 Debug.LogError("GameManager or ManagerEvent is not initialized properly.");
