@@ -2,6 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
+using System.Collections;
 
 namespace Main_Scripts
 {
@@ -13,14 +14,10 @@ namespace Main_Scripts
 
         public Transform trm;
 
-        public UnityEvent ManagerEvent { get; set; }
-  
+        public static bool reset;
+
         private void Awake()
         {
-            if (ManagerEvent == null)
-            {
-                ManagerEvent = new UnityEvent();
-            }
 
 
             if (Instance == null)
@@ -36,9 +33,15 @@ namespace Main_Scripts
         {
             if (Keyboard.current.rKey.wasPressedThisFrame && Keyboard.current.fKey.isPressed)
             {
-                ManagerEvent?.Invoke();
+                reset = true;
+                StartCoroutine(ChogiHa());
             }
         }
 
+        IEnumerator ChogiHa()
+        {
+            yield return new WaitForSeconds(0.1f);
+            reset = false;
+        }
     }
 }
