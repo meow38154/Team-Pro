@@ -52,6 +52,8 @@ public class Blocks : MonoBehaviour
 
     GameManager _gm;
 
+    Coroutine arrivalCoroutine;
+
 
     private void Awake()
     {
@@ -72,23 +74,6 @@ public class Blocks : MonoBehaviour
             {
                 _count = Instantiate(_numberPrefabs, _Parents.transform).GetComponent<TextMeshPro>();
                 _image = Instantiate(_breakImage, _Parents.transform);
-            }
-        }
-    }
-    private void Start()
-    {
-        if (_pushing)
-        {
-            _gm = GameObject.Find("GameManager")?.GetComponent<GameManager>();
-
-            if (_gm != null && _gm.ManagerEvent != null)
-            {
-                _gm.ManagerEvent.AddListener(ReStart);
-            }
-
-            else
-            {
-                Debug.LogError("GameManager or ManagerEvent is not initialized properly.");
             }
         }
     }
@@ -142,6 +127,11 @@ public class Blocks : MonoBehaviour
 
     private void Update()
     {
+        if (GameManager.reset)
+        {
+            ReStart();
+        }
+
         BIM();
 
         TextMoveMSD();
