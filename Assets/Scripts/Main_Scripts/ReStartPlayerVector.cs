@@ -42,6 +42,7 @@ public class ReStartPlayerVector : MonoBehaviour
                 _player = null;
             }
         }
-
     }
+
+    //Ä¿¹Ô
 }

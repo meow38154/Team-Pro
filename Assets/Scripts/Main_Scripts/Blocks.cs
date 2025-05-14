@@ -10,6 +10,7 @@ public class Blocks : MonoBehaviour
 {
     [Header("기본 설정\n")]
     [SerializeField] bool _wallBlock;
+    [field: SerializeField] public Color _coler { get; set; }
 
     [Header("미는게 가능 한 블록일때\n")]
     [SerializeField] bool _pushing;
@@ -21,11 +22,10 @@ public class Blocks : MonoBehaviour
     [SerializeField] bool _breakBlock;
     [SerializeField] int _breakCount;
 
-
     [Header("건드리지 마세요")]
     [SerializeField] GameObject _numberPrefabs;
     [SerializeField] GameObject _breakImage;
-
+    [SerializeField] GameObject _particles;
 
     public static bool _goalSignal;
 
@@ -95,6 +95,12 @@ public class Blocks : MonoBehaviour
             StopCoroutine(ArrivalTrriger());
         }
     }
+
+    public void PlayParticle()
+    {
+        Instantiate(_particles, transform);
+    }
+
     void TextMoveMSD()
     {
         #region 텍스트
@@ -127,6 +133,8 @@ public class Blocks : MonoBehaviour
 
     private void Update()
     {
+        PlayParticle();
+
         if (GameManager.reset)
         {
             ReStart();
