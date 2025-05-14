@@ -254,7 +254,7 @@ public class Blocks : MonoBehaviour
                 (_playerVector.UpKeySensor == true && numder == 3) || (_playerVector.DownKeySensor == true && numder == 2))
                 {
                     transform.position = _positionYea + _vec2Abs;
-
+                    
                     if (_minCoolTime)
                     {
                         StartCoroutine(CoolDown());
