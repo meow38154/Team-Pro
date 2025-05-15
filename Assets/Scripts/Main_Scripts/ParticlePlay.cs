@@ -3,25 +3,19 @@ using System.Collections;
 
 public class ParticlePlay : MonoBehaviour
 {
-    [SerializeField] Color _color;
-    [SerializeField] Blocks _blockParents;
-
-    private void OnEnable()
+    public void OnEnable()
     {
-        GetComponent<ParticleSystem>().Stop();
-        GetComponent<ParticleSystem>().startColor = _blockParents._coler;
-        ParticleStart();
-    }
-
-    public void ParticleStart()
-    {
-        StartCoroutine(ParticleExplosionPlay());
-    }
-
-    IEnumerator ParticleExplosionPlay()
-    {
+        Debug.Log("»£√‚");
+        StartCoroutine(Destoryy());
         GetComponent<ParticleSystem>().Play();
-        yield return new WaitForSeconds(0.05f);
+    }
+
+    IEnumerator Destoryy()
+    {
+        yield return new WaitForSeconds(0.1f);
+        GetComponent<ParticleSystem>().Stop();
+        yield return new WaitForSeconds(GetComponent<ParticleSystem>().startLifetime);
+        Debug.Log("∆„");
         Destroy(gameObject);
     }
 }

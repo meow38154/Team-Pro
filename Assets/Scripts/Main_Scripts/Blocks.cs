@@ -5,12 +5,14 @@ using System.Collections;
 using Main_Scripts;
 using UnityEngine.Events;
 using TMPro;
+using System.Linq.Expressions;
 
 public class Blocks : MonoBehaviour
 {
     [Header("기본 설정\n")]
     [SerializeField] bool _wallBlock;
-    [field: SerializeField] public Color _coler { get; set; }
+    [SerializeField] Color _particleColor;
+    [SerializeField] float _particleLifeTimeee = 0.2f;
 
     [Header("미는게 가능 한 블록일때\n")]
     [SerializeField] bool _pushing;
@@ -40,13 +42,15 @@ public class Blocks : MonoBehaviour
     GameObject _playerGameObject;
     Vector2 _vec2Abs, _rotion, _vec2Clamp, _positionYea, _distance, YoungJumSix, _savePosition, _breakImageMove;
     bool _interationPossible, _break;
-    bool _minCoolTime = true;
+    bool _minCoolTime, _bug = true;
     Blocks _goalSensor, _wallSensor;
     PlayerMovement _playerVector;
     bool _movein, _destory;
     int _saveNumber, _saveBreak;
     bool _signal;
     GameObject _childGo, _Parents, _image;
+
+    GameObject _block;
 
     [SerializeField] TextMeshPro _count;
 
@@ -58,6 +62,10 @@ public class Blocks : MonoBehaviour
 
     private void Awake()
     {
+        
+
+        _block = gameObject;
+
         _goalSignal = false;
 
         if (_pushing)
@@ -78,8 +86,10 @@ public class Blocks : MonoBehaviour
             }
         }
 
-        particleSystem = Instantiate(_particles, transform).GetComponent<ParticleSystem>();//파티클소환
+
     }
+
+
     void ReStart()
     {
         if (_pushing)
@@ -95,13 +105,28 @@ public class Blocks : MonoBehaviour
             _destory = false;
             
 
-            StopCoroutine(ArrivalTrriger());
+            StopCoroutine(ArrivalTrriger(null));
         }
     }
 
     public void PlayParticle()
     {
-        particleSystem.Play();
+        if (_bug)
+        {
+            StartCoroutine(ParticleCoolDown());
+            _particleColor.a = 255;
+            particleSystem = Instantiate(_particles).GetComponent<ParticleSystem>();
+
+            particleSystem.startColor = _particleColor;
+
+            particleSystem.transform.position = _block.transform.position;
+        }
+    }
+    IEnumerator ParticleCoolDown()
+    {
+        _bug = false;
+        yield return new WaitForSeconds(0.05f);
+        _bug = true;
     }
 
     void TextMoveMSD()
@@ -136,8 +161,6 @@ public class Blocks : MonoBehaviour
 
     private void Update()
     {
-        PlayParticle();
-
         if (GameManager.reset)
         {
             ReStart();
@@ -239,6 +262,7 @@ public class Blocks : MonoBehaviour
 
         if (_interationPossible == true && _movein == true)
         {
+                PlayParticle();
             transform.position = _positionYea + _vec2Abs;
             if (_minCoolTime)
             {
@@ -256,6 +280,7 @@ public class Blocks : MonoBehaviour
                 if ((_playerVector.LeftKeySensor == true && numder == 0)|| (_playerVector.RightKeySensor == true && numder == 1) ||
                 (_playerVector.UpKeySensor == true && numder == 3) || (_playerVector.DownKeySensor == true && numder == 2))
                 {
+                        PlayParticle();
                     transform.position = _positionYea + _vec2Abs;
                     
                     if (_minCoolTime)
@@ -277,15 +302,16 @@ public class Blocks : MonoBehaviour
     }
 
 
+
     void Goalin()
     {
         RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.up, 0.1f, _GoalinType);
         if (hit.collider != null)
         {
-            StartCoroutine(ArrivalTrriger());
+            StartCoroutine(ArrivalTrriger(hit.collider.gameObject));
         }
     }
-    IEnumerator ArrivalTrriger()
+    IEnumerator ArrivalTrriger(GameObject _go)
     {
         if (_pushing && _destory == false)
         {
@@ -293,7 +319,7 @@ public class Blocks : MonoBehaviour
             gameObject.GetComponent<SpriteRenderer>().enabled = false;
             gameObject.GetComponent<Blocks>()._wallBlock = false;
             transform.position = new Vector3(transform.position.x, 300, -200);
-
+            _go.GetComponent<Blocks>().PlayParticle();
             _goalSignal = true;
             _blockNumber = 67893;
             _destory = true;

@@ -17,6 +17,8 @@ public class GoalIn : MonoBehaviour
     private SpriteRenderer _render;
     GameManager _gm;
 
+    bool _one;
+
     private void Awake()
     {
         _render = GetComponent<SpriteRenderer>();
@@ -75,7 +77,11 @@ public class GoalIn : MonoBehaviour
                     return;
                 }
             }
-
+        }
+        if (_one == false)
+        {
+            GetComponent<Blocks>().PlayParticle();
+            _one = true;
         }
         _openClose = true;
         _blocks.Wall();

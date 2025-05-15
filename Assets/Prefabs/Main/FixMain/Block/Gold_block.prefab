@@ -191,7 +191,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _wallBlock: 1
-  <_coler>k__BackingField: {r: 0.3915094, g: 0.24377, b: 0.24377, a: 0}
+  _particleColor: {r: 0.4575472, g: 0.4575472, b: 0.4575472, a: 0}
+  _particleLifeTimeee: 0.2
   _pushing: 1
   _cloggedType:
     serializedVersion: 2
