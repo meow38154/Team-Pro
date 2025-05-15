@@ -1315,8 +1315,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -450.38452, y: 104.9541}
-  m_SizeDelta: {x: 1019.2311, y: -118.0918}
+  m_AnchoredPosition: {x: -450.38458, y: 97.75781}
+  m_SizeDelta: {x: 1163.1559, y: 21.0354}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1108802817
 MonoBehaviour:
@@ -1449,10 +1449,11 @@ MonoBehaviour:
   startingForm: {fileID: 186382331}
   starting: {fileID: 1483230517}
   turnOffTheLight: {fileID: 1362006313}
-  dontDisturb: {fileID: 692366591}
+  dontDisturb: {fileID: 625143075}
   _3dCubeR: {fileID: 2097601208}
   _3dCuben: {fileID: 1479242747}
   creditForm: {fileID: 1786664166}
+  quitting: {fileID: 692366591}
 --- !u!1 &1221941074
 GameObject:
   m_ObjectHideFlags: 0

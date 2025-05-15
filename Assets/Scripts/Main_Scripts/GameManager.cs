@@ -14,7 +14,10 @@ namespace Main_Scripts
         public Transform trm;
 
         public UnityEvent ManagerEvent { get; set; }
-  
+
+        
+
+
         private void Awake()
         {
             if (ManagerEvent == null)
@@ -30,14 +33,17 @@ namespace Main_Scripts
                 Destroy(gameObject);
             }
                 DontDestroyOnLoad(this);
+          
+
         }
 
-        private void Update()
+       
+
+        public void Reset1()
         {
-            if (Keyboard.current.rKey.wasPressedThisFrame && Keyboard.current.fKey.isPressed)
-            {
+          
                 ManagerEvent?.Invoke();
-            }
+           
         }
 
     }
