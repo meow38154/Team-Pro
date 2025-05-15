@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 570681049612830979}
   - component: {fileID: 2395995901031455827}
   - component: {fileID: 597151260392665523}
-  m_Layer: 19
-  m_Name: TrashHoll
+  m_Layer: 14
+  m_Name: Iron_Goal
   m_TagString: Block
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -77,9 +77,9 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
-  m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
-  m_Color: {r: 1, g: 0.6108788, b: 0, a: 1}
+  m_SortingOrder: -1
+  m_Sprite: {fileID: -110989023953904339, guid: 8ba92d7cefcb0b740a876b7b41fe1b2a, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -102,6 +102,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _wallBlock: 1
+  _particleColor: {r: 0, g: 0.28865194, b: 1, a: 0}
+  _particleLifeTimeee: 0.2
   _pushing: 0
   _cloggedType:
     serializedVersion: 2
@@ -114,6 +116,7 @@ MonoBehaviour:
   _breakCount: 0
   _numberPrefabs: {fileID: 0}
   _breakImage: {fileID: 0}
+  _particles: {fileID: 6322196409931000869, guid: 2a124082c281e094f963727bd29a316c, type: 3}
   _count: {fileID: 0}
 --- !u!61 &597151260392665523
 BoxCollider2D:

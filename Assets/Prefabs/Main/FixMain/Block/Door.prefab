@@ -102,8 +102,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92e5c3e48a994124eb5f4c751bde2bbf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _pushing: 0
   _wallBlock: 1
+  _particleColor: {r: 0.20994267, g: 0.8962264, b: 0.20291919, a: 0}
+  _particleLifeTimeee: 0.2
+  _pushing: 0
   _cloggedType:
     serializedVersion: 2
     m_Bits: 0
@@ -111,6 +113,12 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   _blockNumber: 0
+  _breakBlock: 0
+  _breakCount: 0
+  _numberPrefabs: {fileID: 0}
+  _breakImage: {fileID: 0}
+  _particles: {fileID: 6322196409931000869, guid: 2a124082c281e094f963727bd29a316c, type: 3}
+  _count: {fileID: 0}
 --- !u!61 &6277896809108673562
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -170,7 +178,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _goalNumber: 1
-  _open: 1
+  _openClose: 0
   _isVertical: 1
   _vDoorO: {fileID: 8098277650413889250, guid: e6b6e4dddc689c54091874c8795e1317, type: 3}
   _vDoorC: {fileID: -4480544619295051397, guid: e6b6e4dddc689c54091874c8795e1317, type: 3}

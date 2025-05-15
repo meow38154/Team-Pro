@@ -5,11 +5,13 @@ using System.Collections;
 using Main_Scripts;
 using UnityEngine.Events;
 using TMPro;
+using Unity.VisualScripting;
 
-public class Lws_Blocks : MonoBehaviour
+public class Lwa_Blocks : MonoBehaviour
 {
     [Header("기본 설정\n")]
     [SerializeField] bool _wallBlock;
+    [field: SerializeField] public Color _coler { get; set; }
 
     [Header("미는게 가능 한 블록일때\n")]
     [SerializeField] bool _pushing;
@@ -21,11 +23,10 @@ public class Lws_Blocks : MonoBehaviour
     [SerializeField] bool _breakBlock;
     [SerializeField] int _breakCount;
 
-
     [Header("건드리지 마세요")]
     [SerializeField] GameObject _numberPrefabs;
     [SerializeField] GameObject _breakImage;
-
+    [SerializeField] GameObject _particles;
 
     public static bool _goalSignal;
 
@@ -52,6 +53,9 @@ public class Lws_Blocks : MonoBehaviour
 
     GameManager _gm;
 
+    Coroutine arrivalCoroutine;
+
+    ParticleSystem particleSystem;
 
     private void Awake()
     {
@@ -74,22 +78,10 @@ public class Lws_Blocks : MonoBehaviour
                 _image = Instantiate(_breakImage, _Parents.transform);
             }
         }
+
+        particleSystem = Instantiate(_particles, transform).GetComponent<ParticleSystem>();//파티클소환                  추가한것
     }
-    private void Start()
-    {
-        if (_pushing)
-        {
-            _gm = GameObject.Find("GameManager")?.GetComponent<GameManager>();
-            if (_gm != null && _gm.ManagerEvent != null)
-            {
-                _gm.ManagerEvent.AddListener(ReStart);
-            }
-            else
-            {
-                Debug.LogError("GameManager or ManagerEvent is not initialized properly.");
-            }
-        }
-    }
+
     void ReStart()
     {
         if (_pushing)
@@ -99,15 +91,21 @@ public class Lws_Blocks : MonoBehaviour
             _blockNumber = _saveNumber;
             transform.position = _savePosition;
             gameObject.GetComponent<SpriteRenderer>().enabled = true;
-            gameObject.GetComponent<Lws_Blocks>()._wallBlock = true;
+            _wallBlock = true;
 
             transform.position = new Vector3(transform.position.x, transform.position.y, 0);
             _destory = false;
-            
+
 
             StopCoroutine(ArrivalTrriger());
         }
     }
+
+    public void PlayParticle()
+    {
+        particleSystem.Play();
+    }
+
     void TextMoveMSD()
     {
         #region 텍스트
@@ -119,7 +117,7 @@ public class Lws_Blocks : MonoBehaviour
             if (_breakCount <= 0)
             {
                 gameObject.GetComponent<SpriteRenderer>().enabled = false;
-                gameObject.GetComponent<Lws_Blocks>()._wallBlock = false;
+                _wallBlock = false;
                 transform.position = new Vector3(transform.position.x, 300, -200);
 
                 _goalSignal = true;
@@ -140,6 +138,13 @@ public class Lws_Blocks : MonoBehaviour
 
     private void Update()
     {
+        PlayParticle();
+
+        if (GameManager.reset)
+        {
+            ReStart();
+        }
+
         BIM();
 
         TextMoveMSD();
@@ -200,27 +205,27 @@ public class Lws_Blocks : MonoBehaviour
                 {
                     _distance = _playerGameObject.transform.position - transform.position;
 
-                YoungJumSix = _distance;
+                    YoungJumSix = _distance;
 
-                YoungJumSix.x = Mathf.Clamp(YoungJumSix.x, -0.6f, 0.6f);
-                YoungJumSix.y = Mathf.Clamp(YoungJumSix.y, -0.6f, 0.6f);
+                    YoungJumSix.x = Mathf.Clamp(YoungJumSix.x, -0.6f, 0.6f);
+                    YoungJumSix.y = Mathf.Clamp(YoungJumSix.y, -0.6f, 0.6f);
 
-                Vector2 origin = (Vector2)transform.position;
+                    Vector2 origin = (Vector2)transform.position;
 
-                RaycastHit2D hit = Physics2D.Raycast(origin - YoungJumSix, -_distance, _rayDistance, _cloggedType);
-                Debug.DrawRay(origin - YoungJumSix, -_distance * _rayDistance, Color.red);
-                if (hit)
-                {
-                    if (hit.collider.TryGetComponent(out Blocks _block))
+                    RaycastHit2D hit = Physics2D.Raycast(origin - YoungJumSix, -_distance, _rayDistance, _cloggedType);
+                    Debug.DrawRay(origin - YoungJumSix, -_distance * _rayDistance, Color.red);
+                    if (hit)
                     {
-                        _movein = true;
-                        _positionYea = hit.collider.gameObject.transform.position;
+                        if (hit.collider.TryGetComponent(out Blocks _block))
+                        {
+                            _movein = true;
+                            _positionYea = hit.collider.gameObject.transform.position;
+                        }
                     }
-                }
-                else
-                {
-                    _movein = false;
-                }
+                    else
+                    {
+                        _movein = false;
+                    }
                 }
             }
         }
@@ -250,14 +255,13 @@ public class Lws_Blocks : MonoBehaviour
         {
             if (_interationPossible == true && _movein == true && Keyboard.current.spaceKey.wasPressedThisFrame)
             {
-
-                if(_playerVector.LeftKeySensor == true || _playerVector.RightKeySensor == true ||
-                _playerVector.UpKeySensor == true || _playerVector.DownKeySensor == true)
+                if ((_playerVector.LeftKeySensor == true && numder == 0) || (_playerVector.RightKeySensor == true && numder == 1) ||
+                (_playerVector.UpKeySensor == true && numder == 3) || (_playerVector.DownKeySensor == true && numder == 2))
                 {
                     transform.position = _positionYea + _vec2Abs;
+
                     if (_minCoolTime)
                     {
-                        Debug.Log("lol");
                         StartCoroutine(CoolDown());
                         _breakCount--;
                     }
@@ -289,7 +293,7 @@ public class Lws_Blocks : MonoBehaviour
         {
             yield return new WaitForSeconds(0.5f);
             gameObject.GetComponent<SpriteRenderer>().enabled = false;
-            gameObject.GetComponent<Lws_Blocks>()._wallBlock = false;
+            _wallBlock = false;
             transform.position = new Vector3(transform.position.x, 300, -200);
 
             _goalSignal = true;
@@ -299,6 +303,10 @@ public class Lws_Blocks : MonoBehaviour
         }
     }
 
+    void Plz()
+    {
+
+    }
 
 
     public void Wall()
@@ -310,3 +318,4 @@ public class Lws_Blocks : MonoBehaviour
         _wallBlock = true;
     }
 }
+
