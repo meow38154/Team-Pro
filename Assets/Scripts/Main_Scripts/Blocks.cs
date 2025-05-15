@@ -54,6 +54,7 @@ public class Blocks : MonoBehaviour
 
     Coroutine arrivalCoroutine;
 
+    ParticleSystem particleSystem;
 
     private void Awake()
     {
@@ -76,6 +77,8 @@ public class Blocks : MonoBehaviour
                 _image = Instantiate(_breakImage, _Parents.transform);
             }
         }
+
+        particleSystem = Instantiate(_particles, transform).GetComponent<ParticleSystem>();//파티클소환
     }
     void ReStart()
     {
@@ -98,7 +101,7 @@ public class Blocks : MonoBehaviour
 
     public void PlayParticle()
     {
-        Instantiate(_particles, transform);
+        particleSystem.Play();
     }
 
     void TextMoveMSD()

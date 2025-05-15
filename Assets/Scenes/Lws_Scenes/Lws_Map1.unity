@@ -6966,6 +6966,66 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9f90a08cb5842224194da82cd5405c23, type: 3}
+--- !u!1 &1192863296
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1192863298}
+  - component: {fileID: 1192863297}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1192863297
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1192863296}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5bc242c308bc754a89d1d46a10e41b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _wallBlock: 0
+  <_coler>k__BackingField: {r: 0, g: 0, b: 0, a: 0}
+  _pushing: 0
+  _cloggedType:
+    serializedVersion: 2
+    m_Bits: 0
+  _GoalinType:
+    serializedVersion: 2
+    m_Bits: 0
+  _blockNumber: 0
+  _breakBlock: 0
+  _breakCount: 0
+  _numberPrefabs: {fileID: 0}
+  _breakImage: {fileID: 0}
+  _particles: {fileID: 6322196409931000869, guid: 2a124082c281e094f963727bd29a316c, type: 3}
+  _count: {fileID: 0}
+--- !u!4 &1192863298
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1192863296}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 5.1384153, y: 7.1728277, z: 1.1185966}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1199621450
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9912,3 +9972,4 @@ SceneRoots:
   - {fileID: 1697883427}
   - {fileID: 1751551787}
   - {fileID: 97476648}
+  - {fileID: 1192863298}
