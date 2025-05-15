@@ -62,7 +62,6 @@ public class Blocks : MonoBehaviour
 
     private void Awake()
     {
-        
 
         _block = gameObject;
 
@@ -85,8 +84,23 @@ public class Blocks : MonoBehaviour
                 _image = Instantiate(_breakImage, _Parents.transform);
             }
         }
+    }
 
+    IEnumerator WaitForGameManager()
+    {
+        while (GameManager.Instance == null)
+        {
+            yield return null; // 다음 프레임까지 대기
+        }
 
+        _gm = GameManager.Instance;
+
+        _gm.ManagerEvent.AddListener(ReStart);
+    }
+
+    void Start()
+    {
+        StartCoroutine(WaitForGameManager());
     }
 
 
@@ -161,10 +175,10 @@ public class Blocks : MonoBehaviour
 
     private void Update()
     {
-        if (GameManager.reset)
-        {
-            ReStart();
-        }
+        //if (GameManager.reset)
+        //{
+        //    ReStart();
+        //}
 
         BIM();
 

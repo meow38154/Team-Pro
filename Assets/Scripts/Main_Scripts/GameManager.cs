@@ -13,7 +13,9 @@ namespace Main_Scripts
 
         public Transform trm;
 
-        public UnityEvent ManagerEvent { get; set; }
+        public UnityEvent ManagerEvent = new UnityEvent();
+
+        public static bool reset;
 
         
 

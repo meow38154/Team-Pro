@@ -3,6 +3,7 @@ using UnityEngine.Serialization;
 using TMPro;
 using UnityEngine.SceneManagement;
 using Main_Scripts;
+using UnityEngine.InputSystem;
 public class InGameUI : MonoBehaviour
 {
     [SerializeField] private GameObject _pauseUI;
@@ -24,6 +25,14 @@ public class InGameUI : MonoBehaviour
   
     }
 
+    private void Update()
+    {
+        if (Keyboard.current.escapeKey.wasPressedThisFrame)
+        {
+            Pause();
+        }
+    }
+
 
     public void Pause()
     {
@@ -38,6 +47,7 @@ public class InGameUI : MonoBehaviour
     {
         _stop.text = "ll";
         _pauseUI.SetActive(false);
+        Time.timeScale = 1;
     }
 
     public void ToLobby()
@@ -48,6 +58,8 @@ public class InGameUI : MonoBehaviour
     public void Reset2()
     {
         gamemanager.Reset1();
+        Time.timeScale = 1;
+        _pauseUI.SetActive(false);
     }
 }
 

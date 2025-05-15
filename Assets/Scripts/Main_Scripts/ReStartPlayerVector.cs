@@ -30,7 +30,7 @@ public class ReStartPlayerVector : MonoBehaviour
             {
                 _player = GameObject.Find("Player");
 
-                if (GameManager.reset)
+                //if (GameManager.reset)
                 {
                     //Debug.Log("ㅓㅑㄴㅇ햐ㅓㄹ히ㅓ아ㅣㅜㅠㅓ ㅜㅗㅇㄱ러ㅑ해ㅔㅐ우ㅗㅎ라네ㅔㅐ[]하ㅐㅓㅗㅠㅠㄴ다거ㅑㅣ애로ㅜㅏㅘㅑㅔㅐ더카[ㅣ");
                     _player.transform.position = ResetPlayerPosition;
