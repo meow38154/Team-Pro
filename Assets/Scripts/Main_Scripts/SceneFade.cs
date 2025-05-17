@@ -13,9 +13,22 @@ public class SceneFade : MonoBehaviour
 
     private void Awake()
     {
-        _scene = GameObject.Find("SceneManager").GetComponent<SceneManagerReal>();
-        _fade = GameObject.Find("BlackScreen").GetComponent<FadeOut>();
+        GameObject sceneManagerObj = GameObject.Find("SceneManager");
+        GameObject blackScreenObj = GameObject.Find("BlackScreen");
+
+        if (sceneManagerObj == null)
+            Debug.LogError("SceneManager 오브젝트를 찾을 수 없습니다.");
+
+        if (blackScreenObj == null)
+            Debug.LogError("BlackScreen 오브젝트를 찾을 수 없습니다.");
+
+        _scene = sceneManagerObj?.GetComponent<SceneManagerReal>();
+        _fade = blackScreenObj?.GetComponent<FadeOut>();
+
+        if (_fade == null)
+            Debug.LogError("BlackScreen에 FadeOut 컴포넌트가 없습니다.");
     }
+
 
     private void Update()
     {

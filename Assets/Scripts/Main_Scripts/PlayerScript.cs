@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 using static UnityEngine.UI.Image;
 using System.Collections;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerScript : MonoBehaviour
 {
     [SerializeField] float _moveCoolTIme = 0.3f;
 
@@ -20,9 +20,11 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] Blocks[] _blocks = new Blocks[4];
 
+    GameObject _childGameObject;
+
     private void Awake()
     {
-
+        _childGameObject = transform.GetChild(0).gameObject;
     }
 
     public void OnMove(InputValue value)
@@ -162,7 +164,8 @@ public class PlayerMovement : MonoBehaviour
             {
                 StartCoroutine(MoveCoolTime());
                 transform.position += new Vector3(-1, 0, 0);
-            }
+               _childGameObject.GetComponent<SpriteRenderer>().flipX = false;
+            } 
         }
 
         if ((Mouse.current.leftButton.wasPressedThisFrame &&
@@ -174,6 +177,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 StartCoroutine(MoveCoolTime());
                 transform.position += new Vector3(1, 0, 0);
+                _childGameObject.GetComponent<SpriteRenderer>().flipX = true;
             }
         }
 

@@ -5,13 +5,13 @@ public class PortalScript : MonoBehaviour
 {
     [SerializeField] GameObject _text;
     bool _able;
-    GameObject _player;
-    SceneFade _sceneFade;
+    [SerializeField] GameObject _player;
+    [SerializeField] SceneFade _sceneFade;
 
     private void Awake()
     {
         _player = GameObject.Find("Player");
-        _sceneFade = GameObject.Find("SceneManager").GetComponent<SceneFade>();
+        _sceneFade = GameObject.Find("BlackScreen").GetComponent<SceneFade>();
     }
     private void Update()
     {
