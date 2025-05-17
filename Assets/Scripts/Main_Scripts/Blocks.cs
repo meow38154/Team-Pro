@@ -22,6 +22,7 @@ public class Blocks : MonoBehaviour
     [Header("미는게 제한이 있는 블록일때\n")]
     [SerializeField] bool _breakBlock;
     [SerializeField] int _breakCount;
+    [SerializeField] float _daldal = 0.25f;
 
     [Header("건드리지 마세요")]
     [SerializeField] GameObject _numberPrefabs;
@@ -42,7 +43,7 @@ public class Blocks : MonoBehaviour
     bool _interationPossible, _break;
     bool _minCoolTime = true, _bug = true;
     Blocks _goalSensor, _wallSensor;
-    PlayerMovement _playerVector;
+    PlayerScript _playerVector;
     bool _movein, _destory;
     int _saveNumber, _saveBreak;
     bool _signal;
@@ -72,13 +73,13 @@ public class Blocks : MonoBehaviour
             _saveNumber = _blockNumber;
             _savePosition = transform.position;
             _playerGameObject = GameObject.Find("Player");
-            _playerVector = _playerGameObject.GetComponent<PlayerMovement>();
+            _playerVector = _playerGameObject.GetComponent<PlayerScript>();
             _spren = GetComponent<SpriteRenderer>();
 
             if (_breakBlock)
             {
                 _count = Instantiate(_numberPrefabs, _Parents.transform).GetComponent<TextMeshPro>();
-                _image = Instantiate(_breakImage, _Parents.transform);
+                _image = Instantiate(_breakImage, _childGo.transform);
             }
         }
     }
@@ -161,11 +162,11 @@ public class Blocks : MonoBehaviour
 
     void BIM()
     {
-        if (_breakBlock)
-        {
-            _breakImageMove = new Vector3(_image.transform.position.x, _image.transform.position.y);
-            _image.transform.position = Vector3.Lerp(_breakImageMove, transform.position, Time.deltaTime * 5);
-        }
+        //if (_breakBlock)
+        //{
+        //    _breakImageMove = new Vector3(_image.transform.position.x, _image.transform.position.y);
+        //    _image.transform.position = Vector3.Lerp(_breakImageMove, transform.position, Time.deltaTime * 5);
+        //}
     }
 
     private void Update()
@@ -210,6 +211,22 @@ public class Blocks : MonoBehaviour
         }
     }
 
+    IEnumerator DalDal()
+    {
+        _childGo.transform.position += new Vector3(_daldal, 0, 0);
+        yield return new WaitForSeconds(0.05f);
+        _childGo.transform.position += new Vector3(-_daldal, 0, 0);
+        yield return new WaitForSeconds(0.05f);
+        _childGo.transform.position += new Vector3(_daldal/2, 0, 0);
+        yield return new WaitForSeconds(0.05f);
+        _childGo.transform.position += new Vector3(-_daldal/2, 0, 0);
+        yield return new WaitForSeconds(0.05f);
+        _childGo.transform.position += new Vector3(_daldal/3, 0, 0);
+        yield return new WaitForSeconds(0.05f);
+        _childGo.transform.position += new Vector3(-_daldal/3, 0, 0);
+        yield return new WaitForSeconds(0.05f);
+    }
+
     private void OnMouseDown()
     {
         Move();
@@ -223,7 +240,19 @@ public class Blocks : MonoBehaviour
         if (_interationPossible && _movein)
         {
             PlayParticle();
+            if (_breakCount > 0)
+            {
+                StartCoroutine(DalDal());
+            }
+
+            Vector2 noMove = _positionYea + _vec2Abs;
+
+            if (transform.position.x == noMove.x && transform.position.y == noMove.y)
+            {
+                StartCoroutine(DalDal());
+            }
             transform.position = _positionYea + _vec2Abs;
+
             if (_minCoolTime)
             {
                 StartCoroutine(CoolDown());
@@ -242,7 +271,21 @@ public class Blocks : MonoBehaviour
                 (_playerVector.DownKeySensor && numder == 2))
             {
                 PlayParticle();
+                if (_breakCount > 0)
+                {
+                    StartCoroutine(DalDal());
+                }
+
+                Vector2 noMove = _positionYea + _vec2Abs;
+
+                if (transform.position.x == noMove.x && transform.position.y == noMove.y)
+                {
+                    Debug.Log(noMove);
+                    StartCoroutine(DalDal());
+                }
+
                 transform.position = _positionYea + _vec2Abs;
+
                 if (_minCoolTime)
                 {
                     StartCoroutine(CoolDown());

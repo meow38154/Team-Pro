@@ -12,6 +12,7 @@ public class FadeOut : MonoBehaviour
     void Awake()
     {
         image = GetComponent<Image>();
+        GetComponent<Image>().enabled = false;
         StartFadeOut();
     }
 
@@ -27,6 +28,7 @@ public class FadeOut : MonoBehaviour
         fadeTimer = 0f;
         isFading = true;
         fadeIn = true;
+        GetComponent<Image>().enabled = true;
     }
 
     void Update()
@@ -43,6 +45,10 @@ public class FadeOut : MonoBehaviour
         if (t >= 1f)
         {
             isFading = false;
+            if (color.a == 255)
+            {
+                GetComponent<Image>().enabled = false;
+            }
         }
     }
 }

@@ -43,7 +43,7 @@ public class Lwa_Blocks : MonoBehaviour
     bool _interationPossible, _break;
     bool _minCoolTime = true;
     Blocks _goalSensor, _wallSensor;
-    PlayerMovement _playerVector;
+    PlayerScript _playerVector;
     bool _movein, _destory;
     int _saveNumber, _saveBreak;
     bool _signal;
@@ -69,7 +69,7 @@ public class Lwa_Blocks : MonoBehaviour
             _saveNumber = _blockNumber;
             _savePosition = transform.position;
             _playerGameObject = GameObject.Find("Player");
-            _playerVector = GameObject.Find("Player").GetComponent<PlayerMovement>();
+            _playerVector = GameObject.Find("Player").GetComponent<PlayerScript>();
             _spren = GetComponent<SpriteRenderer>();
 
             if (_breakBlock)
