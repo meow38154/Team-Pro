@@ -8,45 +8,25 @@ namespace Main_Scripts
     public class GameManager : MonoBehaviour
     {
         public static GameManager Instance;
-        
-        public PlayerMovement player;
 
-        public Transform trm;
-
-        public UnityEvent ManagerEvent = new UnityEvent();
-
-        public static bool reset;
-
-        
-
+        public UnityEvent ManagerEvent;
 
         private void Awake()
         {
-            if (ManagerEvent == null)
-            {
-                ManagerEvent = new UnityEvent();
-            }
-
+            ManagerEvent = new UnityEvent();
 
             if (Instance == null)
                 Instance = this;
             else
-            {
                 Destroy(gameObject);
-            }
-                DontDestroyOnLoad(this);
-          
 
+            DontDestroyOnLoad(this);
         }
-
-       
 
         public void Reset1()
         {
-          
-                ManagerEvent?.Invoke();
-           
+            Debug.Log("Reset1 호출됨, 이벤트 실행");
+            ManagerEvent?.Invoke();
         }
-
     }
 }

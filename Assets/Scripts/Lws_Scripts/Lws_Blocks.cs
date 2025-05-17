@@ -140,9 +140,9 @@ public class Lwa_Blocks : MonoBehaviour
     {
         PlayParticle();
 
-        if (GameManager.reset)
+        //if (GameManager.reset)
         {
-            ReStart();
+            //ReStart();
         }
 
         BIM();

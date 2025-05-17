@@ -10,6 +10,12 @@ public class ParticlePlay : MonoBehaviour
         GetComponent<ParticleSystem>().Play();
     }
 
+    private void Update()
+    {
+        transform.position = new Vector3(transform.position.x, transform.position.y, -4);
+
+    }
+
     IEnumerator Destoryy()
     {
         yield return new WaitForSeconds(0.1f);
