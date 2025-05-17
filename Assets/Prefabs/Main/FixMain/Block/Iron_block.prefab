@@ -205,7 +205,7 @@ GameObject:
   - component: {fileID: 1663049305047843755}
   m_Layer: 10
   m_Name: System
-  m_TagString: Untagged
+  m_TagString: Block
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -305,6 +305,7 @@ MonoBehaviour:
   _blockNumber: 0
   _breakBlock: 0
   _breakCount: 0
+  _daldal: 0.25
   _numberPrefabs: {fileID: 195931979881416922, guid: 315d407e9616ea048a602d03700ad9a5, type: 3}
   _breakImage: {fileID: 2625043278080593121, guid: 94c01edbb43cfb844b18cde2e148e452, type: 3}
   _particles: {fileID: 6322196409931000869, guid: 2a124082c281e094f963727bd29a316c, type: 3}
