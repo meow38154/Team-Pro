@@ -160,11 +160,11 @@ public class PlayerScript : MonoBehaviour
                 _mousePos.y >= transform.position.y - 0.5 && _mousePos.y <= transform.position.y + 0.5) ||
                 (Vec2Move.x < 0 && _movePossbie == true) && _leftMoveWhather == true)
         {
+               _childGameObject.GetComponent<SpriteRenderer>().flipX = false;
             if (_leftMoveWhather == true)
             {
                 StartCoroutine(MoveCoolTime());
                 transform.position += new Vector3(-1, 0, 0);
-               _childGameObject.GetComponent<SpriteRenderer>().flipX = false;
             } 
         }
 
@@ -173,11 +173,11 @@ public class PlayerScript : MonoBehaviour
                 _mousePos.y >= transform.position.y - 0.5 && _mousePos.y <= transform.position.y + 0.5)) ||
                 (Vec2Move.x > 0 && _movePossbie == true) && _rightMoveWhather == true)
         {
+                _childGameObject.GetComponent<SpriteRenderer>().flipX = true;
             if (_rightMoveWhather == true)
             {
                 StartCoroutine(MoveCoolTime());
                 transform.position += new Vector3(1, 0, 0);
-                _childGameObject.GetComponent<SpriteRenderer>().flipX = true;
             }
         }
 
