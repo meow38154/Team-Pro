@@ -90,7 +90,7 @@ public class Blocks : MonoBehaviour
     {
         while (GameManager.Instance == null)
         {
-            yield return null; // 다음 프레임까지 대기
+            yield return null;
         }
 
         _gm = GameManager.Instance;
@@ -221,18 +221,6 @@ public class Blocks : MonoBehaviour
                 {
                     _interationPossible = false;
                 }
-            }
-
-            {
-                //if (_interationPossible == true)
-                //{
-                //    _spren.color = Color.yellow;
-                //}
-
-                //if (_interationPossible == false)
-                //{
-                //    _spren.color = Color.white;
-                //}
             }
 
             {

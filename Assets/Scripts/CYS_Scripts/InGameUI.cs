@@ -4,34 +4,30 @@ using TMPro;
 using UnityEngine.SceneManagement;
 using Main_Scripts;
 using UnityEngine.InputSystem;
+using System.Collections;
+
 public class InGameUI : MonoBehaviour
 {
     [SerializeField] private GameObject _pauseUI;
     [SerializeField] private TextMeshProUGUI _stop;
     private bool wasStopped ;
     private GameManager gamemanager;
-    
-    
-    private void Awake()
+
+
+    private IEnumerator Start()
     {
-        gamemanager = GameObject.Find("GameManager").GetComponent<GameManager>();
-        Time.timeScale = 1;
-    }
-    private void Start()
-    {
+        while (GameManager.Instance == null)
+        {
+            yield return null;
+        }
+
+        gamemanager = GameManager.Instance;
+
         _stop.text = "ll";
         _pauseUI.SetActive(false);
         wasStopped = false;
-  
     }
 
-    private void Update()
-    {
-        if (Keyboard.current.escapeKey.wasPressedThisFrame)
-        {
-            Pause();
-        }
-    }
 
 
     public void Pause()

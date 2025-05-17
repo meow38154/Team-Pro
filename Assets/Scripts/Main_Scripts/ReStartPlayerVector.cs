@@ -2,6 +2,7 @@ using Main_Scripts;
 using Unity.VisualScripting;
 using UnityEngine;
 using static UnityEditor.Experimental.GraphView.GraphView;
+using System.Collections;
 
 public class ReStartPlayerVector : MonoBehaviour
 {
@@ -16,12 +17,31 @@ public class ReStartPlayerVector : MonoBehaviour
     [SerializeField] GameObject _player;
     [SerializeField] GameObject _p;
 
+    GameManager _gm;
+
     private void Awake()
     {
         _p = GameObject.Find("Player");
     }
 
-    private void Update()
+    void Start()
+    {
+        StartCoroutine(WaitForGameManager());
+    }
+
+    IEnumerator WaitForGameManager()
+    {
+        while (GameManager.Instance == null)
+        {
+            yield return null; // 다음 프레임까지 대기
+        }
+
+        _gm = GameManager.Instance;
+
+        _gm.ManagerEvent.AddListener(PlayerReset);
+    }
+
+    private void PlayerReset()
     {
         if (_p != null)
         {
