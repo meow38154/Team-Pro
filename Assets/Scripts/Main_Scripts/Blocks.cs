@@ -5,7 +5,6 @@ using System.Collections;
 using Main_Scripts;
 using UnityEngine.Events;
 using TMPro;
-using System.Linq.Expressions;
 
 public class Blocks : MonoBehaviour
 {
@@ -31,7 +30,6 @@ public class Blocks : MonoBehaviour
 
     public static bool _goalSignal;
 
-
     public bool _wall { get; set; }
     public bool _pushingGa { get; set; }
     public string Type { get; set; }
@@ -42,7 +40,7 @@ public class Blocks : MonoBehaviour
     GameObject _playerGameObject;
     Vector2 _vec2Abs, _rotion, _vec2Clamp, _positionYea, _distance, YoungJumSix, _savePosition, _breakImageMove;
     bool _interationPossible, _break;
-    bool _minCoolTime, _bug = true;
+    bool _minCoolTime = true, _bug = true;
     Blocks _goalSensor, _wallSensor;
     PlayerMovement _playerVector;
     bool _movein, _destory;
@@ -57,14 +55,13 @@ public class Blocks : MonoBehaviour
     GameManager _gm;
 
     Coroutine arrivalCoroutine;
+    bool isCoroutineRunning = false;
 
     ParticleSystem particleSystem;
 
     private void Awake()
     {
-
         _block = gameObject;
-
         _goalSignal = false;
 
         if (_pushing)
@@ -75,7 +72,7 @@ public class Blocks : MonoBehaviour
             _saveNumber = _blockNumber;
             _savePosition = transform.position;
             _playerGameObject = GameObject.Find("Player");
-            _playerVector = GameObject.Find("Player").GetComponent<PlayerMovement>();
+            _playerVector = _playerGameObject.GetComponent<PlayerMovement>();
             _spren = GetComponent<SpriteRenderer>();
 
             if (_breakBlock)
@@ -94,7 +91,6 @@ public class Blocks : MonoBehaviour
         }
 
         _gm = GameManager.Instance;
-
         _gm.ManagerEvent.AddListener(ReStart);
     }
 
@@ -102,7 +98,6 @@ public class Blocks : MonoBehaviour
     {
         StartCoroutine(WaitForGameManager());
     }
-
 
     void ReStart()
     {
@@ -112,14 +107,18 @@ public class Blocks : MonoBehaviour
             _breakCount = _saveBreak;
             _blockNumber = _saveNumber;
             transform.position = _savePosition;
-            gameObject.GetComponent<SpriteRenderer>().enabled = true;
-            gameObject.GetComponent<Blocks>()._wallBlock = true;
-
+            _spren.enabled = true;
+            _wallBlock = true;
             transform.position = new Vector3(transform.position.x, transform.position.y, 0);
             _destory = false;
-            
 
-            StopCoroutine(ArrivalTrriger(null));
+            if (arrivalCoroutine != null)
+            {
+                StopCoroutine(arrivalCoroutine);
+                arrivalCoroutine = null;
+            }
+
+            isCoroutineRunning = false;
         }
     }
 
@@ -130,12 +129,11 @@ public class Blocks : MonoBehaviour
             StartCoroutine(ParticleCoolDown());
             _particleColor.a = 255;
             particleSystem = Instantiate(_particles).GetComponent<ParticleSystem>();
-
             particleSystem.startColor = _particleColor;
-
             particleSystem.transform.position = _block.transform.position;
         }
     }
+
     IEnumerator ParticleCoolDown()
     {
         _bug = false;
@@ -145,7 +143,6 @@ public class Blocks : MonoBehaviour
 
     void TextMoveMSD()
     {
-        #region 텍스트
         if (_breakBlock)
         {
             _count.rectTransform.position = Vector3.Lerp(_count.rectTransform.position, transform.position, Time.deltaTime * 5);
@@ -153,15 +150,13 @@ public class Blocks : MonoBehaviour
 
             if (_breakCount <= 0)
             {
-                gameObject.GetComponent<SpriteRenderer>().enabled = false;
-                gameObject.GetComponent<Blocks>()._wallBlock = false;
+                _spren.enabled = false;
+                _wallBlock = false;
                 transform.position = new Vector3(transform.position.x, 300, -200);
-
                 _goalSignal = true;
                 _destory = true;
             }
         }
-        #endregion
     }
 
     void BIM()
@@ -175,96 +170,59 @@ public class Blocks : MonoBehaviour
 
     private void Update()
     {
-        //if (GameManager.reset)
-        //{
-        //    ReStart();
-        //}
-
         BIM();
-
         TextMoveMSD();
-
         BlockNumber = _blockNumber;
-
         Goalin();
-
         _signal = _goalSignal;
 
-        if (_breakCount <= 0)
-        {
-
-        }
-
-
-        {
-            _wall = _wallBlock;
-
-            _pushingGa = _pushing;
-        }
+        _wall = _wallBlock;
+        _pushingGa = _pushing;
 
         if (_pushing)
         {
+            _vec2Abs = _playerGameObject.transform.position - transform.position;
+            _x = Mathf.Abs(_vec2Abs.x);
+            _y = Mathf.Abs(_vec2Abs.y);
+
+            _interationPossible = (_x == 1 && _y <= 0) || (_y == 1 && _x <= 0);
+
+            if (_interationPossible)
             {
-
-                _vec2Abs = _playerGameObject.transform.position - transform.position;
-
-
-                _x = Mathf.Abs(_vec2Abs.x);
-                _y = Mathf.Abs(_vec2Abs.y);
-
-                if ((_x == 1 && _y <= 0) || (_y == 1 && _x <= 0))
-                {
-                    _interationPossible = true;
-                }
-
-                else
-                {
-                    _interationPossible = false;
-                }
-            }
-
-            {
-                if (_interationPossible == true)
-                {
-                    _distance = _playerGameObject.transform.position - transform.position;
-
+                _distance = _playerGameObject.transform.position - transform.position;
                 YoungJumSix = _distance;
-
                 YoungJumSix.x = Mathf.Clamp(YoungJumSix.x, -0.6f, 0.6f);
                 YoungJumSix.y = Mathf.Clamp(YoungJumSix.y, -0.6f, 0.6f);
 
-                Vector2 origin = (Vector2)transform.position;
-
+                Vector2 origin = transform.position;
                 RaycastHit2D hit = Physics2D.Raycast(origin - YoungJumSix, -_distance, _rayDistance, _cloggedType);
                 Debug.DrawRay(origin - YoungJumSix, -_distance * _rayDistance, Color.red);
-                if (hit)
+                if (hit && hit.collider.TryGetComponent(out Blocks _block))
                 {
-                    if (hit.collider.TryGetComponent(out Blocks _block))
-                    {
-                        _movein = true;
-                        _positionYea = hit.collider.gameObject.transform.position;
-                    }
+                    _movein = true;
+                    _positionYea = hit.collider.transform.position;
                 }
                 else
                 {
                     _movein = false;
                 }
-                }
             }
         }
     }
+
     private void OnMouseDown()
     {
         Move();
     }
+
     public void Move()
     {
         _vec2Clamp.x = Mathf.Clamp(_vec2Abs.x, -1, 1);
         _vec2Clamp.y = Mathf.Clamp(_vec2Abs.y, -1, 1);
 
-        if (_interationPossible == true && _movein == true)
+        if (_interationPossible && _movein)
         {
-                PlayParticle();
+            PlayParticle();
             transform.position = _positionYea + _vec2Abs;
             if (_minCoolTime)
             {
@@ -273,28 +231,26 @@ public class Blocks : MonoBehaviour
             }
         }
     }
+
     public void KeyMove(int numder)
     {
-        if (_pushing == true)
+        if (_pushing && _interationPossible && _movein && Keyboard.current.spaceKey.wasPressedThisFrame)
         {
-            if (_interationPossible == true && _movein == true && Keyboard.current.spaceKey.wasPressedThisFrame)
+            if ((_playerVector.LeftKeySensor && numder == 0) ||
+                (_playerVector.RightKeySensor && numder == 1) ||
+                (_playerVector.UpKeySensor && numder == 3) ||
+                (_playerVector.DownKeySensor && numder == 2))
             {
-                if ((_playerVector.LeftKeySensor == true && numder == 0)|| (_playerVector.RightKeySensor == true && numder == 1) ||
-                (_playerVector.UpKeySensor == true && numder == 3) || (_playerVector.DownKeySensor == true && numder == 2))
+                PlayParticle();
+                transform.position = _positionYea + _vec2Abs;
+                if (_minCoolTime)
                 {
-                        PlayParticle();
-                    transform.position = _positionYea + _vec2Abs;
-                    
-                    if (_minCoolTime)
-                    {
-                        StartCoroutine(CoolDown());
-                        _breakCount--;
-                    }
+                    StartCoroutine(CoolDown());
+                    _breakCount--;
                 }
             }
         }
     }
-
 
     IEnumerator CoolDown()
     {
@@ -303,42 +259,39 @@ public class Blocks : MonoBehaviour
         _minCoolTime = true;
     }
 
-
-
     void Goalin()
     {
         RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.up, 0.1f, _GoalinType);
-        if (hit.collider != null)
+        if (hit.collider != null && !isCoroutineRunning && !_destory)
         {
-            StartCoroutine(ArrivalTrriger(hit.collider.gameObject));
+            arrivalCoroutine = StartCoroutine(ArrivalTrriger(hit.collider.gameObject));
         }
     }
+
     IEnumerator ArrivalTrriger(GameObject _go)
     {
-        if (_pushing && _destory == false)
+        isCoroutineRunning = true;
+        yield return new WaitForSeconds(0.5f);
+
+        if (_pushing && !_destory)
         {
-            yield return new WaitForSeconds(0.5f);
-            gameObject.GetComponent<SpriteRenderer>().enabled = false;
-            gameObject.GetComponent<Blocks>()._wallBlock = false;
+            _spren.enabled = false;
+            _wallBlock = false;
             transform.position = new Vector3(transform.position.x, 300, -200);
             _go.GetComponent<Blocks>().PlayParticle();
             _goalSignal = true;
             _blockNumber = 67893;
             _destory = true;
-
         }
-    }
 
-    void Plz()
-    {
-        
+        isCoroutineRunning = false;
     }
-
 
     public void Wall()
     {
         _wallBlock = false;
     }
+
     public void WallTrue()
     {
         _wallBlock = true;
