@@ -8,6 +8,7 @@ public class PlayerScript : MonoBehaviour
 {
     [SerializeField] float _moveCoolTIme = 0.3f;
     [SerializeField] ParticleSystem _particle;
+    [SerializeField] int particleRate;
 
     Vector3 _mousePos;
     public Vector2 Vec2Move { get; set; }
@@ -225,7 +226,8 @@ public class PlayerScript : MonoBehaviour
 
     void PlayMoveAnimation()
     {
-        Instantiate(_particle, transform);
+        GameObject particle = Instantiate(_particle).gameObject;
+        particle.transform.position = transform.position;
         child = transform.GetChild(0).gameObject;
         //child.transform.position += new Vector3(0, 1.75f, 0);
         child.transform.localScale = new Vector3(2, 0.5f, 0);
