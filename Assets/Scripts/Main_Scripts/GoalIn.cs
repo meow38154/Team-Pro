@@ -62,28 +62,35 @@ public class GoalIn : MonoBehaviour
     void GamSec()
     {
         GameObject[] blocks = GameObject.FindGameObjectsWithTag("Block");
+        bool goalBlockExists = false;
 
         foreach (GameObject obj in blocks)
         {
             if (obj == this.gameObject) continue;
 
             Blocks block = obj.GetComponent<Blocks>();
-            if (block != null)
+            if (block != null && block.BlockNumber == _goalNumber)
             {
-                if (block.BlockNumber == _goalNumber)
-                {
-                    _blocks.WallTrue();
-                    _openClose = false;
-                    return;
-                }
+                goalBlockExists = true;
+                break;
             }
         }
-        if (_one == false)
+
+        if (goalBlockExists)
         {
-            GetComponent<Blocks>().PlayParticle();
-            _one = true;
+            _blocks.WallTrue();
+            _openClose = false;
         }
-        _openClose = true;
-        _blocks.Wall();
+        else
+        {
+            if (_one == false)
+            {
+                GetComponent<Blocks>().PlayParticle();
+                _one = true;
+            }
+            _openClose = true;
+            _blocks.Wall();
+        }
     }
+
 }
