@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 5295809465181078083}
   - component: {fileID: 240399404845193750}
-  m_Layer: 10
-  m_Name: Iron_block
+  m_Layer: 12
+  m_Name: HapGold_block
   m_TagString: Block
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -77,7 +77,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 63
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 0.7783019, g: 0.7783019, b: 0.7783019, a: 0}
   m_FlipX: 0
@@ -100,7 +100,7 @@ GameObject:
   - component: {fileID: 841124923886740851}
   - component: {fileID: 3875773781279562727}
   - component: {fileID: 5728658571030575264}
-  m_Layer: 10
+  m_Layer: 12
   m_Name: Visual
   m_TagString: Block
   m_Icon: {fileID: 0}
@@ -166,7 +166,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2948905978938603506, guid: b0ace935051cc08468994a63eba4322a, type: 3}
+  m_Sprite: {fileID: -632492428405261970, guid: 8ba92d7cefcb0b740a876b7b41fe1b2a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -203,8 +203,7 @@ GameObject:
   - component: {fileID: 3448066643295088694}
   - component: {fileID: 6092038036462846419}
   - component: {fileID: 1663049305047843755}
-  - component: {fileID: 265143212783778164}
-  m_Layer: 10
+  m_Layer: 12
   m_Name: System
   m_TagString: Block
   m_Icon: {fileID: 0}
@@ -294,15 +293,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _wallBlock: 1
-  _particleColor: {r: 0.45882353, g: 0.45882353, b: 0.45882353, a: 0}
+  _particleColor: {r: 0, g: 1, b: 0.8654957, a: 0}
   _particleLifeTimeee: 0.2
   _pushing: 1
   _cloggedType:
     serializedVersion: 2
-    m_Bits: 310848
+    m_Bits: 1318464
   _GoalinType:
     serializedVersion: 2
-    m_Bits: 540672
+    m_Bits: 581632
   <_blockNumber>k__BackingField: 0
   _breakBlock: 0
   _breakCount: 0
@@ -310,10 +309,10 @@ MonoBehaviour:
   _numberPrefabs: {fileID: 195931979881416922, guid: 315d407e9616ea048a602d03700ad9a5, type: 3}
   _breakImage: {fileID: 2625043278080593121, guid: 94c01edbb43cfb844b18cde2e148e452, type: 3}
   _particles: {fileID: 6322196409931000869, guid: 2a124082c281e094f963727bd29a316c, type: 3}
-  _hapGoldGameObject: {fileID: 44542900289245111, guid: e0a58da1d8fa24e46a61e152cf2a6b43, type: 3}
+  _hapGoldGameObject: {fileID: 0}
   _hapGoldtell:
     serializedVersion: 2
-    m_Bits: 1572864
+    m_Bits: 0
   _count: {fileID: 0}
 --- !u!61 &1663049305047843755
 BoxCollider2D:
@@ -361,30 +360,3 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!50 &265143212783778164
-Rigidbody2D:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7964671151743329809}
-  m_BodyType: 1
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0

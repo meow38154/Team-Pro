@@ -101,6 +101,7 @@ GameObject:
   - component: {fileID: 2949110210954779899}
   - component: {fileID: 3418707754473411126}
   - component: {fileID: 3205667878163901303}
+  - component: {fileID: 7257152867072280263}
   m_Layer: 9
   m_Name: System
   m_TagString: Block
@@ -191,12 +192,17 @@ MonoBehaviour:
   _GoalinType:
     serializedVersion: 2
     m_Bits: 532480
-  _blockNumber: 0
+  <_blockNumber>k__BackingField: 0
   _breakBlock: 0
   _breakCount: 0
+  _daldal: 0.25
   _numberPrefabs: {fileID: 195931979881416922, guid: 315d407e9616ea048a602d03700ad9a5, type: 3}
   _breakImage: {fileID: 2625043278080593121, guid: 94c01edbb43cfb844b18cde2e148e452, type: 3}
   _particles: {fileID: 6322196409931000869, guid: 2a124082c281e094f963727bd29a316c, type: 3}
+  _hapGoldGameObject: {fileID: 44542900289245111, guid: e0a58da1d8fa24e46a61e152cf2a6b43, type: 3}
+  _hapGoldtell:
+    serializedVersion: 2
+    m_Bits: 1048576
   _count: {fileID: 0}
 --- !u!212 &3205667878163901303
 SpriteRenderer:
@@ -253,6 +259,33 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!50 &7257152867072280263
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 294883715149752171}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &8190206202889469586
 GameObject:
   m_ObjectHideFlags: 0

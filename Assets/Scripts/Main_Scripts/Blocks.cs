@@ -5,6 +5,7 @@ using System.Collections;
 using Main_Scripts;
 using UnityEngine.Events;
 using TMPro;
+using NUnit.Framework.Constraints;
 
 public class Blocks : MonoBehaviour
 {
@@ -17,7 +18,7 @@ public class Blocks : MonoBehaviour
     [SerializeField] bool _pushing;
     [SerializeField] LayerMask _cloggedType;
     [SerializeField] LayerMask _GoalinType;
-    [SerializeField] int _blockNumber;
+    [field: SerializeField] public int _blockNumber { get; set; }
 
     [Header("미는게 제한이 있는 블록일때\n")]
     [SerializeField] bool _breakBlock;
@@ -28,6 +29,8 @@ public class Blocks : MonoBehaviour
     [SerializeField] GameObject _numberPrefabs;
     [SerializeField] GameObject _breakImage;
     [SerializeField] GameObject _particles;
+    [SerializeField] GameObject _hapGoldGameObject;
+    [SerializeField] LayerMask _hapGoldtell;
 
     public static bool _goalSignal;
 
@@ -46,7 +49,7 @@ public class Blocks : MonoBehaviour
     PlayerScript _playerVector;
     bool _movein, _destory;
     int _saveNumber, _saveBreak;
-    bool _signal;
+    bool _signal, _hapGoldTF;
     GameObject _childGo, _Parents, _image;
 
     GameObject _block;
@@ -58,20 +61,26 @@ public class Blocks : MonoBehaviour
     Coroutine arrivalCoroutine;
     bool isCoroutineRunning = false;
 
+    bool _one, _savePushing;
+
+    bool _one2 = true;
+
     ParticleSystem particleSystem;
 
     private void Awake()
     {
+        _savePushing = _pushing;
+
         _block = gameObject;
         _goalSignal = false;
 
-        if (_pushing)
+            _savePosition = transform.position;
+        if (_savePushing)
         {
             _Parents = transform.parent.gameObject;
             _saveBreak = _breakCount;
             _childGo = _Parents.transform.GetChild(1).gameObject;
             _saveNumber = _blockNumber;
-            _savePosition = transform.position;
             _playerGameObject = GameObject.Find("Player");
             _playerVector = _playerGameObject.GetComponent<PlayerScript>();
             _spren = GetComponent<SpriteRenderer>();
@@ -102,7 +111,17 @@ public class Blocks : MonoBehaviour
 
     void ReStart()
     {
-        if (_pushing)
+        if (gameObject.layer == 20)
+        {
+            transform.position = _savePosition;
+        }
+
+        if (gameObject.layer == 12)
+        {
+            Destroy(_Parents.gameObject);
+        }
+
+        if (_savePushing)
         {
             Debug.Log("리셋");
             _breakCount = _saveBreak;
@@ -158,7 +177,7 @@ public class Blocks : MonoBehaviour
                 _destory = true;
             }
         }
-    }
+    } 
 
     void BIM()
     {
@@ -171,16 +190,17 @@ public class Blocks : MonoBehaviour
 
     private void Update()
     {
+        HabGold();
         BIM();
         TextMoveMSD();
         BlockNumber = _blockNumber;
-        Goalin();
+        MiniRaycast();
         _signal = _goalSignal;
 
         _wall = _wallBlock;
         _pushingGa = _pushing;
 
-        if (_pushing)
+        if (_savePushing)
         {
             _vec2Abs = _playerGameObject.transform.position - transform.position;
             _x = Mathf.Abs(_vec2Abs.x);
@@ -263,7 +283,7 @@ public class Blocks : MonoBehaviour
 
     public void KeyMove(int numder)
     {
-        if (_pushing && _interationPossible && _movein && Keyboard.current.spaceKey.wasPressedThisFrame)
+        if (_savePushing && _interationPossible && _movein && Keyboard.current.spaceKey.wasPressedThisFrame)
         {
             if ((_playerVector.LeftKeySensor && numder == 0) ||
                 (_playerVector.RightKeySensor && numder == 1) ||
@@ -302,33 +322,122 @@ public class Blocks : MonoBehaviour
         _minCoolTime = true;
     }
 
-    void Goalin()
+    void MiniRaycast()
     {
         RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.up, 0.1f, _GoalinType);
         if (hit.collider != null && !isCoroutineRunning && !_destory)
         {
             arrivalCoroutine = StartCoroutine(ArrivalTrriger(hit.collider.gameObject));
         }
+
     }
 
     IEnumerator ArrivalTrriger(GameObject _go)
     {
         isCoroutineRunning = true;
         yield return new WaitForSeconds(0.5f);
-
-        if (_pushing && !_destory)
+        if (_savePushing && !_destory)
         {
-            _spren.enabled = false;
-            _wallBlock = false;
-            transform.position = new Vector3(transform.position.x, 300, -200);
-            _go.GetComponent<Blocks>().PlayParticle();
-            _goalSignal = true;
-            _blockNumber = 67893;
-            _destory = true;
+            RemoveBlock(_go);
         }
-
         isCoroutineRunning = false;
     }
+
+    public void RemoveBlock(GameObject _go)
+    {
+
+        Debug.Log("제거된 오브젝트: " + _go.GetComponent<Blocks>()._Parents.name);
+        _go.GetComponent<Blocks>()._pushing = false;
+        _go.GetComponent<Blocks>()._childGo.GetComponent<SpriteRenderer>().color = Color.white;
+        _go.GetComponent<Blocks>()._spren.enabled = false;
+        _go.GetComponent<Blocks>()._wallBlock = false;
+            _go.transform.position += new Vector3(0, 300,0);
+            _go.GetComponent<Blocks>().PlayParticle();
+            _goalSignal = true;
+        _go.GetComponent<Blocks>()._blockNumber = 67893;
+        _go.GetComponent<Blocks>()._destory = true;
+        _one2 = true;
+
+        if (_go.layer == 22)
+        {
+            _go.layer = 10;
+        }
+        if (_go.layer == 21)
+        {
+            _go.layer = 9;
+        }
+    }
+
+
+    GameObject _hit;
+
+    public void HabGold()
+    {
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.up, 0.1f, _hapGoldtell);
+        if (hit.collider != null)
+        {
+            _hit = hit.collider.gameObject;
+
+            if (gameObject.layer == 9)
+            {
+                this.gameObject.layer = 21;
+                _pushing = false;
+                StartCoroutine(HapGoldCoolTime());
+            }
+
+            if (gameObject.layer == 10)
+            {
+                this.gameObject.layer = 22;
+                _pushing = false;
+                StartCoroutine(HapGoldCoolTime());
+            }
+        }
+
+
+        if (_one)
+        {
+            Debug.Log("왜안돼");
+            _hit.transform.position = new Vector3(transform.position.x, 300, transform.position.x);
+            _one = false;
+        }
+    }
+    IEnumerator HapGoldCoolTime()
+    {
+        _hapGoldTF = true;
+        Debug.Log("코루틴 실행");
+        yield return new WaitForSeconds(1.15f);
+        Debug.Log("0.5초 지남");
+        _childGo.GetComponent<SpriteRenderer>().color = Color.gray;
+    }
+
+    IEnumerator HapGoldPlay(GameObject _twotwo)
+    {
+        _one2 = false;
+        yield return new WaitForSeconds(1.15f);
+        PlayParticle();
+
+        GameObject HG = Instantiate(_hapGoldGameObject);
+
+
+
+        HG.transform.position = transform.position;
+        //HG.GetComponent<Blocks>()._blockNumber = GetComponent<Blocks>()._blockNumber;
+        Debug.Log("바꼈는데");
+        _one = true;
+        RemoveBlock(_twotwo);
+        RemoveBlock(this.gameObject);
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if ((gameObject.layer == 21 && collision.gameObject.layer == 22) && _one2)
+        {
+            Debug.Log("트리커 닿음: " + _Parents.name + "나는 " + collision.gameObject.GetComponent<Blocks>()._Parents.name);
+            StartCoroutine(HapGoldPlay(collision.gameObject));
+        }
+    }
+
+
 
     public void Wall()
     {

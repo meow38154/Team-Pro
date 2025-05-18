@@ -4945,13 +4945,20 @@ MonoBehaviour:
   _GoalinType:
     serializedVersion: 2
     m_Bits: 0
-  _blockNumber: 0
+  <_blockNumber>k__BackingField: 0
   _breakBlock: 0
   _breakCount: 0
   _daldal: 0.25
   _numberPrefabs: {fileID: 0}
   _breakImage: {fileID: 0}
   _particles: {fileID: 6322196409931000869, guid: 2a124082c281e094f963727bd29a316c, type: 3}
+  _hapGoldGameObject: {fileID: 44542900289245111, guid: e0a58da1d8fa24e46a61e152cf2a6b43, type: 3}
+  _hapGoldtell:
+    serializedVersion: 2
+    m_Bits: 0
+  _copperIron:
+    serializedVersion: 2
+    m_Bits: 0
   _count: {fileID: 0}
 --- !u!61 &597151260392665523
 BoxCollider2D:
