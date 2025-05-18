@@ -116798,10 +116798,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4390298224876002401, guid: 39d1823d58deee6429eb68f44da72f6a, type: 3}
       propertyPath: _breakCount
-      value: 1414
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4390298224876002401, guid: 39d1823d58deee6429eb68f44da72f6a, type: 3}
       propertyPath: _blockNumber
+      value: 1414
+      objectReference: {fileID: 0}
+    - target: {fileID: 4390298224876002401, guid: 39d1823d58deee6429eb68f44da72f6a, type: 3}
+      propertyPath: <_blockNumber>k__BackingField
       value: 1414
       objectReference: {fileID: 0}
     - target: {fileID: 5295809465181078083, guid: 39d1823d58deee6429eb68f44da72f6a, type: 3}
@@ -133748,6 +133752,10 @@ PrefabInstance:
     - target: {fileID: 4390298224876002401, guid: 39d1823d58deee6429eb68f44da72f6a, type: 3}
       propertyPath: <_coler>k__BackingField.r
       value: 0.9833616
+      objectReference: {fileID: 0}
+    - target: {fileID: 4390298224876002401, guid: 39d1823d58deee6429eb68f44da72f6a, type: 3}
+      propertyPath: <_blockNumber>k__BackingField
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 5295809465181078083, guid: 39d1823d58deee6429eb68f44da72f6a, type: 3}
       propertyPath: m_LocalPosition.x
