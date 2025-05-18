@@ -146,6 +146,11 @@ public class Blocks : MonoBehaviour
     {
         if (_bug)
         {
+            if (this.gameObject.layer == 12)
+            {
+                Debug.Log("합금 파티클");
+            }
+
             StartCoroutine(ParticleCoolDown());
             _particleColor.a = 255;
             particleSystem = Instantiate(_particles).GetComponent<ParticleSystem>();
@@ -327,9 +332,10 @@ public class Blocks : MonoBehaviour
         RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.up, 0.1f, _GoalinType);
         if (hit.collider != null && !isCoroutineRunning && !_destory)
         {
+            Debug.Log(hit.collider.gameObject.name + ", " + gameObject.name);
+
             arrivalCoroutine = StartCoroutine(ArrivalTrriger(hit.collider.gameObject));
         }
-
     }
 
     IEnumerator ArrivalTrriger(GameObject _go)
@@ -338,24 +344,23 @@ public class Blocks : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         if (_savePushing && !_destory)
         {
-            RemoveBlock(_go);
+            RemoveBlock(this.gameObject);
+            _go.GetComponent<Blocks>().PlayParticle();
         }
         isCoroutineRunning = false;
     }
 
     public void RemoveBlock(GameObject _go)
     {
-
-        Debug.Log("제거된 오브젝트: " + _go.GetComponent<Blocks>()._Parents.name);
         _go.GetComponent<Blocks>()._pushing = false;
         _go.GetComponent<Blocks>()._childGo.GetComponent<SpriteRenderer>().color = Color.white;
         _go.GetComponent<Blocks>()._spren.enabled = false;
         _go.GetComponent<Blocks>()._wallBlock = false;
-            _go.transform.position += new Vector3(0, 300,0);
-            _go.GetComponent<Blocks>().PlayParticle();
+            GetComponent<Blocks>().PlayParticle();
             _goalSignal = true;
         _go.GetComponent<Blocks>()._blockNumber = 67893;
         _go.GetComponent<Blocks>()._destory = true;
+            _go.transform.position += new Vector3(0, 300,0);
         _one2 = true;
 
         if (_go.layer == 22)
@@ -397,7 +402,7 @@ public class Blocks : MonoBehaviour
         if (_one)
         {
             Debug.Log("왜안돼");
-            _hit.transform.position = new Vector3(transform.position.x, 300, transform.position.x);
+            StartCoroutine(BugSuJeongCoolTime());
             _one = false;
         }
     }
@@ -417,15 +422,14 @@ public class Blocks : MonoBehaviour
         PlayParticle();
 
         GameObject HG = Instantiate(_hapGoldGameObject);
-
-
+        GameObject HGChild = HG.transform.GetChild(0).gameObject;
 
         HG.transform.position = transform.position;
-        //HG.GetComponent<Blocks>()._blockNumber = GetComponent<Blocks>()._blockNumber;
+        HGChild.GetComponentInChildren<Blocks>()._blockNumber = GetComponent<Blocks>()._blockNumber;
         Debug.Log("바꼈는데");
-        _one = true;
         RemoveBlock(_twotwo);
         RemoveBlock(this.gameObject);
+        _one = true;
     }
 
     private void OnTriggerStay2D(Collider2D collision)
@@ -435,6 +439,13 @@ public class Blocks : MonoBehaviour
             Debug.Log("트리커 닿음: " + _Parents.name + "나는 " + collision.gameObject.GetComponent<Blocks>()._Parents.name);
             StartCoroutine(HapGoldPlay(collision.gameObject));
         }
+    }
+
+    IEnumerator BugSuJeongCoolTime()
+    {
+        yield return new WaitForSeconds(0.05f);
+            _hit.transform.position = new Vector3(transform.position.x, 300, transform.position.x);
+
     }
 
 
