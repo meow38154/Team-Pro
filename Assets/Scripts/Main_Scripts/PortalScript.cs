@@ -43,6 +43,7 @@ public class PortalScript : MonoBehaviour
 
         if (time >= fadeTime)
         {
+            Time.timeScale = 1f;
              SceneManagerReal scene = GameObject.Find("SceneManager").GetComponent<SceneManagerReal>();
             scene.ChangeScene(sceneNum);
 
