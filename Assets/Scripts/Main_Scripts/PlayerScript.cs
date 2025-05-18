@@ -7,6 +7,7 @@ using System.Collections;
 public class PlayerScript : MonoBehaviour
 {
     [SerializeField] float _moveCoolTIme = 0.3f;
+    [SerializeField] ParticleSystem _particle;
 
     Vector3 _mousePos;
     public Vector2 Vec2Move { get; set; }
@@ -24,7 +25,7 @@ public class PlayerScript : MonoBehaviour
 
     private void Awake()
     {
-        _childGameObject = transform.GetChild(0).gameObject;
+        _childGameObject = GameObject.Find("PlayerVIsual");
     }
 
     public void OnMove(InputValue value)
@@ -155,16 +156,27 @@ public class PlayerScript : MonoBehaviour
         _mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         _mousePos.z = 0;
 
+        if (Vec2Move.x < 0)
+        {
+           _childGameObject.GetComponent<SpriteRenderer>().flipX = false;
+        }
+
+        if (Vec2Move.x > 0)
+        {
+            _childGameObject.GetComponent<SpriteRenderer>().flipX = true;
+        }
+
+
         if ((Mouse.current.leftButton.wasPressedThisFrame &&
             _mousePos.x >= transform.position.x - 1.5 && _mousePos.x <= transform.position.x - 0.5 &&
                 _mousePos.y >= transform.position.y - 0.5 && _mousePos.y <= transform.position.y + 0.5) ||
                 (Vec2Move.x < 0 && _movePossbie == true) && _leftMoveWhather == true)
         {
-               _childGameObject.GetComponent<SpriteRenderer>().flipX = false;
             if (_leftMoveWhather == true)
             {
                 StartCoroutine(MoveCoolTime());
                 transform.position += new Vector3(-1, 0, 0);
+                PlayMoveAnimation();
             } 
         }
 
@@ -178,6 +190,7 @@ public class PlayerScript : MonoBehaviour
             {
                 StartCoroutine(MoveCoolTime());
                 transform.position += new Vector3(1, 0, 0);
+                PlayMoveAnimation();
             }
         }
 
@@ -190,6 +203,7 @@ public class PlayerScript : MonoBehaviour
             {
                 StartCoroutine(MoveCoolTime());
                 transform.position += new Vector3(0, -1, 0);
+                PlayMoveAnimation();
             }
         }
 
@@ -202,7 +216,29 @@ public class PlayerScript : MonoBehaviour
             {
                 StartCoroutine(MoveCoolTime());
                 transform.position += new Vector3(0, 1, 0);
+                PlayMoveAnimation();
             }
+        }
+    }
+
+    GameObject child;
+
+    void PlayMoveAnimation()
+    {
+        Instantiate(_particle, transform);
+        child = transform.GetChild(0).gameObject;
+        //child.transform.position += new Vector3(0, 1.75f, 0);
+        child.transform.localScale = new Vector3(2, 0.5f, 0);
+        StartCoroutine(Anim());
+    }
+
+    IEnumerator Anim()
+    {
+        for (int i = 0; i < 5; i++)
+        {
+            //child.transform.position += new Vector3(0, -0.35f, 0);
+            child.transform.localScale += new Vector3(-0.2f, 0.1f, 0);
+            yield return new WaitForSeconds(0.025f);
         }
     }
 

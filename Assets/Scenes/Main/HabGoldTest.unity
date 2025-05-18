@@ -54393,6 +54393,14 @@ PrefabInstance:
       value: Nab_block
       objectReference: {fileID: 0}
     - target: {fileID: 3418707754473411126, guid: f8ef1c7f557d3e34cb7ea304b916755c, type: 3}
+      propertyPath: _breakBlock
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3418707754473411126, guid: f8ef1c7f557d3e34cb7ea304b916755c, type: 3}
+      propertyPath: _breakCount
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3418707754473411126, guid: f8ef1c7f557d3e34cb7ea304b916755c, type: 3}
       propertyPath: <_blockNumber>k__BackingField
       value: 125
       objectReference: {fileID: 0}
@@ -71631,10 +71639,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 554960986745552504, guid: a283e037e3a50174ea474c4cfcba8808, type: 3}
-      propertyPath: _moveCoolTIme
-      value: 0.15
-      objectReference: {fileID: 0}
     - target: {fileID: 1515561409798302222, guid: a283e037e3a50174ea474c4cfcba8808, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -71675,17 +71679,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2002134086019670560, guid: a283e037e3a50174ea474c4cfcba8808, type: 3}
-      propertyPath: m_SortingOrder
-      value: 15
-      objectReference: {fileID: 0}
     - target: {fileID: 7408114500844454693, guid: a283e037e3a50174ea474c4cfcba8808, type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 8888788667919522901, guid: a283e037e3a50174ea474c4cfcba8808, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
