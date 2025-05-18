@@ -232,7 +232,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _moveCoolTIme: 0.15
-  _particle: {fileID: 2473331962074141947, guid: 2a124082c281e094f963727bd29a316c, type: 3}
+  _particle: {fileID: 2473331962074141947, guid: 6202f444306faa044b62973ab59c3df0, type: 3}
+  particleRate: 0
   _blocks:
   - {fileID: 0}
   - {fileID: 0}
