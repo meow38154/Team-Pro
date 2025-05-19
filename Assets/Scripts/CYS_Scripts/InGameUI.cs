@@ -32,6 +32,23 @@ public class InGameUI : MonoBehaviour
     }
 
 
+    private void Update()
+    {
+        if (Keyboard.current.escapeKey.wasPressedThisFrame)
+        {
+            if (!_pauseUI.activeSelf)
+            {
+                Pause();
+            }
+
+            else if (_pauseUI.activeSelf)
+            {
+                Return();
+            }
+        }
+    }
+
+    //a
 
     public void Pause()
     {

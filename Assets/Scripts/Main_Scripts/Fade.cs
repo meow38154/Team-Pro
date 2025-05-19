@@ -23,7 +23,9 @@ public class Fade : MonoBehaviour
         {
             color2.a -= 1 * Time.unscaledDeltaTime;
             _sr.color = color2;
+            StartCoroutine(Size());
         }
+                
 
         if (dark)
         {
@@ -32,10 +34,17 @@ public class Fade : MonoBehaviour
         }
     }
 
+    IEnumerator Size()
+    {
+        yield return new WaitForSeconds(1);
+        GetComponent<RectTransform>().sizeDelta = new Vector2(0, 0);
+    }
+
     public void DarkPlay()
     {
 
         dark = true;
+        GetComponent<RectTransform>().sizeDelta = new Vector2(1920, 1080);
         Debug.Log("¥Ÿ≈© πŸ≤Ò");
     }
 }
