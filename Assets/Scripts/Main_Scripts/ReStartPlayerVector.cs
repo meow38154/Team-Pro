@@ -21,6 +21,7 @@ public class ReStartPlayerVector : MonoBehaviour
     private void Awake()
     {
         _p = GameObject.Find("Player");
+        _player = GameObject.Find("Player");
     }
 
     void Start()
