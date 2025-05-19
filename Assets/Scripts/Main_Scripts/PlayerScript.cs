@@ -1,13 +1,18 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using System.Collections;
+using System;
+using UnityEngine.Events;
 
 public class PlayerScript : MonoBehaviour
 {
     [SerializeField] float _moveCoolTIme = 0.3f;
     [SerializeField] ParticleSystem _particle;
     [SerializeField] int particleRate;
+    [SerializeField] AudioClip[] stepAudios;
 
+
+    AudioSource _audioSource;
     Vector3 _mousePos;
     public Vector2 Vec2Move { get; set; }
     bool _leftMoveWhather, _rightMoveWhather, _downMoveWhather, _upMoveWhather, _movePossbie = true;
@@ -32,6 +37,7 @@ public class PlayerScript : MonoBehaviour
     public void OnMove(InputValue value)
     {
         Vec2Move = value.Get<Vector2>();
+        _audioSource = GetComponent<AudioSource>();
     }
 
     void Upmove()
@@ -109,6 +115,7 @@ public class PlayerScript : MonoBehaviour
                 StartCoroutine(MoveCoolTime());
                 transform.position += Vector3.left;
                 PlayMoveAnimation();
+                PlayAudio();
             }
             else if ((Vec2Move.x > 0 && _movePossbie && _rightMoveWhather) ||
                 (Mouse.current.leftButton.wasPressedThisFrame &&
@@ -118,6 +125,7 @@ public class PlayerScript : MonoBehaviour
                 StartCoroutine(MoveCoolTime());
                 transform.position += Vector3.right;
                 PlayMoveAnimation();
+                PlayAudio();
             }
             else if ((Vec2Move.y < 0 && _movePossbie && _downMoveWhather) ||
                 (Mouse.current.leftButton.wasPressedThisFrame &&
@@ -127,6 +135,7 @@ public class PlayerScript : MonoBehaviour
                 StartCoroutine(MoveCoolTime());
                 transform.position += Vector3.down;
                 PlayMoveAnimation();
+                PlayAudio();
             }
             else if ((Vec2Move.y > 0 && _movePossbie && _upMoveWhather) ||
                 (Mouse.current.leftButton.wasPressedThisFrame &&
@@ -136,6 +145,7 @@ public class PlayerScript : MonoBehaviour
                 StartCoroutine(MoveCoolTime());
                 transform.position += Vector3.up;
                 PlayMoveAnimation();
+                PlayAudio();
             }
         }
     }
@@ -148,6 +158,11 @@ public class PlayerScript : MonoBehaviour
         var child = transform.GetChild(0).gameObject;
         child.transform.localScale = new Vector3(2, 0.5f, 0);
         StartCoroutine(Anim(child));
+    }
+
+    void PlayAudio()
+    {
+        _audioSource.PlayOneShot(stepAudios[UnityEngine.Random.Range(0, stepAudios.Length)]);
     }
 
     IEnumerator Anim(GameObject child)
