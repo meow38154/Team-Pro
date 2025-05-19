@@ -16,10 +16,12 @@ public class PortalScript : MonoBehaviour
     [SerializeField] int sceneNum;
     [Header("페이드 시간")]
     [SerializeField] float fadeTime = 0.5f;
+    GameObject fade;
     private void Awake()
     {
         d = false;
         _player = GameObject.Find("Player");
+        fade = GameObject.Find("Black");
     }
     private void Update()
     {
@@ -32,6 +34,7 @@ public class PortalScript : MonoBehaviour
             if (Keyboard.current.rKey.wasPressedThisFrame)
             {
                 d = true;
+                fade.GetComponent<Fade>().DarkPlay();
                 Time.timeScale = 0f;
             }
         }
