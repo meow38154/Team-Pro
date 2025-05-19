@@ -6,6 +6,7 @@ using Main_Scripts;
 using UnityEngine.Events;
 using TMPro;
 using NUnit.Framework.Constraints;
+using UnityEngine.Audio;
 
 public class Blocks : MonoBehaviour
 {
@@ -67,8 +68,13 @@ public class Blocks : MonoBehaviour
 
     ParticleSystem particleSystem;
 
+    [Header("오디오")]
+    [SerializeField] AudioClip meltSound;
+    AudioSource _audioSource;
+
     private void Awake()
     {
+        _audioSource = GetComponent<AudioSource>();
         _savePushing = _pushing;
 
         _block = gameObject;
@@ -395,6 +401,9 @@ public class Blocks : MonoBehaviour
         {
             _go.layer = 9;
         }
+        _audioSource.spatialBlend = 0f;
+        _audioSource.PlayOneShot(meltSound, 1);
+        Debug.Log("Melted!");
     }
 
 
