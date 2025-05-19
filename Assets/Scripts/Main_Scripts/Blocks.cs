@@ -437,6 +437,7 @@ public class Blocks : MonoBehaviour
         yield return new WaitForSeconds(1.15f);
         Debug.Log("0.5초 지남");
         _childGo.GetComponent<SpriteRenderer>().color = Color.gray;
+        _wallBlock = false;
     }
 
     IEnumerator HapGoldPlay(GameObject _twotwo)
