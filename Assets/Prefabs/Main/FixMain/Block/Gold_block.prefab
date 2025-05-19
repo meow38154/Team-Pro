@@ -200,13 +200,14 @@ MonoBehaviour:
   _GoalinType:
     serializedVersion: 2
     m_Bits: 557056
-  _blockNumber: 0
+  <_blockNumber>k__BackingField: 0
   _breakBlock: 0
   _breakCount: 0
   _daldal: 0.25
   _numberPrefabs: {fileID: 195931979881416922, guid: 315d407e9616ea048a602d03700ad9a5, type: 3}
   _breakImage: {fileID: 2625043278080593121, guid: 94c01edbb43cfb844b18cde2e148e452, type: 3}
   _particles: {fileID: 6322196409931000869, guid: 2a124082c281e094f963727bd29a316c, type: 3}
+  _hapGoldGameObject: {fileID: 0}
   _hapGoldtell:
     serializedVersion: 2
     m_Bits: 0

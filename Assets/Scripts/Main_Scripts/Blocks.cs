@@ -75,12 +75,12 @@ public class Blocks : MonoBehaviour
         _goalSignal = false;
 
             _savePosition = transform.position;
+            _saveNumber = _blockNumber;
         if (_savePushing)
         {
             _Parents = transform.parent.gameObject;
             _saveBreak = _breakCount;
             _childGo = _Parents.transform.GetChild(1).gameObject;
-            _saveNumber = _blockNumber;
             _playerGameObject = GameObject.Find("Player");
             _playerVector = _playerGameObject.GetComponent<PlayerScript>();
             _spren = GetComponent<SpriteRenderer>();
@@ -120,6 +120,12 @@ public class Blocks : MonoBehaviour
         {
             Destroy(_Parents.gameObject);
         }
+            if (gameObject.layer == 19)
+            {
+                Debug.Log("실행됨" + _savePosition + " " + _saveNumber);
+                transform.position = _savePosition;
+                _blockNumber = _saveNumber;
+            }
 
         if (_savePushing)
         {
@@ -131,6 +137,7 @@ public class Blocks : MonoBehaviour
             _wallBlock = true;
             transform.position = new Vector3(transform.position.x, transform.position.y, 0);
             _destory = false;
+
 
             if (arrivalCoroutine != null)
             {
@@ -171,6 +178,7 @@ public class Blocks : MonoBehaviour
         if (_breakBlock)
         {
             _count.rectTransform.position = Vector3.Lerp(_count.rectTransform.position, transform.position, Time.deltaTime * 5);
+            _count.rectTransform.position = new Vector3(_count.rectTransform.position.x, _count.rectTransform.position.y, -5f);
             _count.text = _breakCount.ToString();
 
             if (_breakCount <= 0)
@@ -204,6 +212,8 @@ public class Blocks : MonoBehaviour
 
         _wall = _wallBlock;
         _pushingGa = _pushing;
+
+
 
         if (_savePushing)
         {
@@ -342,20 +352,34 @@ public class Blocks : MonoBehaviour
     {
         isCoroutineRunning = true;
         yield return new WaitForSeconds(0.5f);
+
         if (_savePushing && !_destory)
         {
             RemoveBlock(this.gameObject);
             _go.GetComponent<Blocks>().PlayParticle();
+
         }
+
+        Debug.Log("제거 대상:" + _go.name);
+
+        if (_go.gameObject.layer == 19)
+            {
+                Debug.Log("레이어 19");
+                RemoveBlock(_go);
+            }
+
         isCoroutineRunning = false;
     }
 
     public void RemoveBlock(GameObject _go)
     {
         _go.GetComponent<Blocks>()._pushing = false;
-        _go.GetComponent<Blocks>()._childGo.GetComponent<SpriteRenderer>().color = Color.white;
-        _go.GetComponent<Blocks>()._spren.enabled = false;
-        _go.GetComponent<Blocks>()._wallBlock = false;
+        if (_go.gameObject.layer != 19)
+        {
+            _go.GetComponent<Blocks>()._childGo.GetComponent<SpriteRenderer>().color = Color.white;
+            _go.GetComponent<Blocks>()._spren.enabled = false;
+            _go.GetComponent<Blocks>()._wallBlock = false;
+        }
             GetComponent<Blocks>().PlayParticle();
             _goalSignal = true;
         _go.GetComponent<Blocks>()._blockNumber = 67893;
