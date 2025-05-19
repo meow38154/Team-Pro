@@ -101,7 +101,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92e5c3e48a994124eb5f4c751bde2bbf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _wallBlock: 1
+  _wallBlock: 0
   _particleColor: {r: 0, g: 0, b: 0, a: 0}
   _particleLifeTimeee: 0.2
   _pushing: 0

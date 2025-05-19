@@ -17,6 +17,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/RWS_Scenes/StageChoseScene.unity
     guid: 11d394225c4b8bf4ca4e5fe442728390
+  - enabled: 1
+    path: Assets/Scenes/Lws_Scenes/Lws_Map2.unity
+    guid: 35b88a2af10286444b2e498135266200
+  - enabled: 1
+    path: Assets/Scenes/CYS_Scenes/MyMap.unity
+    guid: 93522f9e33f1c3240855c76fa9518b27
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

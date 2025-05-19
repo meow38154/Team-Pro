@@ -185,7 +185,7 @@ public class Blocks : MonoBehaviour
         {
             _count.rectTransform.position = Vector3.Lerp(_count.rectTransform.position, transform.position, Time.deltaTime * 5);
             _count.rectTransform.position = new Vector3(_count.rectTransform.position.x, _count.rectTransform.position.y, -5f);
-            _count.text = _breakCount.ToString();
+            _count.text = (_breakCount - 1).ToString();
 
             if (_breakCount <= 0)
             {
