@@ -38,11 +38,13 @@ public class InGameUI : MonoBehaviour
         {
             if (!_pauseUI.activeSelf)
             {
+                Time.timeScale = 0;
                 Pause();
             }
 
             else if (_pauseUI.activeSelf)
             {
+                Time.timeScale = 1;
                 Return();
             }
         }
