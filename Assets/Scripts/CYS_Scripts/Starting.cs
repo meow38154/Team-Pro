@@ -19,7 +19,7 @@ namespace CYS_Scripts
         private IEnumerator Sleeping()
         {
             yield return new WaitForSeconds(Random.Range(1, 3));
-            _scene.ChangeScene(1);
+            _scene.ChangeScene(3);
         }
     }
 }
