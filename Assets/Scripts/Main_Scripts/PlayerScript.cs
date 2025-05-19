@@ -1,7 +1,5 @@
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using static UnityEngine.UI.Image;
 using System.Collections;
 
 public class PlayerScript : MonoBehaviour
@@ -24,6 +22,8 @@ public class PlayerScript : MonoBehaviour
 
     GameObject _childGameObject;
 
+    bool ct;
+
     private void Awake()
     {
         _childGameObject = GameObject.Find("PlayerVIsual");
@@ -37,224 +37,132 @@ public class PlayerScript : MonoBehaviour
     void Upmove()
     {
         RaycastHit2D move = Physics2D.Raycast(transform.position + new Vector3(0, 0.6f, 0), Vector2.up, _rich);
-        Debug.DrawRay(transform.position + new Vector3(0, 0.6f, 0), Vector2.up * _rich, Color.green);
-
-        if (move.collider != null)
-        {
-            Blocks blockSensor = move.collider.GetComponent<Blocks>();
-
-            _blocks[3] = move.collider.GetComponent<Blocks>();
-            if (blockSensor != null && blockSensor._wall == true)
-            {
-                _upMoveWhather = false;
-            }
-            else
-            {
-                _upMoveWhather = true;
-            }
-        }
-        else
-        {
-            _upMoveWhather = true;
-        }
+        _blocks[3] = move.collider?.GetComponent<Blocks>();
+        _upMoveWhather = move.collider == null || (_blocks[3] != null && !_blocks[3]._wall);
     }
+
     void Downmove()
     {
         RaycastHit2D move = Physics2D.Raycast(transform.position + new Vector3(0, -0.6f, 0), Vector2.down, _rich);
-        Debug.DrawRay(transform.position + new Vector3(0, -0.6f, 0), Vector2.down * _rich, Color.green);
-
-        if (move.collider != null)
-        {
-            Blocks blockSensor = move.collider.GetComponent<Blocks>();
-            _blocks[2] = move.collider.GetComponent<Blocks>();
-            if (blockSensor != null && blockSensor._wall == true)
-            {
-                _downMoveWhather = false;
-            }
-            else
-            {
-                _downMoveWhather = true;
-            }
-        }
-        else
-        {
-            _downMoveWhather = true;
-        }
+        _blocks[2] = move.collider?.GetComponent<Blocks>();
+        _downMoveWhather = move.collider == null || (_blocks[2] != null && !_blocks[2]._wall);
     }
+
     void Leftmove()
     {
         RaycastHit2D move = Physics2D.Raycast(transform.position + new Vector3(-0.6f, 0, 0), Vector2.left, _rich);
-        Debug.DrawRay(transform.position + new Vector3(-0.6f, 0, 0), Vector2.left * _rich, Color.green);
-
-        if (move.collider != null)
-        {
-            Blocks blockSensor = move.collider.GetComponent<Blocks>();
-            _blocks[0] = move.collider.GetComponent<Blocks>();
-            if (blockSensor != null && blockSensor._wall == true)
-            {
-                _leftMoveWhather = false;
-            }
-            else
-            {
-                _leftMoveWhather = true;
-            }
-        }
-        else
-        {
-            _leftMoveWhather = true;
-        }
+        _blocks[0] = move.collider?.GetComponent<Blocks>();
+        _leftMoveWhather = move.collider == null || (_blocks[0] != null && !_blocks[0]._wall);
     }
+
     void Rightmove()
     {
-
         RaycastHit2D move = Physics2D.Raycast(transform.position + new Vector3(0.6f, 0, 0), Vector2.right, _rich);
-        Debug.DrawRay(transform.position + new Vector3(0.6f, 0, 0), Vector2.right * _rich, Color.green);
-
-        if (move.collider != null)
-        {
-            Blocks blockSensor = move.collider.GetComponent<Blocks>();
-            _blocks[1] = move.collider.GetComponent<Blocks>();
-            if (blockSensor != null && blockSensor._wall == true)
-            {
-                _rightMoveWhather = false;
-            }
-            else
-            {
-                _rightMoveWhather = true;
-            }
-        }
-        else
-        {
-            _rightMoveWhather = true;
-        }
+        _blocks[1] = move.collider?.GetComponent<Blocks>();
+        _rightMoveWhather = move.collider == null || (_blocks[1] != null && !_blocks[1]._wall);
     }
 
     void Update()
     {
+        if (Keyboard.current.leftCtrlKey.isPressed)
+        {
+            ct = true;
+        }
+
+        if (!Keyboard.current.leftCtrlKey.isPressed)
+        {
+            ct = false;
+        }
+
 
         Upmove();
         Downmove();
         Leftmove();
         Rightmove();
 
+        // 방향에 맞는 블록에게 KeyMove 시도
+        for (int i = 0; i < 4; i++)
         {
-            for(int i = 0;i < 4; i++)
-            {
-                if (_blocks[i] != null)
-                {
-                    _blocks[i].KeyMove(i);
-                }
-            }
-
+            _blocks[i]?.KeyMove(i);
         }
 
-        {
-            LeftKeySensor = (Vec2Move.x < 0);
-            RightKeySensor = (Vec2Move.x > 0);
-            UpKeySensor = (Vec2Move.y > 0);
-            DownKeySensor = (Vec2Move.y < 0);
-        }
+        LeftKeySensor = (Vec2Move.x < 0);
+        RightKeySensor = (Vec2Move.x > 0);
+        UpKeySensor = (Vec2Move.y > 0);
+        DownKeySensor = (Vec2Move.y < 0);
+
         _mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         _mousePos.z = 0;
 
         if (Vec2Move.x < 0)
-        {
-           _childGameObject.GetComponent<SpriteRenderer>().flipX = false;
-        }
-
-        if (Vec2Move.x > 0)
-        {
+            _childGameObject.GetComponent<SpriteRenderer>().flipX = false;
+        else if (Vec2Move.x > 0)
             _childGameObject.GetComponent<SpriteRenderer>().flipX = true;
-        }
 
-
-        if ((Mouse.current.leftButton.wasPressedThisFrame &&
-            _mousePos.x >= transform.position.x - 1.5 && _mousePos.x <= transform.position.x - 0.5 &&
-                _mousePos.y >= transform.position.y - 0.5 && _mousePos.y <= transform.position.y + 0.5) ||
-                (Vec2Move.x < 0 && _movePossbie == true) && _leftMoveWhather == true)
+        if (ct == false)
         {
-            if (_leftMoveWhather == true)
+            if ((Vec2Move.x < 0 && _movePossbie && _leftMoveWhather) ||
+                (Mouse.current.leftButton.wasPressedThisFrame &&
+                 _mousePos.x >= transform.position.x - 1.5f && _mousePos.x <= transform.position.x - 0.5f &&
+                 _mousePos.y >= transform.position.y - 0.5f && _mousePos.y <= transform.position.y + 0.5f))
             {
                 StartCoroutine(MoveCoolTime());
-                transform.position += new Vector3(-1, 0, 0);
-                PlayMoveAnimation();
-            } 
-        }
-
-        if ((Mouse.current.leftButton.wasPressedThisFrame &&
-            (_mousePos.x <= transform.position.x + 1.5 && _mousePos.x >= transform.position.x + 0.5 &&
-                _mousePos.y >= transform.position.y - 0.5 && _mousePos.y <= transform.position.y + 0.5)) ||
-                (Vec2Move.x > 0 && _movePossbie == true) && _rightMoveWhather == true)
-        {
-                _childGameObject.GetComponent<SpriteRenderer>().flipX = true;
-            if (_rightMoveWhather == true)
-            {
-                StartCoroutine(MoveCoolTime());
-                transform.position += new Vector3(1, 0, 0);
+                transform.position += Vector3.left;
                 PlayMoveAnimation();
             }
-        }
-
-        if ((Mouse.current.leftButton.wasPressedThisFrame &&
-            _mousePos.y >= transform.position.y - 1.5 && _mousePos.y <= transform.position.y - 0.5 &&
-                _mousePos.x >= transform.position.x - 0.5 && _mousePos.x <= transform.position.x + 0.5) ||
-                (Vec2Move.y < 0 && _movePossbie == true) && _downMoveWhather == true)
-        {
-            if (_downMoveWhather == true)
+            else if ((Vec2Move.x > 0 && _movePossbie && _rightMoveWhather) ||
+                (Mouse.current.leftButton.wasPressedThisFrame &&
+                 _mousePos.x <= transform.position.x + 1.5f && _mousePos.x >= transform.position.x + 0.5f &&
+                 _mousePos.y >= transform.position.y - 0.5f && _mousePos.y <= transform.position.y + 0.5f))
             {
                 StartCoroutine(MoveCoolTime());
-                transform.position += new Vector3(0, -1, 0);
+                transform.position += Vector3.right;
                 PlayMoveAnimation();
             }
-        }
-
-        if ((Mouse.current.leftButton.wasPressedThisFrame &&
-            (_mousePos.y <= transform.position.y + 1.5 && _mousePos.y >= transform.position.y + 0.5 &&
-                _mousePos.x >= transform.position.x - 0.5 && _mousePos.x <= transform.position.x + 0.5)) ||
-                (Vec2Move.y > 0 && _movePossbie == true) && _upMoveWhather == true)
-        {
-            if (_upMoveWhather == true)
+            else if ((Vec2Move.y < 0 && _movePossbie && _downMoveWhather) ||
+                (Mouse.current.leftButton.wasPressedThisFrame &&
+                 _mousePos.y >= transform.position.y - 1.5f && _mousePos.y <= transform.position.y - 0.5f &&
+                 _mousePos.x >= transform.position.x - 0.5f && _mousePos.x <= transform.position.x + 0.5f))
             {
                 StartCoroutine(MoveCoolTime());
-                transform.position += new Vector3(0, 1, 0);
+                transform.position += Vector3.down;
+                PlayMoveAnimation();
+            }
+            else if ((Vec2Move.y > 0 && _movePossbie && _upMoveWhather) ||
+                (Mouse.current.leftButton.wasPressedThisFrame &&
+                 _mousePos.y <= transform.position.y + 1.5f && _mousePos.y >= transform.position.y + 0.5f &&
+                 _mousePos.x >= transform.position.x - 0.5f && _mousePos.x <= transform.position.x + 0.5f))
+            {
+                StartCoroutine(MoveCoolTime());
+                transform.position += Vector3.up;
                 PlayMoveAnimation();
             }
         }
     }
-
-    GameObject child;
 
     void PlayMoveAnimation()
     {
         GameObject particle = Instantiate(_particle).gameObject;
         particle.transform.position = transform.position;
-        child = transform.GetChild(0).gameObject;
-        //child.transform.position += new Vector3(0, 1.75f, 0);
+
+        var child = transform.GetChild(0).gameObject;
         child.transform.localScale = new Vector3(2, 0.5f, 0);
-        StartCoroutine(Anim());
+        StartCoroutine(Anim(child));
     }
 
-    IEnumerator Anim()
+    IEnumerator Anim(GameObject child)
     {
         for (int i = 0; i < 5; i++)
         {
-            //child.transform.position += new Vector3(0, -0.35f, 0);
             child.transform.localScale += new Vector3(-0.2f, 0.1f, 0);
             yield return new WaitForSeconds(0.025f);
         }
     }
 
-    
-
     IEnumerator MoveCoolTime()
     {
         _movePossbie = false;
-
-        _movePossbie = false;
-
-        
         yield return new WaitForSeconds(_moveCoolTIme);
         _movePossbie = true;
-
     }
 }
