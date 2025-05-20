@@ -16,7 +16,7 @@ public class TextBoxDown : MonoBehaviour
         _textBox = _parent.transform.GetChild(1).gameObject;
         _player = GameObject.Find("Player");
         _highSpeed = _lerpSpeed / 1;
-        _lowSpeed = _lerpSpeed / 100;
+        _lowSpeed = _lerpSpeed / 10;
     }
 
     private void Update()
