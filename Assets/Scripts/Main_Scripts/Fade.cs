@@ -21,7 +21,7 @@ public class Fade : MonoBehaviour
     {
         if (color2.a > 0f && dark == false)
         {
-            color2.a -= 1 * Time.unscaledDeltaTime;
+            color2.a -= 0.5f * Time.unscaledDeltaTime;
             _sr.color = color2;
             StartCoroutine(Size());
         }
