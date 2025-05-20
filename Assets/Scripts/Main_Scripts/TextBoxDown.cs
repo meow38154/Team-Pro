@@ -4,7 +4,7 @@ public class TextBoxDown : MonoBehaviour
 {
     GameObject _parent, _textBox, _player;
     Vector3 _showOffset = new Vector3(0, 3f, 0); // 표시 위치 오프셋
-    Vector3 _hideOffset = new Vector3(0, 1000f, 0); // 숨김 위치 오프셋
+    Vector3 _hideOffset = new Vector3(0, 100f, 0); // 숨김 위치 오프셋
     float _threshold = 0.1f;
     float _lerpSpeed = 5f; // 부드럽게 이동하는 속도
     float _lowSpeed;
