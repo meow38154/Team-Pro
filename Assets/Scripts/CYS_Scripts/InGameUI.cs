@@ -32,6 +32,25 @@ public class InGameUI : MonoBehaviour
     }
 
 
+    private void Update()
+    {
+        if (Keyboard.current.escapeKey.wasPressedThisFrame)
+        {
+            if (!_pauseUI.activeSelf)
+            {
+                Time.timeScale = 0;
+                Pause();
+            }
+
+            else if (_pauseUI.activeSelf)
+            {
+                Time.timeScale = 1;
+                Return();
+            }
+        }
+    }
+
+    //a
 
     public void Pause()
     {
@@ -51,6 +70,7 @@ public class InGameUI : MonoBehaviour
 
     public void ToLobby()
     {
+        Time.timeScale = 1;
         SceneManager.LoadScene(1);
     }
 
