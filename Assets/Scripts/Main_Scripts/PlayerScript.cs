@@ -15,13 +15,13 @@ public class PlayerScript : MonoBehaviour
     AudioSource _audioSource;
     Vector3 _mousePos;
     public Vector2 Vec2Move { get; set; }
-    bool _leftMoveWhather, _rightMoveWhather, _downMoveWhather, _upMoveWhather, _movePossbie = true;
+    [SerializeField] bool _leftMoveWhather, _rightMoveWhather, _downMoveWhather, _upMoveWhather, _movePossbie = true;
     float _rich = 0.7f;
 
-    public bool LeftKeySensor { get; set; }
-    public bool RightKeySensor { get; set; }
-    public bool UpKeySensor { get; set; }
-    public bool DownKeySensor { get; set; }
+    [field: SerializeField] public bool LeftKeySensor { get; set; }
+    [field: SerializeField] public bool RightKeySensor { get; set; }
+    [field: SerializeField] public bool UpKeySensor { get; set; }
+    [field: SerializeField] public bool DownKeySensor { get; set; }
 
     [SerializeField] Blocks[] _blocks = new Blocks[4];
 
@@ -105,12 +105,12 @@ public class PlayerScript : MonoBehaviour
         else if (Vec2Move.x > 0)
             _childGameObject.GetComponent<SpriteRenderer>().flipX = true;
 
-        if (ct == false)
+        if (ct == false && Time.timeScale != 0)
         {
             if ((Vec2Move.x < 0 && _movePossbie && _leftMoveWhather) ||
                 (Mouse.current.leftButton.wasPressedThisFrame &&
                  _mousePos.x >= transform.position.x - 1.5f && _mousePos.x <= transform.position.x - 0.5f &&
-                 _mousePos.y >= transform.position.y - 0.5f && _mousePos.y <= transform.position.y + 0.5f))
+                 _mousePos.y >= transform.position.y - 0.5f && _mousePos.y <= transform.position.y + 0.5f) && _leftMoveWhather)
             {
                 StartCoroutine(MoveCoolTime());
                 transform.position += Vector3.left;
@@ -120,7 +120,7 @@ public class PlayerScript : MonoBehaviour
             else if ((Vec2Move.x > 0 && _movePossbie && _rightMoveWhather) ||
                 (Mouse.current.leftButton.wasPressedThisFrame &&
                  _mousePos.x <= transform.position.x + 1.5f && _mousePos.x >= transform.position.x + 0.5f &&
-                 _mousePos.y >= transform.position.y - 0.5f && _mousePos.y <= transform.position.y + 0.5f))
+                 _mousePos.y >= transform.position.y - 0.5f && _mousePos.y <= transform.position.y + 0.5f) && _rightMoveWhather)
             {
                 StartCoroutine(MoveCoolTime());
                 transform.position += Vector3.right;
@@ -130,7 +130,7 @@ public class PlayerScript : MonoBehaviour
             else if ((Vec2Move.y < 0 && _movePossbie && _downMoveWhather) ||
                 (Mouse.current.leftButton.wasPressedThisFrame &&
                  _mousePos.y >= transform.position.y - 1.5f && _mousePos.y <= transform.position.y - 0.5f &&
-                 _mousePos.x >= transform.position.x - 0.5f && _mousePos.x <= transform.position.x + 0.5f))
+                 _mousePos.x >= transform.position.x - 0.5f && _mousePos.x <= transform.position.x + 0.5f) && _downMoveWhather)
             {
                 StartCoroutine(MoveCoolTime());
                 transform.position += Vector3.down;
@@ -140,7 +140,7 @@ public class PlayerScript : MonoBehaviour
             else if ((Vec2Move.y > 0 && _movePossbie && _upMoveWhather) ||
                 (Mouse.current.leftButton.wasPressedThisFrame &&
                  _mousePos.y <= transform.position.y + 1.5f && _mousePos.y >= transform.position.y + 0.5f &&
-                 _mousePos.x >= transform.position.x - 0.5f && _mousePos.x <= transform.position.x + 0.5f))
+                 _mousePos.x >= transform.position.x - 0.5f && _mousePos.x <= transform.position.x + 0.5f) && _upMoveWhather)
             {
                 StartCoroutine(MoveCoolTime());
                 transform.position += Vector3.up;
