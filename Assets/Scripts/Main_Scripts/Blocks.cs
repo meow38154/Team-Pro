@@ -68,13 +68,9 @@ public class Blocks : MonoBehaviour
 
     ParticleSystem particleSystem;
 
-    [Header("오디오")]
-    [SerializeField] AudioClip meltSound;
-    AudioSource _audioSource;
 
     private void Awake()
     {
-        _audioSource = GetComponent<AudioSource>();
         _savePushing = _pushing;
 
         _block = gameObject;
@@ -386,11 +382,11 @@ public class Blocks : MonoBehaviour
             _go.GetComponent<Blocks>()._spren.enabled = false;
             _go.GetComponent<Blocks>()._wallBlock = false;
         }
-            GetComponent<Blocks>().PlayParticle();
-            _goalSignal = true;
+        GetComponent<Blocks>().PlayParticle();
+        _goalSignal = true;
         _go.GetComponent<Blocks>()._blockNumber = 67893;
         _go.GetComponent<Blocks>()._destory = true;
-            _go.transform.position += new Vector3(0, 300,0);
+        _go.transform.position += new Vector3(0, 300, 0);
         _one2 = true;
 
         if (_go.layer == 22)
@@ -401,9 +397,7 @@ public class Blocks : MonoBehaviour
         {
             _go.layer = 9;
         }
-        _audioSource.spatialBlend = 0f;
-        _audioSource.PlayOneShot(meltSound, 1);
-        Debug.Log("Melted!");
+        AudioManager.Instance.PlayMelt();
     }
 
 

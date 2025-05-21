@@ -9,7 +9,6 @@ public class PlayerScript : MonoBehaviour
     [SerializeField] float _moveCoolTIme = 0.3f;
     [SerializeField] ParticleSystem _particle;
     [SerializeField] int particleRate;
-    [SerializeField] AudioClip[] stepAudios;
 
 
     AudioSource _audioSource;
@@ -115,7 +114,7 @@ public class PlayerScript : MonoBehaviour
                 StartCoroutine(MoveCoolTime());
                 transform.position += Vector3.left;
                 PlayMoveAnimation();
-                PlayAudio();
+                AudioManager.Instance.PlayStep();
             }
             else if ((Vec2Move.x > 0 && _movePossbie && _rightMoveWhather) ||
                 (Mouse.current.leftButton.wasPressedThisFrame &&
@@ -125,7 +124,7 @@ public class PlayerScript : MonoBehaviour
                 StartCoroutine(MoveCoolTime());
                 transform.position += Vector3.right;
                 PlayMoveAnimation();
-                PlayAudio();
+                AudioManager.Instance.PlayStep();
             }
             else if ((Vec2Move.y < 0 && _movePossbie && _downMoveWhather) ||
                 (Mouse.current.leftButton.wasPressedThisFrame &&
@@ -135,7 +134,7 @@ public class PlayerScript : MonoBehaviour
                 StartCoroutine(MoveCoolTime());
                 transform.position += Vector3.down;
                 PlayMoveAnimation();
-                PlayAudio();
+                AudioManager.Instance.PlayStep();
             }
             else if ((Vec2Move.y > 0 && _movePossbie && _upMoveWhather) ||
                 (Mouse.current.leftButton.wasPressedThisFrame &&
@@ -145,7 +144,7 @@ public class PlayerScript : MonoBehaviour
                 StartCoroutine(MoveCoolTime());
                 transform.position += Vector3.up;
                 PlayMoveAnimation();
-                PlayAudio();
+                AudioManager.Instance.PlayStep();
             }
         }
     }
@@ -158,11 +157,6 @@ public class PlayerScript : MonoBehaviour
         var child = transform.GetChild(0).gameObject;
         child.transform.localScale = new Vector3(2, 0.5f, 0);
         StartCoroutine(Anim(child));
-    }
-
-    void PlayAudio()
-    {
-        _audioSource.PlayOneShot(stepAudios[UnityEngine.Random.Range(0, stepAudios.Length)]);
     }
 
     IEnumerator Anim(GameObject child)
