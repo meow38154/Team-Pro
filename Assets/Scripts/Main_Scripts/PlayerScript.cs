@@ -11,7 +11,6 @@ public class PlayerScript : MonoBehaviour
     [SerializeField] int particleRate;
 
 
-    AudioSource _audioSource;
     Vector3 _mousePos;
     public Vector2 Vec2Move { get; set; }
     [SerializeField] bool _leftMoveWhather, _rightMoveWhather, _downMoveWhather, _upMoveWhather, _movePossbie = true;
@@ -36,7 +35,6 @@ public class PlayerScript : MonoBehaviour
     public void OnMove(InputValue value)
     {
         Vec2Move = value.Get<Vector2>();
-        _audioSource = GetComponent<AudioSource>();
     }
 
     void Upmove()
