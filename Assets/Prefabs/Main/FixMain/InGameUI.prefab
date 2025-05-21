@@ -266,7 +266,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63712f1629a26024c909636efbb75db3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxmin: 0
+  _maxmin: 1
 --- !u!1 &2543805964018971923
 GameObject:
   m_ObjectHideFlags: 0
@@ -533,7 +533,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63712f1629a26024c909636efbb75db3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxmin: 1
+  _maxmin: 0
 --- !u!1 &4635616025604551746
 GameObject:
   m_ObjectHideFlags: 0
