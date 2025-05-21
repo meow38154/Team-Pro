@@ -7,10 +7,14 @@ using UnityEngine.InputSystem;
 using System.Collections;
 using UnityEngine.EventSystems;
 using Unity.Cinemachine;
+using UnityEngine.UI;
 
 public class InGameUI : MonoBehaviour
 {
     [SerializeField] private GameObject _pauseUI;
+    [SerializeField] private Sprite stopped;
+    [SerializeField] private Sprite resumed;
+    [SerializeField] private Image stopBtn;
     [SerializeField] private TextMeshProUGUI _stop;
     private bool wasStopped ;
     private GameManager gamemanager;
@@ -54,7 +58,7 @@ public class InGameUI : MonoBehaviour
 
     public void Pause()
     {
-        
+        stopBtn.sprite = stopped;
             _stop.text = ">";
             _pauseUI.SetActive(true);
         Time.timeScale = 0;
@@ -63,6 +67,7 @@ public class InGameUI : MonoBehaviour
 
     public void Return()
     {
+        stopBtn.sprite = resumed;
         _stop.text = "ll";
         _pauseUI.SetActive(false);
         Time.timeScale = 1;
