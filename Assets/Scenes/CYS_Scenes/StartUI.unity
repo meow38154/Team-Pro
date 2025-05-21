@@ -395,6 +395,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7741921099003272334, guid: 4d05cf2188c52d24d88c72b45b92e6fd, type: 3}
+      propertyPath: _stop
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7741921099003272334, guid: 4d05cf2188c52d24d88c72b45b92e6fd, type: 3}
+      propertyPath: stopBtn
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7741921099003272334, guid: 4d05cf2188c52d24d88c72b45b92e6fd, type: 3}
+      propertyPath: _pauseUI
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 8936245389566403690, guid: 4d05cf2188c52d24d88c72b45b92e6fd, type: 3}
       propertyPath: m_Name
       value: InGameUI
@@ -404,6 +416,8 @@ PrefabInstance:
     - {fileID: 2619316998639720388, guid: 4d05cf2188c52d24d88c72b45b92e6fd, type: 3}
     - {fileID: 8901855966846788153, guid: 4d05cf2188c52d24d88c72b45b92e6fd, type: 3}
     - {fileID: 6992253481777782412, guid: 4d05cf2188c52d24d88c72b45b92e6fd, type: 3}
+    - {fileID: 2614857486986603573, guid: 4d05cf2188c52d24d88c72b45b92e6fd, type: 3}
+    - {fileID: 1233143516678633414, guid: 4d05cf2188c52d24d88c72b45b92e6fd, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4d05cf2188c52d24d88c72b45b92e6fd, type: 3}
