@@ -145,6 +145,7 @@ GameObject:
   - component: {fileID: 902295680752424437}
   - component: {fileID: 3617782300306591045}
   - component: {fileID: 3752811681651634333}
+  - component: {fileID: 7586360915915093763}
   m_Layer: 5
   m_Name: MinousButton
   m_TagString: Untagged
@@ -252,19 +253,20 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 3617782300306591045}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 7741921099003272334}
-        m_TargetAssemblyTypeName: InGameUI, Assembly-CSharp
-        m_MethodName: Shrinking
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
+--- !u!114 &7586360915915093763
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1233143516678633414}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63712f1629a26024c909636efbb75db3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxmin: 0
 --- !u!1 &2543805964018971923
 GameObject:
   m_ObjectHideFlags: 0
@@ -410,6 +412,7 @@ GameObject:
   - component: {fileID: 3148863178802244071}
   - component: {fileID: 5740480120366739701}
   - component: {fileID: 9022147404335225491}
+  - component: {fileID: 6283351294795381513}
   m_Layer: 5
   m_Name: PlusButton
   m_TagString: Untagged
@@ -517,19 +520,20 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5740480120366739701}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 7741921099003272334}
-        m_TargetAssemblyTypeName: InGameUI, Assembly-CSharp
-        m_MethodName: Expansion
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
+--- !u!114 &6283351294795381513
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2614857486986603573}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63712f1629a26024c909636efbb75db3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxmin: 1
 --- !u!1 &4635616025604551746
 GameObject:
   m_ObjectHideFlags: 0
