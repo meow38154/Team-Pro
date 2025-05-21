@@ -1890,7 +1890,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "\uAC1C\uBC1C \uC784\uB9AC\uC6B0 \uC7A5\uC900\uBBFC \uAE40\uC9C0\uC6B0
-    \uCD5C\uC724\uC11C \uC544\uD2B8 \uAE40\uC9C0\uC6B0 \uCD5C\uC724\uC11C NGC"
+    \uCD5C\uC724\uC11C \n      \uC544\uD2B8 \uAE40\uC9C0\uC6B0 \uCD5C\uC724\uC11C
+    NGC"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 41b88fe4e70edab4b841a18580dbe7f5, type: 2}
   m_sharedMaterial: {fileID: -2058128159745686347, guid: 41b88fe4e70edab4b841a18580dbe7f5, type: 2}
