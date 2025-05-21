@@ -378,9 +378,13 @@ public class Blocks : MonoBehaviour
         _go.GetComponent<Blocks>()._pushing = false;
         if (_go.gameObject.layer != 19)
         {
-            _go.GetComponent<Blocks>()._childGo.GetComponent<SpriteRenderer>().color = Color.white;
+            if (_go.gameObject.layer != 20)
+            {
+                _go.GetComponent<Blocks>()._childGo.GetComponent<SpriteRenderer>().color = Color.white;
+            }
             _go.GetComponent<Blocks>()._spren.enabled = false;
             _go.GetComponent<Blocks>()._wallBlock = false;
+
         }
         GetComponent<Blocks>().PlayParticle();
         _goalSignal = true;
@@ -397,7 +401,10 @@ public class Blocks : MonoBehaviour
         {
             _go.layer = 9;
         }
-        AudioManager.Instance.PlayMelt();
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.PlayMelt();
+        }
     }
 
 
@@ -445,27 +452,56 @@ public class Blocks : MonoBehaviour
     IEnumerator HapGoldPlay(GameObject _twotwo)
     {
         _one2 = false;
-        yield return new WaitForSeconds(1.15f);
+        yield return new WaitForSeconds(0.95f);
+        GameObject HG = Instantiate(_hapGoldGameObject);
+        yield return new WaitForSeconds(0.2f);
         PlayParticle();
 
-        GameObject HG = Instantiate(_hapGoldGameObject);
         GameObject HGChild = HG.transform.GetChild(0).gameObject;
 
         HG.transform.position = transform.position;
         HGChild.GetComponentInChildren<Blocks>()._blockNumber = GetComponent<Blocks>()._blockNumber;
         Debug.Log("바꼈는데");
-        RemoveBlock(_twotwo);
+
+
+        Debug.Log(this.gameObject);
         RemoveBlock(this.gameObject);
+        Debug.Log(_twotwo);
+        RemoveBlock(_twotwo);
+        if (gameObject.layer == 20)
+        {
+            RemoveBlock(gameObject);
+        }
         _one = true;
     }
 
+
+    bool hapgoldLife = true;
+
+
     private void OnTriggerStay2D(Collider2D collision)
     {
+        if (hapgoldLife && gameObject.layer == 12)
+        {
+            if (collision.gameObject.layer == 21 || collision.gameObject.layer == 22 || collision.gameObject.layer == 20)
+            {
+                Debug.Log(collision.gameObject);
+                RemoveBlock(collision.gameObject);
+                hapgoldLife = false;
+            }
+        }
+
         if ((gameObject.layer == 21 && collision.gameObject.layer == 22) && _one2)
         {
             Debug.Log("트리커 닿음: " + _Parents.name + "나는 " + collision.gameObject.GetComponent<Blocks>()._Parents.name);
             StartCoroutine(HapGoldPlay(collision.gameObject));
         }
+    }
+
+    IEnumerator HapGold()
+    {
+        yield return new WaitForSeconds(1.10f);
+        RemoveBlock(gameObject);
     }
 
     IEnumerator BugSuJeongCoolTime()
