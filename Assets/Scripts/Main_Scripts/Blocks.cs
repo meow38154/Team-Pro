@@ -454,6 +454,7 @@ public class Blocks : MonoBehaviour
         _one2 = false;
         yield return new WaitForSeconds(0.95f);
         GameObject HG = Instantiate(_hapGoldGameObject);
+        Debug.Log("합금 소환");
         yield return new WaitForSeconds(0.2f);
         PlayParticle();
 
@@ -464,9 +465,9 @@ public class Blocks : MonoBehaviour
         Debug.Log("바꼈는데");
 
 
-        Debug.Log(this.gameObject);
+        Debug.Log("디스게임오브젝트죽음");
         RemoveBlock(this.gameObject);
-        Debug.Log(_twotwo);
+        Debug.Log("투투죽음");
         RemoveBlock(_twotwo);
         if (gameObject.layer == 20)
         {
@@ -485,7 +486,7 @@ public class Blocks : MonoBehaviour
         {
             if (collision.gameObject.layer == 21 || collision.gameObject.layer == 22 || collision.gameObject.layer == 20)
             {
-                Debug.Log(collision.gameObject);
+                Debug.Log("앙");
                 RemoveBlock(collision.gameObject);
                 hapgoldLife = false;
             }

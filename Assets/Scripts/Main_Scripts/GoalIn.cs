@@ -13,11 +13,14 @@ public class GoalIn : MonoBehaviour
     [SerializeField] Sprite _vDoorC;
     [SerializeField] Sprite _hDoorO;
     [SerializeField] Sprite _hDoorC;
-    Blocks _blocks;
-    private SpriteRenderer _render;
-    GameManager _gm;
 
-    bool _one;
+    private Blocks _blocks;
+    private SpriteRenderer _render;
+    private GameManager _gm;
+
+    private bool _one;
+    private float _noBlockTimer = 0f;
+    private const float OpenDelay = 1f; // 1초
 
     private void Awake()
     {
@@ -28,36 +31,33 @@ public class GoalIn : MonoBehaviour
 
     private void Update()
     {
-            Sprite();
+        SpriteUpdate();
 
         if (Blocks._goalSignal)
         {
             GamSec();
         }
     }
-    void Sprite()
+
+    void SpriteUpdate()
     {
-        if (_openClose && _isVertical == false)
+        if (_openClose && !_isVertical)
         {
             _render.sprite = _vDoorO;
         }
-
-        if (_openClose == false && _isVertical == false)
+        else if (!_openClose && !_isVertical)
         {
             _render.sprite = _vDoorC;
         }
-
-        if (_openClose && _isVertical)
+        else if (_openClose && _isVertical)
         {
             _render.sprite = _hDoorO;
         }
-
-        if (_openClose == false && _isVertical)
+        else if (!_openClose && _isVertical)
         {
             _render.sprite = _hDoorC;
         }
     }
-
 
     void GamSec()
     {
@@ -78,19 +78,28 @@ public class GoalIn : MonoBehaviour
 
         if (goalBlockExists)
         {
+            // 블록이 다시 생겼으면 타이머 초기화하고 닫음
+            _noBlockTimer = 0f;
             _blocks.WallTrue();
             _openClose = false;
+            _one = false; // 다시 효과를 재생할 수 있게
         }
         else
         {
-            if (_one == false)
+            // 블록이 없을 경우 타이머 시작
+            _noBlockTimer += Time.deltaTime;
+
+            if (_noBlockTimer >= OpenDelay)
             {
-                GetComponent<Blocks>().PlayParticle();
-                _one = true;
+                if (!_one)
+                {
+                    _blocks.PlayParticle();
+                    _one = true;
+                }
+
+                _openClose = true;
+                _blocks.Wall(); // 벽 해제
             }
-            _openClose = true;
-            _blocks.Wall();
         }
     }
-
 }
