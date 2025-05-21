@@ -78,7 +78,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 17
+  m_SortingOrder: 4
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -112,13 +112,19 @@ MonoBehaviour:
   _GoalinType:
     serializedVersion: 2
     m_Bits: 0
-  _blockNumber: 0
+  <_blockNumber>k__BackingField: 0
   _breakBlock: 0
   _breakCount: 0
+  _daldal: 0.25
   _numberPrefabs: {fileID: 0}
   _breakImage: {fileID: 0}
   _particles: {fileID: 6322196409931000869, guid: 2a124082c281e094f963727bd29a316c, type: 3}
+  _hapGoldGameObject: {fileID: 0}
+  _hapGoldtell:
+    serializedVersion: 2
+    m_Bits: 0
   _count: {fileID: 0}
+  meltSound: {fileID: 0}
 --- !u!61 &6277896809108673562
 BoxCollider2D:
   m_ObjectHideFlags: 0

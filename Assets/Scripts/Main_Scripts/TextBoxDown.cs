@@ -6,7 +6,7 @@ public class TextBoxDown : MonoBehaviour
     [SerializeField] Vector3 _showOffset = new Vector3(0, 3f, 0); // 표시 위치 오프셋
     [SerializeField] Vector3 _hideOffset = new Vector3(0, 100f, 0); // 숨김 위치 오프셋
     float _threshold = 0.1f;
-    float _lerpSpeed = 5f; // 부드럽게 이동하는 속도
+    float _lerpSpeed = 10f; // 부드럽게 이동하는 속도
     float _lowSpeed;
     float _highSpeed;
 
@@ -16,7 +16,7 @@ public class TextBoxDown : MonoBehaviour
         _textBox = _parent.transform.GetChild(1).gameObject;
         _player = GameObject.Find("Player");
         _highSpeed = _lerpSpeed / 1;
-        _lowSpeed = _lerpSpeed / 10;
+        _lowSpeed = _lerpSpeed / 24;
     }
 
     private void Update()
@@ -30,6 +30,11 @@ public class TextBoxDown : MonoBehaviour
         if (Mathf.Abs(playerPos.x - thisPos.x) < _threshold &&
             Mathf.Abs(playerPos.y - thisPos.y) < _threshold)
         {
+            if (_textBox.transform.position.y > 20)
+            {
+                _textBox.transform.position = new Vector3(transform.position.x, 20, transform.position.z);
+            }
+
             targetPosition = _parent.transform.position + _showOffset;
 
             _textBox.transform.position = Vector3.Lerp(
