@@ -4,8 +4,9 @@ public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance;
 
-    [Header("Melt")]
+    [Header("Block")]
     [SerializeField] AudioClip meltSound;
+    [SerializeField] AudioClip pushSound;
     [Header("Step")]
     [SerializeField] AudioClip[] stepSounds;
 
@@ -36,5 +37,11 @@ public class AudioManager : MonoBehaviour
     {
         _audioSource.PlayOneShot(meltSound, 1);
         Debug.Log("Melted!");
+    }
+
+    public void PlayPush()
+    {
+        _audioSource.PlayOneShot(pushSound, 1);
+        Debug.Log("Pushed!");
     }
 }

@@ -292,6 +292,7 @@ public class Blocks : MonoBehaviour
                     StartCoroutine(DalDal());
                 }
                 transform.position = _positionYea + _vec2Abs;
+                AudioManager.Instance.PlayPush();
 
                 if (_minCoolTime)
                 {
@@ -328,6 +329,7 @@ public class Blocks : MonoBehaviour
                     }
 
                     transform.position = _positionYea + _vec2Abs;
+                    AudioManager.Instance.PlayPush();
 
                     if (_minCoolTime)
                     {
