@@ -210,7 +210,7 @@ MonoBehaviour:
   _hapGoldGameObject: {fileID: 0}
   _hapGoldtell:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1048576
   _count: {fileID: 0}
 --- !u!61 &1881457604238736375
 BoxCollider2D:
@@ -334,7 +334,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: -6611027266568764723, guid: b0ace935051cc08468994a63eba4322a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
