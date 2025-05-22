@@ -385,7 +385,7 @@ public class Blocks : MonoBehaviour
         _go.GetComponent<Blocks>()._pushing = false;
         if (_go.gameObject.layer != 19)
         {
-            if (_go.gameObject.layer != 20)
+            if (_go.gameObject.layer == 9 || _go.gameObject.layer == 10 || _go.gameObject.layer == 11)
             {
                 _go.GetComponent<Blocks>()._childGo.GetComponent<SpriteRenderer>().color = Color.white;
             }
@@ -429,11 +429,14 @@ public class Blocks : MonoBehaviour
         if (gameObject.layer == 9 || gameObject.layer == 10)
             _pushing = true;
 
-        //if (transform.position.y > 200)
-        //{
-        //    _childGo.GetComponent<SpriteRenderer>().color = Color.white;
+        if (transform.position.y > 200)
+        {
+            if (gameObject.layer == 9 || gameObject.layer == 10 || gameObject.layer == 11)
+            {
+                _childGo.GetComponent<SpriteRenderer>().color = Color.white;
+            }
 
-        //}
+        }
     }
 
 
@@ -473,25 +476,36 @@ public class Blocks : MonoBehaviour
     {
         _pushing = false;
         _hapGoldTF = true;
-        Debug.Log("코루틴 실행");
-        yield return new WaitForSeconds(1.15f);
-        Debug.Log("0.5초 지남");
+        yield return new WaitForSeconds(1.15f); 
         _childGo.GetComponent<SpriteRenderer>().color = Color.gray;
+    }
+
+        GameObject HG;
+
+    IEnumerator HapGoldSpawn()
+    {
+        yield return new WaitForSeconds(0.05f);
     }
 
     IEnumerator HapGoldPlay(GameObject _twotwo)
     {
         _one2 = false;
-        yield return new WaitForSeconds(0.95f);
-        GameObject HG = Instantiate(_hapGoldGameObject);
-        Debug.Log("합금 소환");
-        yield return new WaitForSeconds(0.2f);
-        PlayParticle();
+        yield return new WaitForSeconds(1.05f);
 
+        HG = Instantiate(_hapGoldGameObject);
         GameObject HGChild = HG.transform.GetChild(0).gameObject;
+        HGChild.GetComponentInChildren<Blocks>()._blockNumber = GetComponent<Blocks>()._blockNumber;
 
         HG.transform.position = transform.position;
-        HGChild.GetComponentInChildren<Blocks>()._blockNumber = GetComponent<Blocks>()._blockNumber;
+
+        StartCoroutine(HapGoldSpawn());
+
+
+
+        Debug.Log("합금 소환");
+        yield return new WaitForSeconds(0.1f);
+        PlayParticle();
+
         Debug.Log("바꼈는데");
 
 
@@ -501,23 +515,30 @@ public class Blocks : MonoBehaviour
         RemoveBlock(_twotwo);
         if (gameObject.layer == 20)
         {
-            RemoveBlock(gameObject);
+            StartCoroutine(CoolTimeRemoveDragon());
         }
         _one = true;
     }
+    
 
+    IEnumerator CoolTimeRemoveDragon()
+    {
+        yield return new WaitForSeconds(1f);
+            RemoveBlock(gameObject);
+
+    }
 
     bool hapgoldLife = true;
 
-
+         
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (hapgoldLife && gameObject.layer == 12)
         {
             if (collision.gameObject.layer == 21 || collision.gameObject.layer == 22 || collision.gameObject.layer == 20)
             {
-                Debug.Log("앙");
-                RemoveBlock(collision.gameObject);
+                Debug.Log("트리커에서 닿음");
+                //RemoveBlock(collision.gameObject);
                 hapgoldLife = false;
             }
         }
