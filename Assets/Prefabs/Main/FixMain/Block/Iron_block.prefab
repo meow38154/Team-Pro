@@ -313,7 +313,7 @@ MonoBehaviour:
   _hapGoldGameObject: {fileID: 44542900289245111, guid: e0a58da1d8fa24e46a61e152cf2a6b43, type: 3}
   _hapGoldtell:
     serializedVersion: 2
-    m_Bits: 1572864
+    m_Bits: 5767168
   _count: {fileID: 0}
 --- !u!61 &1663049305047843755
 BoxCollider2D:
