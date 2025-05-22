@@ -431,12 +431,17 @@ public class Blocks : MonoBehaviour
 
         if (transform.position.y > 200)
         {
-            if (gameObject.layer == 9 || gameObject.layer == 10 || gameObject.layer == 11)
-            {
-                _childGo.GetComponent<SpriteRenderer>().color = Color.white;
-            }
 
         }
+
+        if (gameObject.layer == 11)
+        {
+            _pushing = true;
+        }
+            //if (gameObject.layer == 9 || gameObject.layer == 10 || gameObject.layer == 11)
+            //{
+            //    _childGo.GetComponent<SpriteRenderer>().color = Color.white;
+            //}
     }
 
 
@@ -490,7 +495,7 @@ public class Blocks : MonoBehaviour
     IEnumerator HapGoldPlay(GameObject _twotwo)
     {
         _one2 = false;
-        yield return new WaitForSeconds(1.05f);
+        yield return new WaitForSeconds(0.75f);
 
         HG = Instantiate(_hapGoldGameObject);
         GameObject HGChild = HG.transform.GetChild(0).gameObject;
@@ -503,7 +508,7 @@ public class Blocks : MonoBehaviour
 
 
         Debug.Log("합금 소환");
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.5f);
         PlayParticle();
 
         Debug.Log("바꼈는데");
