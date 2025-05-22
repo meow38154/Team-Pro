@@ -205,6 +205,7 @@ public class Blocks : MonoBehaviour
 
     private void Update()
     {
+        WT();
         HabGold();
         BIM();
         TextMoveMSD();
@@ -274,26 +275,29 @@ public class Blocks : MonoBehaviour
         _vec2Clamp.x = Mathf.Clamp(_vec2Abs.x, -1, 1);
         _vec2Clamp.y = Mathf.Clamp(_vec2Abs.y, -1, 1);
 
-        if (_interationPossible && _movein)
+            if (_interationPossible && _movein)
+            {
+        if (_pushing)
         {
-            PlayParticle();
-            if (_breakCount > 0)
-            {
-                StartCoroutine(DalDal());
-            }
+                PlayParticle();
+                if (_breakCount > 0)
+                {
+                    StartCoroutine(DalDal());
+                }
 
-            Vector2 noMove = _positionYea + _vec2Abs;
+                Vector2 noMove = _positionYea + _vec2Abs;
 
-            if (transform.position.x == noMove.x && transform.position.y == noMove.y)
-            {
-                StartCoroutine(DalDal());
-            }
-            transform.position = _positionYea + _vec2Abs;
+                if (transform.position.x == noMove.x && transform.position.y == noMove.y)
+                {
+                    StartCoroutine(DalDal());
+                }
+                transform.position = _positionYea + _vec2Abs;
 
-            if (_minCoolTime)
-            {
-                StartCoroutine(CoolDown());
-                _breakCount--;
+                if (_minCoolTime)
+                {
+                    StartCoroutine(CoolDown());
+                    _breakCount--;
+                }
             }
         }
     }
@@ -307,6 +311,9 @@ public class Blocks : MonoBehaviour
                 (_playerVector.UpKeySensor && numder == 3) ||
                 (_playerVector.DownKeySensor && numder == 2))
             {
+
+                if (_pushing)
+                {
                 PlayParticle();
                 if (_breakCount > 0)
                 {
@@ -314,19 +321,19 @@ public class Blocks : MonoBehaviour
                 }
 
                 Vector2 noMove = _positionYea + _vec2Abs;
+                    if (transform.position.x == noMove.x && transform.position.y == noMove.y)
+                    {
+                        Debug.Log(noMove);
+                        StartCoroutine(DalDal());
+                    }
 
-                if (transform.position.x == noMove.x && transform.position.y == noMove.y)
-                {
-                    Debug.Log(noMove);
-                    StartCoroutine(DalDal());
-                }
+                    transform.position = _positionYea + _vec2Abs;
 
-                transform.position = _positionYea + _vec2Abs;
-
-                if (_minCoolTime)
-                {
-                    StartCoroutine(CoolDown());
-                    _breakCount--;
+                    if (_minCoolTime)
+                    {
+                        StartCoroutine(CoolDown());
+                        _breakCount--;
+                    }
                 }
             }
         }
@@ -407,6 +414,28 @@ public class Blocks : MonoBehaviour
         }
     }
 
+    void WT()
+    {
+        if (gameObject.layer == 21)
+        {
+            gameObject.layer = 9;
+        }
+
+        if (gameObject.layer == 22)
+        {
+            gameObject.layer = 10;
+        }
+
+        if (gameObject.layer == 9 || gameObject.layer == 10)
+            _pushing = true;
+
+        //if (transform.position.y > 200)
+        //{
+        //    _childGo.GetComponent<SpriteRenderer>().color = Color.white;
+
+        //}
+    }
+
 
     GameObject _hit;
 
@@ -442,6 +471,7 @@ public class Blocks : MonoBehaviour
     }
     IEnumerator HapGoldCoolTime()
     {
+        _pushing = false;
         _hapGoldTF = true;
         Debug.Log("코루틴 실행");
         yield return new WaitForSeconds(1.15f);
