@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   meltSound: {fileID: 8300000, guid: 45025a01b0164e04cafd80c7cb7d7369, type: 3}
+  pushSound: {fileID: 8300000, guid: 573c80e9a75befa45b786b408c341efa, type: 3}
   stepSounds:
   - {fileID: 8300000, guid: 1133f78716be39043a47a8e6122ec1dc, type: 3}
   - {fileID: 8300000, guid: f766270e4dd7cb3418bc496047a93944, type: 3}
