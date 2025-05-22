@@ -44,7 +44,7 @@ public class Fade : MonoBehaviour
     {
 
         dark = true;
-        GetComponent<RectTransform>().sizeDelta = new Vector2(1920, 1080);
+        GetComponent<RectTransform>().sizeDelta = new Vector2(Screen.width, Screen.height);
         Debug.Log("¥Ÿ≈© πŸ≤Ò");
     }
 }
