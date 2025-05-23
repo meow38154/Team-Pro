@@ -79,7 +79,7 @@ public class InGameUI : MonoBehaviour
     {
         AudioManager.Instance.PlayUICilck();
         Time.timeScale = 1;
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(0);
     }
 
     public void Reset2()
