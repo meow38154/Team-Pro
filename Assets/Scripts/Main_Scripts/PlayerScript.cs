@@ -67,23 +67,13 @@ public class PlayerScript : MonoBehaviour
 
     void Update()
     {
-        if (Keyboard.current.leftCtrlKey.isPressed)
-        {
-            ct = true;
-        }
-
-        if (!Keyboard.current.leftCtrlKey.isPressed)
-        {
-            ct = false;
-        }
-
+        ct = Keyboard.current.leftCtrlKey.isPressed;
 
         Upmove();
         Downmove();
         Leftmove();
         Rightmove();
 
-        // 방향에 맞는 블록에게 KeyMove 시도
         for (int i = 0; i < 4; i++)
         {
             _blocks[i]?.KeyMove(i);
@@ -102,49 +92,69 @@ public class PlayerScript : MonoBehaviour
         else if (Vec2Move.x > 0)
             _childGameObject.GetComponent<SpriteRenderer>().flipX = true;
 
-        if (ct == false && Time.timeScale != 0)
+        if (ct == false && Time.timeScale != 0 && _movePossbie)
         {
-            if ((Vec2Move.x < 0 && _movePossbie && _leftMoveWhather) ||
-                (Mouse.current.leftButton.wasPressedThisFrame &&
-                 _mousePos.x >= transform.position.x - 1.5f && _mousePos.x <= transform.position.x - 0.5f &&
-                 _mousePos.y >= transform.position.y - 0.5f && _mousePos.y <= transform.position.y + 0.5f) && _leftMoveWhather)
+            bool moved = false;
+
+            // 키보드 우선 처리
+            if (Vec2Move.x < 0 && _leftMoveWhather)
             {
-                StartCoroutine(MoveCoolTime());
-                transform.position += Vector3.left;
-                PlayMoveAnimation();
-                AudioManager.Instance.PlayStep();
+                Move(Vector3.left);
+                moved = true;
             }
-            else if ((Vec2Move.x > 0 && _movePossbie && _rightMoveWhather) ||
-                (Mouse.current.leftButton.wasPressedThisFrame &&
-                 _mousePos.x <= transform.position.x + 1.5f && _mousePos.x >= transform.position.x + 0.5f &&
-                 _mousePos.y >= transform.position.y - 0.5f && _mousePos.y <= transform.position.y + 0.5f) && _rightMoveWhather)
+            else if (Vec2Move.x > 0 && _rightMoveWhather)
             {
-                StartCoroutine(MoveCoolTime());
-                transform.position += Vector3.right;
-                PlayMoveAnimation();
-                AudioManager.Instance.PlayStep();
+                Move(Vector3.right);
+                moved = true;
             }
-            else if ((Vec2Move.y < 0 && _movePossbie && _downMoveWhather) ||
-                (Mouse.current.leftButton.wasPressedThisFrame &&
-                 _mousePos.y >= transform.position.y - 1.5f && _mousePos.y <= transform.position.y - 0.5f &&
-                 _mousePos.x >= transform.position.x - 0.5f && _mousePos.x <= transform.position.x + 0.5f) && _downMoveWhather)
+            else if (Vec2Move.y < 0 && _downMoveWhather)
             {
-                StartCoroutine(MoveCoolTime());
-                transform.position += Vector3.down;
-                PlayMoveAnimation();
-                AudioManager.Instance.PlayStep();
+                Move(Vector3.down);
+                moved = true;
             }
-            else if ((Vec2Move.y > 0 && _movePossbie && _upMoveWhather) ||
-                (Mouse.current.leftButton.wasPressedThisFrame &&
-                 _mousePos.y <= transform.position.y + 1.5f && _mousePos.y >= transform.position.y + 0.5f &&
-                 _mousePos.x >= transform.position.x - 0.5f && _mousePos.x <= transform.position.x + 0.5f) && _upMoveWhather)
+            else if (Vec2Move.y > 0 && _upMoveWhather)
             {
-                StartCoroutine(MoveCoolTime());
-                transform.position += Vector3.up;
-                PlayMoveAnimation();
-                AudioManager.Instance.PlayStep();
+                Move(Vector3.up);
+                moved = true;
+            }
+
+            // 키보드로 이동하지 않은 경우에만 마우스 처리
+            if (!moved && Mouse.current.leftButton.wasPressedThisFrame)
+            {
+                if (_mousePos.x >= transform.position.x - 1.5f && _mousePos.x <= transform.position.x - 0.5f &&
+                    _mousePos.y >= transform.position.y - 0.5f && _mousePos.y <= transform.position.y + 0.5f &&
+                    _leftMoveWhather)
+                {
+                    Move(Vector3.left);
+                }
+                else if (_mousePos.x <= transform.position.x + 1.5f && _mousePos.x >= transform.position.x + 0.5f &&
+                         _mousePos.y >= transform.position.y - 0.5f && _mousePos.y <= transform.position.y + 0.5f &&
+                         _rightMoveWhather)
+                {
+                    Move(Vector3.right);
+                }
+                else if (_mousePos.y >= transform.position.y - 1.5f && _mousePos.y <= transform.position.y - 0.5f &&
+                         _mousePos.x >= transform.position.x - 0.5f && _mousePos.x <= transform.position.x + 0.5f &&
+                         _downMoveWhather)
+                {
+                    Move(Vector3.down);
+                }
+                else if (_mousePos.y <= transform.position.y + 1.5f && _mousePos.y >= transform.position.y + 0.5f &&
+                         _mousePos.x >= transform.position.x - 0.5f && _mousePos.x <= transform.position.x + 0.5f &&
+                         _upMoveWhather)
+                {
+                    Move(Vector3.up);
+                }
             }
         }
+    }
+
+    void Move(Vector3 direction)
+    {
+        StartCoroutine(MoveCoolTime());
+        transform.position += direction;
+        PlayMoveAnimation();
+        AudioManager.Instance.PlayStep();
     }
 
     void PlayMoveAnimation()

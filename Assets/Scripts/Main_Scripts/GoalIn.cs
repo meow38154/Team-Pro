@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 public class GoalIn : MonoBehaviour
 {
     [SerializeField] int _goalNumber;
-    [SerializeField] bool _openClose;
+    [field: SerializeField] public bool _openClose { get; set; }
 
     [SerializeField] bool _isVertical;
     [SerializeField] Sprite _vDoorO;
@@ -21,6 +21,8 @@ public class GoalIn : MonoBehaviour
     private bool _one;
     private float _noBlockTimer = 0f;
     private const float OpenDelay = 1f; // 1초
+
+    bool _oneSound;
 
     private void Awake()
     {
@@ -83,6 +85,7 @@ public class GoalIn : MonoBehaviour
             _blocks.WallTrue();
             _openClose = false;
             _one = false; // 다시 효과를 재생할 수 있게
+            _oneSound = true;
         }
         else
         {
@@ -99,6 +102,11 @@ public class GoalIn : MonoBehaviour
 
                 _openClose = true;
                 _blocks.Wall(); // 벽 해제
+                if (_oneSound)
+                {
+                    AudioManager.Instance.PlayOpenDoor();
+                    _oneSound = false;
+                }
             }
         }
     }
