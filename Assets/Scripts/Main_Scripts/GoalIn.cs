@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 public class GoalIn : MonoBehaviour
 {
     [SerializeField] int _goalNumber;
-    [SerializeField] bool _openClose;
+    [field: SerializeField] public bool _openClose { get; set; }
 
     [SerializeField] bool _isVertical;
     [SerializeField] Sprite _vDoorO;

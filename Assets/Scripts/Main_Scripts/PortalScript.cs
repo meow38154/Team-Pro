@@ -12,6 +12,9 @@ public class PortalScript : MonoBehaviour
     [SerializeField] bool d;
     [SerializeField] float time;
 
+
+    [Header("포탈번호")]
+    [SerializeField] int num;
     [Header("이동할 씬")]
     [SerializeField] int sceneNum;
     [Header("페이드 시간")]
@@ -48,6 +51,22 @@ public class PortalScript : MonoBehaviour
         {
             Time.timeScale = 1f;
              SceneManagerReal scene = GameObject.Find("SceneManager").GetComponent<SceneManagerReal>();
+
+            if (num == 1)
+            {
+                DoorOC.Instance.stage1Open = true;
+            }
+
+            if (num == 2)
+            {
+                DoorOC.Instance.stage2Open = true;
+            }
+
+            if (num == 3)
+            {
+                DoorOC.Instance.stage3Open = true;
+            }
+
             scene.ChangeScene(sceneNum);
 
         }
