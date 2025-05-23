@@ -47,6 +47,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   meltSound: {fileID: 8300000, guid: 45025a01b0164e04cafd80c7cb7d7369, type: 3}
   pushSound: {fileID: 8300000, guid: 573c80e9a75befa45b786b408c341efa, type: 3}
+  doorSound: {fileID: 8300000, guid: 5c71af0a8c8735f448f15030bf0f0502, type: 3}
+  portalSound: {fileID: 8300000, guid: 6df371b8b6dc54c4eb4c03c91190ac34, type: 3}
   stepSounds:
   - {fileID: 8300000, guid: 1133f78716be39043a47a8e6122ec1dc, type: 3}
   - {fileID: 8300000, guid: f766270e4dd7cb3418bc496047a93944, type: 3}
@@ -54,6 +56,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: feb93320e5ae9c54e803ce39bbd3df17, type: 3}
   - {fileID: 8300000, guid: ad61e2403e13fee41b2acfa9f8328cc7, type: 3}
   - {fileID: 8300000, guid: 21907b6f8480522469ed7f51d19203e8, type: 3}
+  uiCilck: {fileID: 8300000, guid: 48a5179210c3fd34d982f3e14669f25d, type: 3}
+  resetPlay: {fileID: 8300000, guid: d9d8a0900a219f943b92590d9034e4cb, type: 3}
 --- !u!82 &2131319025757714886
 AudioSource:
   m_ObjectHideFlags: 0

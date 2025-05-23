@@ -395,6 +395,7 @@ public class Blocks : MonoBehaviour
             _go.GetComponent<Blocks>()._wallBlock = false;
 
         }
+
         GetComponent<Blocks>().PlayParticle();
         _goalSignal = true;
         _go.GetComponent<Blocks>()._blockNumber = 67893;
@@ -418,15 +419,21 @@ public class Blocks : MonoBehaviour
 
     void WT()
     {
-        if (gameObject.layer == 21)
+        if (transform.position.y > 80 && (gameObject.layer == 9 || gameObject.layer == 10 || gameObject.layer == 11))
         {
-            gameObject.layer = 9;
+            GetComponent<Blocks>()._childGo.GetComponent<SpriteRenderer>().color = Color.white;
         }
 
-        if (gameObject.layer == 22)
-        {
-            gameObject.layer = 10;
-        }
+
+        //if (gameObject.layer == 21)
+        //{
+        //    gameObject.layer = 9;
+        //}
+
+        //if (gameObject.layer == 22)
+        //{
+        //    gameObject.layer = 10;
+        //}
 
         if (gameObject.layer == 9 || gameObject.layer == 10)
             _pushing = true;

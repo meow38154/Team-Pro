@@ -42,8 +42,8 @@ public class InGameUI : MonoBehaviour
         {
             if (!_pauseUI.activeSelf)
             {
-                Time.timeScale = 0;
                 Pause();
+                Time.timeScale = 0;
             }
 
             else if (_pauseUI.activeSelf)
@@ -58,6 +58,7 @@ public class InGameUI : MonoBehaviour
 
     public void Pause()
     {
+        AudioManager.Instance.PlayUICilck();
         stopBtn.sprite = stopped;
             _stop.text = ">";
             _pauseUI.SetActive(true);
@@ -67,6 +68,7 @@ public class InGameUI : MonoBehaviour
 
     public void Return()
     {
+        AudioManager.Instance.PlayUICilck();
         stopBtn.sprite = resumed;
         _stop.text = "ll";
         _pauseUI.SetActive(false);
@@ -75,12 +77,14 @@ public class InGameUI : MonoBehaviour
 
     public void ToLobby()
     {
+        AudioManager.Instance.PlayUICilck();
         Time.timeScale = 1;
         SceneManager.LoadScene(1);
     }
 
     public void Reset2()
     {
+        AudioManager.Instance.PlayResetPlay();
         gamemanager.Reset1();
         Time.timeScale = 1;
         _pauseUI.SetActive(false);

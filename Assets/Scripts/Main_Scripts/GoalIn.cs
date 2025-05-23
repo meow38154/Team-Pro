@@ -22,6 +22,8 @@ public class GoalIn : MonoBehaviour
     private float _noBlockTimer = 0f;
     private const float OpenDelay = 1f; // 1초
 
+    bool _oneSound;
+
     private void Awake()
     {
         _render = GetComponent<SpriteRenderer>();
@@ -83,6 +85,7 @@ public class GoalIn : MonoBehaviour
             _blocks.WallTrue();
             _openClose = false;
             _one = false; // 다시 효과를 재생할 수 있게
+            _oneSound = true;
         }
         else
         {
@@ -99,6 +102,11 @@ public class GoalIn : MonoBehaviour
 
                 _openClose = true;
                 _blocks.Wall(); // 벽 해제
+                if (_oneSound)
+                {
+                    AudioManager.Instance.PlayOpenDoor();
+                    _oneSound = false;
+                }
             }
         }
     }

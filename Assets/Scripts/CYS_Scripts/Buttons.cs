@@ -27,6 +27,7 @@ namespace CYS_Scripts
 
         public void StartingButton()
         {
+            AudioManager.Instance.PlayUICilck();
             _3dCuben.SetActive(false);
             dontDisturb.SetActive(false);
             turnOffTheLight.SetActive(false);
@@ -37,6 +38,7 @@ namespace CYS_Scripts
 
       public void Credit()
         {
+            AudioManager.Instance.PlayUICilck();
             creditForm.SetActive(true);
         }
         
@@ -47,6 +49,7 @@ namespace CYS_Scripts
         
         public void Quitting()
         {
+            AudioManager.Instance.PlayUICilck();
             Application.Quit();
         }
 
