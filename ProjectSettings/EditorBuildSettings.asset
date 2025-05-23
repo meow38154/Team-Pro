@@ -6,11 +6,11 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Main/Tutoreal.1.unity
-    guid: 6464c47e9329a64499cfd1930e4da006
-  - enabled: 1
     path: Assets/Scenes/CYS_Scenes/StartUI.unity
     guid: ffacd4ebaf4f14e42bf20c7295b0b8cc
+  - enabled: 1
+    path: Assets/Scenes/Main/Tutoreal.1.unity
+    guid: 6464c47e9329a64499cfd1930e4da006
   - enabled: 1
     path: Assets/Scenes/RWS_Scenes/TrashHoleStage.unity
     guid: b28a764e9ced6fe448bc3396c6bb9d80
