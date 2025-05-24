@@ -11,6 +11,6 @@ public class BGM : MonoBehaviour
 
     private void Update()
     {
-        _audio.volume = SettingManager.Instance.BGM / 10 * SettingManager.Instance.Master / 10;
+        _audio.volume = SettingManagerr.Instance.BGM / 10 * SettingManagerr.Instance.Master / 10;
     }
 }

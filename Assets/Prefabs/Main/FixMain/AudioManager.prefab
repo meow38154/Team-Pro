@@ -59,6 +59,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 21907b6f8480522469ed7f51d19203e8, type: 3}
   uiCilck: {fileID: 8300000, guid: 48a5179210c3fd34d982f3e14669f25d, type: 3}
   resetPlay: {fileID: 8300000, guid: d9d8a0900a219f943b92590d9034e4cb, type: 3}
+  _clear: {fileID: 8300000, guid: d3d4f8e129e4ae04a99eda5d771768a8, type: 3}
+  _su: {fileID: 8300000, guid: bb67c88cf732126468e6189b139da3c0, type: 3}
 --- !u!82 &2131319025757714886
 AudioSource:
   m_ObjectHideFlags: 0

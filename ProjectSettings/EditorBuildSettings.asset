@@ -26,6 +26,18 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Lws_Scenes/Lws_HiddenFixFix.unity
     guid: 6ea28f9598bb5214787532015e6833ba
+  - enabled: 1
+    path: Assets/Scenes/Main/ClearScene/TutorealClear.unity
+    guid: ef0ddfb6c90cb774e90ae7eaca254f5b
+  - enabled: 1
+    path: Assets/Scenes/Main/ClearScene/TrashClear.unity
+    guid: c8856c561963b26438473f27a3230dc1
+  - enabled: 1
+    path: Assets/Scenes/Main/ClearScene/BreakClear.unity
+    guid: 062e2220041cebc418399c47bc27b6cf
+  - enabled: 1
+    path: Assets/Scenes/Main/ClearScene/HapGoldClear.unity
+    guid: 1cf9168b506219749b1a6f4745c59cb0
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0
