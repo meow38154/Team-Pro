@@ -4,16 +4,16 @@ public class TFSensor3 : MonoBehaviour
 {
     private void Update()
     {
-        if (SettingManager.Instance.Stage3Open)
+        if (SettingManagerr.Instance.Stage3Open)
         {
             GetComponent<Blocks>().Wall();
-            GetComponent<GoalIn>()._openClose = SettingManager.Instance.Stage3Open;
+            GetComponent<GoalIn>()._openClose = SettingManagerr.Instance.Stage3Open;
         }
 
-        if (SettingManager.Instance.Stage3Open == false)
+        if (SettingManagerr.Instance.Stage3Open == false)
         {
             GetComponent<Blocks>().WallTrue();
-            GetComponent<GoalIn>()._openClose = SettingManager.Instance.Stage3Open;
+            GetComponent<GoalIn>()._openClose = SettingManagerr.Instance.Stage3Open;
         }
     }
 }
