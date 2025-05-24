@@ -52,21 +52,7 @@ public class PortalScript : MonoBehaviour
             Time.timeScale = 1f;
              SceneManagerReal scene = GameObject.Find("SceneManager").GetComponent<SceneManagerReal>();
 
-            if (num == 1)
-            {
-                SettingManagerr.Instance.Stage1Open = true;
-            }
-
-            if (num == 2)
-            {
-                SettingManagerr.Instance.Stage2Open = true;
-            }
-
-            if (num == 3)
-            {
-                SettingManagerr.Instance.Stage3Open = true;
-            }
-
+            ClearSave.Instance.SettingManagerSetting(num);
             scene.ChangeScene(sceneNum);
 
         }
