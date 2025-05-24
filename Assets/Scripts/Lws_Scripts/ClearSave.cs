@@ -4,6 +4,8 @@ public class ClearSave : MonoBehaviour
 {
     private int _clearStage = 0;
 
+    SettingManagerr _ClearStageClass = SettingManagerr.Instance;
+
     public int ClearStage
     {
         get
@@ -17,32 +19,59 @@ public class ClearSave : MonoBehaviour
         }
     }
 
+    public int[] haveMetals
+    {
+        get
+        {
+            return haveMetals;
+        }
+        set
+        {
+
+        }
+    }
+
     private void Start()
     {
         ClearStage = PlayerPrefs.GetInt("ClearStage");
+        SettingManagerSetting();
     }
 
 
     private void setClearStage()
     {
-
-        PlayerPrefs.SetInt("ClearStage", ClearStage);
-
-        //int a = PlayerPrefs.GetInt("ClearStage");
-        //if(ClearStage > a)
-        //{
-        //    PlayerPrefs.SetInt("ClearStage", ClearStage);
-        //}
-        //else if(ClearStage < a) 
-        //{
-        //    ClearStage = a;
-        //}
+        int a = PlayerPrefs.GetInt("ClearStage");
+        if (ClearStage > a)
+        {
+            PlayerPrefs.SetInt("ClearStage", ClearStage);
+        }
+        else if (ClearStage < a)
+        {
+            ClearStage = a;
+        }
     }
 
-    private void SettingManagerSetting()
+    public void SettingManagerSetting()
     {
-        SettingManagerr a = SettingManagerr.Instance;
-        bool[] b = { a.Stage1Open, a.Stage2Open, a.Stage3Open };
+        
+        bool[] b = { _ClearStageClass.Stage1Open, _ClearStageClass.Stage2Open, _ClearStageClass.Stage3Open };
+        _ClearStageClass.Stage1Open = true;
+        _ClearStageClass.Stage2Open = true;
+        _ClearStageClass.Stage3Open = true;
+
+
         //for(int i = 0;i < ClearStage;)
+        //{
+
+        //}
+
+    }
+
+    public void GetMetal(int a,int b,int c,int d)
+    {
+        _ClearStageClass.Copper += a;
+        _ClearStageClass.Iron += b;
+        _ClearStageClass.Gold += c;
+        _ClearStageClass.HapGold += d;
     }
 }
