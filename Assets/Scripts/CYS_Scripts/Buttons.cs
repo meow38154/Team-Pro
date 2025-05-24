@@ -28,7 +28,7 @@ namespace CYS_Scripts
         public void StartingButton()
         {
             AudioManager.Instance.PlayUICilck();
-            _3dCuben.SetActive(false);
+            //_3dCuben.SetActive(false);
             dontDisturb.SetActive(false);
             turnOffTheLight.SetActive(false);
             startingForm.SetActive(true);

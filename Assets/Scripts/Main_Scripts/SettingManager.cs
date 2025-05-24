@@ -1,0 +1,32 @@
+using UnityEngine;
+using System.Collections;
+
+public class SettingManager : MonoBehaviour
+{
+    public static SettingManager Instance;
+
+    public int score = 0;
+
+    [Header("Open?")]
+    [field: SerializeField] public bool Stage1Open { get; set; }
+    [field: SerializeField] public bool Stage2Open { get; set; }
+    [field: SerializeField] public bool Stage3Open { get; set; }
+
+    [Header("Volume")]
+    [field: SerializeField] public float Master { get; set; }
+    [field: SerializeField] public float BGM { get; set; }
+    [field: SerializeField] public float SoundEffect { get; set; }
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+}
