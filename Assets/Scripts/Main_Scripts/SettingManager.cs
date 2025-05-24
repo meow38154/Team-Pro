@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.InputSystem;
 
 public class SettingManagerr : MonoBehaviour
 {
@@ -33,6 +34,20 @@ public class SettingManagerr : MonoBehaviour
         else
         {
             Destroy(gameObject);
+        }
+    }
+
+    private void Update()
+    {
+        if (Keyboard.current.zKey.isPressed && Keyboard.current.pKey.wasPressedThisFrame)
+        {
+            Copper = 0;
+            Iron = 0;
+            Gold = 0;
+            HapGold = 0;
+            Stage1Open = false;
+            Stage2Open = false;
+            Stage3Open = false;
         }
     }
 }
