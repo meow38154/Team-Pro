@@ -31,10 +31,10 @@ public class ClearSave : MonoBehaviour
         Stage1Open = PlayerPrefs.GetInt("Stage1Open",0);
         Stage2Open = PlayerPrefs.GetInt("Stage2Open",0);
         Stage3Open = PlayerPrefs.GetInt("Stage3Open",0);
+
         PlayerPrefs.SetInt("Stage1Open", Stage1Open);
         PlayerPrefs.SetInt("Stage2Open", Stage2Open);
         PlayerPrefs.SetInt("Stage3Open", Stage3Open);
-
 
         SettingManagerSetting(0);
     }
@@ -47,9 +47,13 @@ public class ClearSave : MonoBehaviour
     public void SettingManagerSetting(int a)
     {
         if(a != 0)PlayerPrefs.SetInt($"Stage{a}Open",1);
-        _ClearStageClass.Stage1Open = PlayerPrefs.GetInt("Stage1Open") == 1 ? true : false;
-        _ClearStageClass.Stage2Open = PlayerPrefs.GetInt("Stage2Open") == 1 ? true : false;
-        _ClearStageClass.Stage3Open = PlayerPrefs.GetInt("Stage3Open") == 1 ? true : false;
+        PlayerPrefs.SetInt("Stage1Open", Stage1Open);
+        PlayerPrefs.SetInt("Stage2Open", Stage2Open);
+        PlayerPrefs.SetInt("Stage3Open", Stage3Open);
+
+        _ClearStageClass.Stage1Open = Stage1Open == 1 ? true : false;
+        _ClearStageClass.Stage2Open = Stage2Open == 1 ? true : false;
+        _ClearStageClass.Stage3Open = Stage3Open == 1 ? true : false;
     }
 
     public void GetMetal(int a,int b,int c,int d)
