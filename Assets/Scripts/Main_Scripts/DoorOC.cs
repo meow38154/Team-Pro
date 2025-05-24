@@ -8,9 +8,9 @@ public class DoorOC : MonoBehaviour
     public int score = 0;
 
     [Header("Open?")]
-    [SerializeField] public bool stage1Open;
-    [SerializeField] public bool stage2Open;
-    [SerializeField] public bool stage3Open;
+    [field: SerializeField] public bool Stage1Open { get; set; }
+    [field: SerializeField] public bool Stage2Open { get; set; }
+    [field: SerializeField] public bool Stage3Open { get; set; }
 
     private void Awake()
     {
