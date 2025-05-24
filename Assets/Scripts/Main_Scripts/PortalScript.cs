@@ -54,17 +54,17 @@ public class PortalScript : MonoBehaviour
 
             if (num == 1)
             {
-                DoorOC.Instance.Stage1Open = true;
+                SettingManager.Instance.Stage1Open = true;
             }
 
             if (num == 2)
             {
-                DoorOC.Instance.Stage2Open = true;
+                SettingManager.Instance.Stage2Open = true;
             }
 
             if (num == 3)
             {
-                DoorOC.Instance.Stage3Open = true;
+                SettingManager.Instance.Stage3Open = true;
             }
 
             scene.ChangeScene(sceneNum);

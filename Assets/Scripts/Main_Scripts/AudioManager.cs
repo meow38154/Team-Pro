@@ -38,33 +38,33 @@ public class AudioManager : MonoBehaviour
     }
     public void PlayStep()
     {
-        _audioSource.PlayOneShot(stepSounds[UnityEngine.Random.Range(0, stepSounds.Length)], VolumeManager.Instance.SoundEffect / 10 * VolumeManager.Instance.Master / 10);
+        _audioSource.PlayOneShot(stepSounds[UnityEngine.Random.Range(0, stepSounds.Length)], SettingManager.Instance.SoundEffect / 10 * SettingManager.Instance.Master / 10);
     }
     public void PlayUICilck()
     {
-        _audioSource.PlayOneShot(uiCilck, VolumeManager.Instance.SoundEffect / 10 * VolumeManager.Instance.Master / 10);
+        _audioSource.PlayOneShot(uiCilck, SettingManager.Instance.SoundEffect / 10 * SettingManager.Instance.Master / 10);
     }
 
     public void PlayResetPlay()
     {
-        _audioSource.PlayOneShot(resetPlay, VolumeManager.Instance.SoundEffect / 10 * VolumeManager.Instance.Master / 10);
+        _audioSource.PlayOneShot(resetPlay, SettingManager.Instance.SoundEffect / 10 * SettingManager.Instance.Master / 10);
     }
 
     public void PlayOpenDoor()
     {
-        _audioSource.PlayOneShot(doorSound, VolumeManager.Instance.SoundEffect / 10 * VolumeManager.Instance.Master / 10);
+        _audioSource.PlayOneShot(doorSound, SettingManager.Instance.SoundEffect / 10 * SettingManager.Instance.Master / 10);
     }
 
 
     public void PlayMelt()
     {
-        _audioSource.PlayOneShot(meltSound, VolumeManager.Instance.SoundEffect / 10 * VolumeManager.Instance.Master / 10);
+        _audioSource.PlayOneShot(meltSound, SettingManager.Instance.SoundEffect / 10 * SettingManager.Instance.Master / 10);
         Debug.Log("Melted!");
     }
 
     public void PlayPush()
     {
-        _audioSource.PlayOneShot(pushSound, VolumeManager.Instance.SoundEffect / 10 * VolumeManager.Instance.Master / 10);
+        _audioSource.PlayOneShot(pushSound, SettingManager.Instance.SoundEffect / 10 * SettingManager.Instance.Master / 10);
         Debug.Log("Pushed!");
     }
 }
