@@ -205,6 +205,11 @@ public class Blocks : MonoBehaviour
 
     private void Update()
     {
+        //if (_pushing == false && transform.position.y < 100)
+        //{
+        //    GetComponent<Blocks>()._childGo.GetComponent<SpriteRenderer>().color = Color.white;
+        //}
+
         WT();
         HabGold();
         BIM();
@@ -419,7 +424,7 @@ public class Blocks : MonoBehaviour
 
     void WT()
     {
-        if (transform.position.y > 80 && (gameObject.layer == 9 || gameObject.layer == 10 || gameObject.layer == 11))
+        if (transform.position.y > 80 && (gameObject.layer == 9 || gameObject.layer == 10 || gameObject.layer == 116))
         {
             GetComponent<Blocks>()._childGo.GetComponent<SpriteRenderer>().color = Color.white;
         }
