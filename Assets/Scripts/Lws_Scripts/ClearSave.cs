@@ -41,7 +41,7 @@ public class ClearSave : MonoBehaviour
 
     private void SettingManagerSetting()
     {
-        SettingManager a = SettingManager.Instance;
+        SettingManagerr a = SettingManagerr.Instance;
         bool[] b = { a.Stage1Open, a.Stage2Open, a.Stage3Open };
         //for(int i = 0;i < ClearStage;)
     }
