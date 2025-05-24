@@ -113,34 +113,54 @@ public class Blocks : MonoBehaviour
 
     void ReStart()
     {
-        if (gameObject.layer == 20)
+        // 기본 위치 복구
+        if (gameObject.layer == 20 || gameObject.layer == 19)
         {
             transform.position = _savePosition;
+            _blockNumber = _saveNumber;
         }
 
+        // 합금 블록이면 제거
         if (gameObject.layer == 12)
         {
             Destroy(_Parents.gameObject);
+            return;
         }
-            if (gameObject.layer == 19)
-            {
-                Debug.Log("실행됨" + _savePosition + " " + _saveNumber);
-                transform.position = _savePosition;
-                _blockNumber = _saveNumber;
-            }
 
+        // 미는 블록 관련 상태 초기화
         if (_savePushing)
         {
             Debug.Log("리셋");
+
+            // 위치와 번호 복구
             _breakCount = _saveBreak;
             _blockNumber = _saveNumber;
             transform.position = _savePosition;
-            _spren.enabled = true;
             _wallBlock = true;
-            transform.position = new Vector3(transform.position.x, transform.position.y, 0);
             _destory = false;
+            _pushing = true;
 
+            // 외형 초기화
+            if (_spren != null)
+                _spren.enabled = true;
 
+            if (_childGo != null)
+            {
+                var childRenderer = _childGo.GetComponent<SpriteRenderer>();
+                if (childRenderer != null)
+                    childRenderer.color = Color.white;
+            }
+
+            // 레이어 초기화
+            if (gameObject.layer == 21)
+                gameObject.layer = 9;
+            else if (gameObject.layer == 22)
+                gameObject.layer = 10;
+
+            // Z값 초기화
+            transform.position = new Vector3(transform.position.x, transform.position.y, 0);
+
+            // 코루틴 초기화
             if (arrivalCoroutine != null)
             {
                 StopCoroutine(arrivalCoroutine);
@@ -205,10 +225,13 @@ public class Blocks : MonoBehaviour
 
     private void Update()
     {
-        //if (_pushing == false && transform.position.y < 100)
-        //{
-        //    GetComponent<Blocks>()._childGo.GetComponent<SpriteRenderer>().color = Color.white;
-        //}
+        if (gameObject.layer == 9 || gameObject.layer == 10 || gameObject.layer == 11 || gameObject.layer == 12)
+        {
+            if (_pushing == false && transform.position.y < 100)
+            {
+                GetComponent<Blocks>()._childGo.GetComponent<SpriteRenderer>().color = Color.white;
+            }
+        }
 
         WT();
         HabGold();
