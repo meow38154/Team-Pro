@@ -52,11 +52,25 @@ public class Managers : MonoBehaviour
 
     private void Start()
     {
-        StaR();
-        SettingManagerr.Instance.Copper += _endnum1;
-        SettingManagerr.Instance.Iron += _endnum2;
-        SettingManagerr.Instance.Gold += _endnum3;
-        SettingManagerr.Instance.HapGold += _endnum4;
+        Debug.Log("Managers Start 시작");
+
+        try
+        {
+            Debug.Log("StaR() 호출 시작");
+            StaR();
+            Debug.Log("StaR() 호출 성공");
+
+            Debug.Log("SettingManagerr 접근 시작");
+            SettingManagerr.Instance.Copper += _endnum1;
+            SettingManagerr.Instance.Iron += _endnum2;
+            SettingManagerr.Instance.Gold += _endnum3;
+            SettingManagerr.Instance.HapGold += _endnum4;
+            Debug.Log("Managers Start 정상 종료");
+        }
+        catch (System.Exception e)
+        {
+            Debug.LogError("Managers Start 중 예외 발생: " + e.Message + "\n" + e.StackTrace);
+        }
     }
 
     void StaR()

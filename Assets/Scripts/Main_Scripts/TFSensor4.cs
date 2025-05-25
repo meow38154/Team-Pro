@@ -4,7 +4,7 @@ public class TFSensor4 : MonoBehaviour
 {
     private void Update()
     {
-        if (SettingManagerr.Instance.Stage3Open && SettingManagerr.Instance.Stage2Open && SettingManagerr.Instance.Stage1Open)
+        if (SettingManagerr.Instance.Copper >= 20 && SettingManagerr.Instance.Iron >= 18 && SettingManagerr.Instance.Gold >= 10)
         {
             GetComponent<Blocks>().Wall();
             GetComponent<GoalIn>()._openClose = true;
