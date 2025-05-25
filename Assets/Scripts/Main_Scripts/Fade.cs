@@ -56,7 +56,7 @@ public class Fade : MonoBehaviour
     IEnumerator FadeOut()
     {
         // 크기 복원 (혹시라도 작아져있으면)
-        GetComponent<RectTransform>().sizeDelta = new Vector2(Screen.width, Screen.height);
+        GetComponent<RectTransform>().sizeDelta = new Vector2(5000, 5000);
 
         // 완전히 검게 될 때까지 알파 증가
         while (_sr.color.a < 1f)
