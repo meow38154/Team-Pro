@@ -39,6 +39,10 @@ public class AudioManager : MonoBehaviour
     private void Start()
     {
         _audioSource = GetComponent<AudioSource>();
+        if (_audioSource == null)
+        {
+            Debug.LogError("AudioManager: AudioSource가 없습니다!");
+        }
     }
     public void PlayStep()
     {
