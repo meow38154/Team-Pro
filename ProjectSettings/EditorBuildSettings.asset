@@ -44,6 +44,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Main/End.unity
     guid: 9a2abb15befc978429c1f724339dd456
+  - enabled: 1
+    path: Assets/Scenes/Lws_Scenes/Lws_Map3.unity
+    guid: 75ed0dec349d9374fbbdead484fd3bfc
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0
