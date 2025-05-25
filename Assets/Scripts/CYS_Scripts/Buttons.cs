@@ -20,7 +20,17 @@ namespace CYS_Scripts
         [SerializeField] GameObject _ahPlz;
 
         bool _isTimeOver;
-    
+
+        private void Awake()
+        {
+            _gold = GameObject.Find("HapGOld_0");
+            _play = GameObject.Find("Play!");
+            _logo = GameObject.Find("Objects");
+            _ob = GameObject.Find("Title");
+            _ahPlz = GameObject.Find("Light 2D");
+        }
+
+
         private void Start()
         {
             //_settingForm.SetActive(false);
