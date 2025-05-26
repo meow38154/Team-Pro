@@ -7,13 +7,13 @@ public class CreditTextMove : MonoBehaviour
 
     private void OnEnable()
     {
-        transform.position = new Vector2(650, _yPosition);
+        transform.position = new Vector2(1300, _yPosition);
     }
 
     private void Update()
     {
         transform.position += Vector3.up * Time.deltaTime * _speed;
-        if(transform.position.y > 3700) transform.position = new Vector2(650, _yPosition);
+        if(transform.position.y > 3700) transform.position = new Vector2(1300, _yPosition);
     }
 
 
