@@ -697,7 +697,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 1404028623067837608, guid: 6203147fb6acd4b448c9341db1b16cdf, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2351,6 +2351,7 @@ MonoBehaviour:
   _ahPlz: {fileID: 1903080140}
   _stext: {fileID: 800915986}
   _logoo: {fileID: 1320264165}
+  _uis: {fileID: 1196376350}
 --- !u!1 &1221941074
 GameObject:
   m_ObjectHideFlags: 0
@@ -4189,7 +4190,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   creditForm: {fileID: 1786664166}
-  _s: {fileID: 0}
+  _s: {fileID: 1196376350}
 --- !u!4 &1803568592 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7878350319992209165, guid: 4ada140dbd0cee4409aa0564a78ea282, type: 3}
