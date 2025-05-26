@@ -37,7 +37,7 @@ namespace CYS_Scripts
             startingForm.SetActive(false);
             _3dCubeR.SetActive(false);
             creditForm.SetActive(false);
-       
+            Setting.SetActive(false);
         }
 
         public void StartingButton()
@@ -60,14 +60,24 @@ namespace CYS_Scripts
         {
             AudioManager.Instance.PlayUICilck();
             creditForm.SetActive(true);
-            Setting.SetActive(false);
         }
         
-        
-        
-        
-        
-        
+        public void Setting1()
+        {
+            if(!Setting.activeSelf)
+            {
+                Setting.SetActive(true);
+            }
+            else
+            {
+                Setting.SetActive(false);
+            }
+            
+        }
+
+
+
+
         public void Quitting()
         {
             AudioManager.Instance.PlayUICilck();
