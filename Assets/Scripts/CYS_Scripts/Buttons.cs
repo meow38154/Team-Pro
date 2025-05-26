@@ -20,6 +20,7 @@ namespace CYS_Scripts
         [SerializeField] GameObject _ahPlz;
         [SerializeField] GameObject _stext;
         [SerializeField] GameObject _logoo;
+        [SerializeField] GameObject _uis;
 
         bool _isTimeOver;
 
@@ -62,6 +63,7 @@ namespace CYS_Scripts
 
       public void Credit()
         {
+            _uis.SetActive(false);
             AudioManager.Instance.PlayUICilck();
             creditForm.SetActive(true);
         }
