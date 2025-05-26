@@ -66,6 +66,7 @@ namespace CYS_Scripts
             _uis.SetActive(false);
             AudioManager.Instance.PlayUICilck();
             creditForm.SetActive(true);
+            Setting.SetActive(false);
         }
         
         public void Setting1()
