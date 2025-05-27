@@ -300,12 +300,13 @@ public class Blocks : MonoBehaviour
 
     public void Move()
     {
+        
         _vec2Clamp.x = Mathf.Clamp(_vec2Abs.x, -1, 1);
         _vec2Clamp.y = Mathf.Clamp(_vec2Abs.y, -1, 1);
 
             if (_interationPossible && _movein)
             {
-        if (_pushing)
+        if (_pushing && Time.timeScale != 0)
         {
                 PlayParticle();
                 if (_breakCount > 0)
@@ -341,7 +342,7 @@ public class Blocks : MonoBehaviour
                 (_playerVector.DownKeySensor && numder == 2))
             {
 
-                if (_pushing)
+                if (_pushing && Time.timeScale != 0)
                 {
                 PlayParticle();
                 if (_breakCount > 0)

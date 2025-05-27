@@ -18,6 +18,9 @@ namespace CYS_Scripts
         [SerializeField] GameObject _logo;
         [SerializeField] GameObject _ob;
         [SerializeField] GameObject _ahPlz;
+        [SerializeField] GameObject _stext;
+        [SerializeField] GameObject _logoo;
+        [SerializeField] GameObject _uis;
 
         bool _isTimeOver;
 
@@ -27,7 +30,7 @@ namespace CYS_Scripts
             _play = GameObject.Find("Play!");
             _logo = GameObject.Find("Objects");
             _ob = GameObject.Find("Title");
-            _ahPlz = GameObject.Find("Light 2D");
+            _ahPlz = GameObject.Find("MosueLight");
         }
 
 
@@ -37,7 +40,7 @@ namespace CYS_Scripts
             startingForm.SetActive(false);
             _3dCubeR.SetActive(false);
             creditForm.SetActive(false);
-       
+            Setting.SetActive(false);
         }
 
         public void StartingButton()
@@ -53,21 +56,35 @@ namespace CYS_Scripts
             startingForm.SetActive(true);
             _3dCubeR.SetActive(true);
             quitting.SetActive(false);
+            _stext.SetActive(false);
+            _logoo.SetActive(false);
             _ahPlz.GetComponent<MouseMove>()._start = true;
         }
 
       public void Credit()
         {
+            _uis.SetActive(false);
             AudioManager.Instance.PlayUICilck();
             creditForm.SetActive(true);
             Setting.SetActive(false);
         }
         
-        
-        
-        
-        
-        
+        public void Setting1()
+        {
+            if(!Setting.activeSelf)
+            {
+                Setting.SetActive(true);
+            }
+            else
+            {
+                Setting.SetActive(false);
+            }
+            
+        }
+
+
+
+
         public void Quitting()
         {
             AudioManager.Instance.PlayUICilck();

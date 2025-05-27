@@ -174,6 +174,7 @@ public class PlayerScript : MonoBehaviour
             child.transform.localScale += new Vector3(-0.2f, 0.1f, 0);
             yield return new WaitForSeconds(0.025f);
         }
+        child.transform.localScale = new Vector3(1, 1, 1);
     }
 
     IEnumerator MoveCoolTime()

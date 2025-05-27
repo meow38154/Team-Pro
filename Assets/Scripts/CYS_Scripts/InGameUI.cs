@@ -75,6 +75,26 @@ public class InGameUI : MonoBehaviour
         Time.timeScale = 1;
     }
 
+    public void PR()
+    {
+        if(stopBtn.sprite == stopped)
+        {
+            AudioManager.Instance.PlayUICilck();
+            stopBtn.sprite = resumed;
+            _stop.text = "ll";
+            _pauseUI.SetActive(false);
+            Time.timeScale = 1;
+        }
+        else if (stopBtn.sprite == resumed)
+        {
+            AudioManager.Instance.PlayUICilck();
+            stopBtn.sprite = stopped;
+            _stop.text = ">";
+            _pauseUI.SetActive(true);
+            Time.timeScale = 0;
+        }
+    }
+
     public void ToLobby()
     {
         AudioManager.Instance.PlayUICilck();
